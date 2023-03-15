@@ -1,18 +1,17 @@
-# ✒️ Título
-Projeto de xxx -> IPL 22/23
+# ✒️ Happy Guest - API
+Projeto Informático -> IPL 22/23
 
-Descrição
+Desenvolvimento de uma API para utilizar na comunicação
+entre a App Mobile e o Dashboard Web de uma unidade hoteleira.
 
 ## 📖 Notas:
-1. xxx
-
-2. xxx
+1. xxx: xxx
 
 ## 🧑 Participantes:
-* Diogo Mendes nº2191181 -> diiogomendes21@hotmail.com
-* Nome Apelido
+* Diogo Mendes nº2191181 -> 2191181@ipleiria.pt
+* Tomás Neves nº221747 -> 221747@ipleiria.pt
 
 ## 🔧 Info:
-Engenharia Informática -> xºAno xºSemestre
+Engenharia Informática
 
-Linguagem
+Lavarel
