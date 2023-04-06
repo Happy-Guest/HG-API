@@ -5,7 +5,16 @@ Desenvolvimento de uma API para utilizar na comunicação
 entre a App Mobile e o Dashboard Web de uma unidade hoteleira.
 
 ## 📖 Notas:
-1. xxx: xxx
+1. Instalação: 
+    * composer install
+    * .env.example para .env
+    * php artisan key:generate
+    * php artisan migrate
+    * php artisan db:seed
+    * php artisan passport:install
+    * php artisan storage:link
+2. URL:
+    * API -> http://127.0.0.1:8000/
 
 ## 🧑 Participantes:
 * Diogo Mendes nº2191181 -> 2191181@ipleiria.pt
