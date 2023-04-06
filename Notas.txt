@@ -1,0 +1,18 @@
+
+ Historico de Instalação:
+    -> Laravel: (https://laravel.com/docs/10.x/installation#your-first-laravel-project)
+	1. composer create-project laravel/laravel happyguest-api
+	2. ficheiro .env
+	3. php artisan key:generate
+	4. instalar passport
+	5. php artisan storage:link
+
+    -> Laravel Passport: (https://laravel.com/docs/10.x/passport#installation)
+	1. composer require laravel/passport
+	2. php artisan migrate
+	3. php artisan passport:install
+
+    -> Lang PT: (https://laravel-lang.com/installation/)
+	1. composer require laravel-lang/common --dev
+	2. php artisan lang:add pt
+	3. php artisan lang:update
