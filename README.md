@@ -15,6 +15,9 @@ entre a App Mobile e o Dashboard Web de uma unidade hoteleira.
     * php artisan storage:link
 2. URL:
     * API -> http://127.0.0.1:8000/
+    
+3. Iniciação:
+    * php artisan serve
 
 ## 🧑 Participantes:
 * Diogo Mendes nº2191181 -> 2191181@ipleiria.pt
