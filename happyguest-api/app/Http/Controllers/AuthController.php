@@ -25,7 +25,7 @@ class AuthController extends Controller
         $user->save();
 
         return response()->json([
-            'message' => 'Successfully created user!',
+            'message' => __('auth.registered'),
         ], 201);
     }
 
@@ -37,7 +37,7 @@ class AuthController extends Controller
 
         if (!Auth::attempt($credentials)) {
             return response()->json([
-                'message' => 'Unauthorized',
+                'message' => __('auth.failed'),
             ], 401);
         }
 
@@ -56,6 +56,7 @@ class AuthController extends Controller
             'expires_at' => Carbon::parse(
                 $tokenResult->token->expires_at
             )->toDateTimeString(),
+            'message' => __('auth.logged_in'),
         ]);
     }
 
@@ -64,7 +65,7 @@ class AuthController extends Controller
         $request->user()->token()->revoke();
 
         return response()->json([
-            'message' => 'Successfully logged out',
+            'message' => __('auth.logged_out'),
         ]);
     }
 

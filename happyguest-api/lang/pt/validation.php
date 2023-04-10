@@ -182,7 +182,7 @@ return [
         'national_code'            => 'código nacional',
         'number'                   => 'número',
         'password'                 => 'senha',
-        'password_confirmation'    => 'ConfirmaÇão Da Senha',
+        'password_confirmation'    => 'Confirmação Da Senha',
         'phone'                    => 'telefone',
         'photo'                    => 'foto',
         'postal_code'              => 'Código postal',
