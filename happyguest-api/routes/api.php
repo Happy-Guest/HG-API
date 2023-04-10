@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,16 +16,19 @@ use App\Http\Controllers\AuthController;
 */
 
 // Auth
-
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 // Authenticated
-
 Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    // User
+    // Users
+    Route::prefix('/users')->name('users.')->group(function () {
+        Route::get('/me', [AuthController::class, 'user'])->name('me');
 
-    Route::get('/user', [AuthController::class, 'user'])->name('user');
+        Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::get('/{id}', [UserController::class, 'show'])->name('show');
+        Route::patch('/{id}', [UserController::class, 'update'])->name('update');
+    });
 });

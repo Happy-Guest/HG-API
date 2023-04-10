@@ -11,6 +11,12 @@ use Carbon\Carbon;
 
 class AuthController extends Controller
 {
+    /**
+     * Register a new user.
+     *
+     * @param RegisterRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function register(RegisterRequest $request)
     {
         $request->validated();
@@ -29,6 +35,12 @@ class AuthController extends Controller
         ], 201);
     }
 
+    /**
+     * Login a user.
+     *
+     * @param LoginRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function login(LoginRequest $request)
     {
         $request->validated();
@@ -60,6 +72,12 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * Logout a user.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function logout(Request $request)
     {
         $request->user()->token()->revoke();
@@ -69,6 +87,12 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * Get the authenticated user.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function user(Request $request)
     {
         return response()->json($request->user());
