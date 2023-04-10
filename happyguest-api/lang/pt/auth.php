@@ -6,4 +6,7 @@ return [
     'failed'   => 'As credenciais indicadas não coincidem com as registadas no sistema.',
     'password' => 'A palavra-passe está errada.',
     'throttle' => 'O número limite de tentativas de login foi atingido. Por favor tente novamente dentro de :seconds segundos.',
+    'registered' => 'Registado com sucesso!',
+    'logged_in' => 'Logado com sucesso!',
+    'logged_out' => 'Deslogado com sucesso!',
 ];
