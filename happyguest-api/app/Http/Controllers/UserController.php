@@ -47,4 +47,24 @@ class UserController extends Controller
             'message' => __('messages.updated', ['attribute' => __('messages.attributes.user')]),
         ]);
     }
+
+    /**
+     * Remove the specified user from storage.
+     *
+     * @param User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(int $id)
+    {
+        if ($id == auth()->user()->id) {
+            return response()->json([
+                'message' => __('messages.cannot_delete_yourself'),
+            ], 403);
+        }
+        User::findOrFail($id)->delete();
+
+        return response()->json([
+            'message' => __('messages.deleted', ['attribute' => __('messages.attributes.user')]),
+        ]);
+    }
 }
