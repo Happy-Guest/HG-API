@@ -52,15 +52,16 @@ class UserController extends Controller
      * Remove the specified user from storage.
      *
      * @param User $user
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function destroy(int $id)
     {
-        if ($id == auth()->user()->id) {
+        if($id !== auth()->id() && auth()->user()->role !== 'M') {
             return response()->json([
-                'message' => __('messages.cannot_delete_yourself'),
+                'message' => __('messages.unauthorized'),
             ], 403);
         }
+
         User::findOrFail($id)->delete();
 
         return response()->json([

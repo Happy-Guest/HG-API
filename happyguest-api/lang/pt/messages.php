@@ -5,7 +5,7 @@ declare(strict_types=1);
 return [
     'updated' => ':attribute atualizado com sucesso!',
     'deleted' => ':attribute eliminado com sucesso!',
-    'cannot_delete_yourself' => 'Não pode eliminar a sua própria conta!',
+    'unauthorized' => 'Não tem permissões para eliminar este utilizador!',
     'attributes' => [
         'user' => 'Utilizador',
     ],
