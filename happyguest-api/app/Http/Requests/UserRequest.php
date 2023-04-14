@@ -26,7 +26,6 @@ class UserRequest extends FormRequest
             'name' => 'required|string|min:3|max:255',
             'email' => 'required|string|email|unique:users',
             'phone' => 'nullable|numeric|digits_between:9, 12',
-            'role' => 'required|in:C,M',
             'photo_url' => 'nullable|url',
         ];
     }

@@ -39,6 +39,12 @@ class UserController extends Controller
      */
     public function update(UserRequest $request)
     {
+        if ($request->id !== auth()->id() && auth()->user()->role !== 'M') {
+            return response()->json([
+                'message' => __('messages.unauthorized'),
+            ], 403);
+        }
+
         $request->user()->fill($request->validated());
 
         $request->user()->save();
@@ -56,7 +62,7 @@ class UserController extends Controller
      */
     public function destroy(int $id)
     {
-        if($id !== auth()->id() && auth()->user()->role !== 'M') {
+        if ($id !== auth()->id() && auth()->user()->role !== 'M') {
             return response()->json([
                 'message' => __('messages.unauthorized'),
             ], 403);
