@@ -16,8 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->nullable();
-            $table->timestamp('email_verified_at')->nullable(); // Optional?
+            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum('role', ['C', 'M'])->default('C'); // C = Client, M = Manager
+            $table->string('photo_url')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

@@ -26,6 +26,8 @@ class RegisterRequest extends FormRequest
             'email' => 'required|string|email|unique:users',
             'password' => 'required|string|confirmed|min:5',
             'phone' => 'nullable|numeric|digits_between:9, 12',
+            'role' => 'required|in:C,M',
+            'photo_url' => 'nullable|url',
         ];
     }
 }
