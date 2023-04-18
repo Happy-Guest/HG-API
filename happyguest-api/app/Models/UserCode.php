@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserCode extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     public $timestamps = false;
 
@@ -20,15 +20,6 @@ class UserCode extends Model
     protected $fillable = [
         'user_id',
         'code_id',
-    ];
-
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
-     */
-    protected $casts = [
-        'deleted_at' => 'datetime:d/m/Y',
     ];
 
     /**
