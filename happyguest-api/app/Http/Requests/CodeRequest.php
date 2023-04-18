@@ -23,11 +23,10 @@ class CodeRequest extends FormRequest
     {
         if ($this->isMethod('patch')) {
             return [
-                'id' => 'required|integer|exists:codes,id',
-                'rooms' => 'required|array|min:1',
-                'rooms.*' => 'required|numeric',
-                'entry_date' => 'required|date_format:Y/m/d',
-                'exit_date' => 'required|date_format:Y/m/d',
+                'rooms' => 'array|min:1',
+                'rooms.*' => 'numeric',
+                'entry_date' => 'date_format:Y/m/d',
+                'exit_date' => 'date_format:Y/m/d',
             ];
         }
 

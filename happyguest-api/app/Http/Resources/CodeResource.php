@@ -37,6 +37,7 @@ class CodeResource extends JsonResource
                     'entry_date' => $this->entry_date->format('Y/m/d H:i'),
                     'exit_date' => $this->exit_date->format('Y/m/d H:i'),
                     'created_at' => $this->created_at->format('Y/m/d H:i'),
+                    'updated_at' => $this->updated_at->format('Y/m/d H:i'),
                 ];
             default:
                 return parent::toArray($request);

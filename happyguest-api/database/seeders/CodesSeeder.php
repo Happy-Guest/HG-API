@@ -25,6 +25,7 @@ class CodesSeeder extends Seeder
                 'exit_date' => '2021-01-02',
                 'used' => false,
                 'created_at' => $now,
+                'updated_at' => $now,
             ],
             [
                 'code' => 'B135',
@@ -33,6 +34,7 @@ class CodesSeeder extends Seeder
                 'exit_date' => '2021-01-21',
                 'used' => false,
                 'created_at' => $now,
+                'updated_at' => $now,
             ],
         ];
 

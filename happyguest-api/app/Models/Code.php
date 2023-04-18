@@ -10,8 +10,6 @@ class Code extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public $timestamps = ["created_at"];
-
     /**
      * The attributes that are mass assignable.
      *
@@ -34,6 +32,7 @@ class Code extends Model
         'entry_date' => 'datetime:d/m/Y',
         'exit_date' => 'datetime:d/m/Y',
         'created_at' => 'datetime:d/m/Y',
+        'updated_at' => 'datetime:d/m/Y',
     ];
 
     /**

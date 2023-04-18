@@ -18,7 +18,7 @@ return new class extends Migration
             $table->date('entry_date');
             $table->date('exit_date');
             $table->boolean('used')->default(false);
-            $table->timestamp('created_at')->useCurrent();
+            $table->timestamps();
             $table->softDeletes();
         });
     }

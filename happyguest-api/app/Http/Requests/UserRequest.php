@@ -23,8 +23,8 @@ class UserRequest extends FormRequest
     {
         return [
             'id' => 'required|integer|exists:users,id',
-            'name' => 'required|string|min:3|max:255',
-            'email' => 'required|string|email|unique:users',
+            'name' => 'string|min:3|max:255',
+            'email' => 'string|email|unique:users',
             'phone' => 'nullable|numeric|digits_between:9, 12',
             'photo_url' => 'nullable|url',
         ];
