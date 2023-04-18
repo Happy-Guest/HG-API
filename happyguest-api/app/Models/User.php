@@ -47,4 +47,20 @@ class User extends Authenticatable
         'created_at' => 'datetime:d/m/Y',
         'updated_at' => 'datetime:d/m/Y',
     ];
+
+    /**
+     * Get the user codes for the user.
+     */
+    public function userCodes()
+    {
+        return $this->hasMany(UserCode::class);
+    }
+
+    /**
+     * Get the codes for the user.
+     */
+    public function codes()
+    {
+        return $this->hasManyThrough(Code::class, UserCode::class);
+    }
 }

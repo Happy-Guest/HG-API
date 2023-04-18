@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Code extends Model
+class UserCode extends Model
 {
     use HasFactory, SoftDeletes;
 
-    public $timestamps = ["created_at"];
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -18,11 +18,8 @@ class Code extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'code',
-        'rooms',
-        'entry_date',
-        'exit_date',
-        'used',
+        'user_id',
+        'code_id',
     ];
 
     /**
@@ -31,24 +28,22 @@ class Code extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'entry_date' => 'datetime:d/m/Y',
-        'exit_date' => 'datetime:d/m/Y',
-        'created_at' => 'datetime:d/m/Y',
+        'deleted_at' => 'datetime:d/m/Y',
     ];
 
     /**
-     * Get the user codes for the code.
+     * Get the code that owns the user code.
      */
-    public function userCodes()
+    public function code()
     {
-        return $this->hasMany(UserCode::class);
+        return $this->belongsTo(Code::class);
     }
 
     /**
-     * Get the users for the code.
+     * Get the user that owns the user code.
      */
-    public function users()
+    public function user()
     {
-        return $this->belongsToMany(User::class, 'user_codes');
+        return $this->belongsTo(User::class);
     }
 }
