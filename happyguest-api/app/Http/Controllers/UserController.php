@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Http\Resources\UserResource;
 use App\Http\Requests\UserRequest;
+use App\Models\UserCode;
+use App\Http\Resources\UserCodeResource;
 
 class UserController extends Controller
 {
@@ -29,6 +31,18 @@ class UserController extends Controller
     {
         UserResource::$format = 'detailed';
         return new UserResource(User::findOrFail($id));
+    }
+
+    /**
+     * Display the specified code's users.
+     *
+     * @param User $user
+     * @return UserCodeCollection
+     */
+    public function code(int $id)
+    {
+        UserCodeResource::$format = 'simple';
+        return UserCodeResource::collection(UserCode::where('code_id', $id)->paginate(20));
     }
 
     /**
