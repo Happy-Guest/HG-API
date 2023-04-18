@@ -23,23 +23,22 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 // Authenticated
 Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::get('/me', [AuthController::class, 'user'])->name('me');
 
     // Users
     Route::prefix('/users')->name('users.')->group(function () {
-        // My user
-        Route::get('/me', [AuthController::class, 'user'])->name('me');
-        // Codes by user
+        // Codes by User
         Route::get('/{id}/codes', [CodeController::class, 'user'])->name('codes');
 
         Route::get('/', [UserController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/{id}', [UserController::class, 'show'])->middleware('role:M')->name('show');
-        Route::patch('/{id}', [UserController::class, 'update'])->name('update');
+        Route::patch('/', [UserController::class, 'update'])->name('update');
         Route::delete('/{id}', [UserController::class, 'destroy'])->name('destroy');
     });
 
-    // Codes
+    // Codes (Only Managers)
     Route::prefix('/codes')->name('codes.')->middleware('role:M')->group(function () {
-        // Users by code
+        // Users by Code
         Route::get('/{id}/users', [UserController::class, 'code'])->name('users');
 
         Route::get('/', [CodeController::class, 'index'])->name('index');
