@@ -37,17 +37,16 @@ class UserController extends Controller
      * @param UserRequest $request
      * @return UserResource
      */
-    public function update(UserRequest $request)
+    public function update(UserRequest $request, int $id)
     {
-        if ($request->id !== auth()->id() && auth()->user()->role !== 'M') {
+        if ($id !== auth()->id() && auth()->user()->role !== 'M') {
             return response()->json([
                 'message' => __('messages.unauthorized'),
             ], 403);
         }
 
-        $request->user()->fill($request->validated());
-
-        $request->user()->save();
+        $user = User::findOrFail($id);
+        $user->update($request->validated());
 
         return response()->json([
             'message' => __('messages.updated', ['attribute' => __('messages.attributes.user')]),
