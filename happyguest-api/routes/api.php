@@ -28,7 +28,13 @@ Route::middleware('auth:api')->group(function () {
     // Users
     Route::prefix('/users')->name('users.')->group(function () {
         // Codes by User
-        Route::get('/{id}/codes', [CodeController::class, 'user'])->name('codes');
+        Route::prefix('/{id}/codes')->name('codes.')->group(function () {
+            Route::get('/', [CodeController::class, 'user'])->name('index');
+
+            // Associate & Disassociate Code
+            Route::post('/{code}/associate', [CodeController::class, 'associate'])->name('associate');
+            Route::delete('/{code}/disassociate', [CodeController::class, 'disassociate'])->name('disassociate');
+        });
 
         Route::get('/', [UserController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/{id}', [UserController::class, 'show'])->middleware('role:M')->name('show');

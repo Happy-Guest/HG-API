@@ -42,8 +42,77 @@ class CodeController extends Controller
      */
     public function user(int $id)
     {
+        if ($id !== auth()->id() && auth()->user()->role !== 'M') {
+            return response()->json([
+                'message' => __('messages.unauthorized'),
+            ], 403);
+        }
+
         UserCodeResource::$format = 'simple';
         return UserCodeResource::collection(UserCode::where('user_id', $id)->paginate(20));
+    }
+
+    /**
+     * Associate the specified code to the specified user.
+     *
+     * @param  int  $id
+     * @param  int  $code
+     * @return \Illuminate\Http\Response
+     */
+    public function associate(int $id, int $code)
+    {
+        if ($id !== auth()->id() && auth()->user()->role !== 'M') {
+            return response()->json([
+                'message' => __('messages.unauthorized'),
+            ], 403);
+        }
+
+        $userCode = UserCode::where('user_id', $id)->where('code_id', $code)->first();
+
+        if ($userCode) {
+            return response()->json([
+                'message' => __('messages.already_associated', ['attribute' => __('messages.attributes.code')]),
+            ], 409);
+        }
+
+        UserCode::create([
+            'user_id' => $id,
+            'code_id' => $code,
+        ]);
+
+        return response()->json([
+            'message' => __('messages.associated', ['attribute' => __('messages.attributes.code')]),
+        ]);
+    }
+
+    /**
+     * Disassociate the specified code from the specified user.
+     *
+     * @param  int  $id
+     * @param  int  $code
+     * @return \Illuminate\Http\Response
+     */
+    public function disassociate(int $id, int $code)
+    {
+        if ($id !== auth()->id() && auth()->user()->role !== 'M') {
+            return response()->json([
+                'message' => __('messages.unauthorized'),
+            ], 403);
+        }
+
+        $userCode = UserCode::where('user_id', $id)->where('code_id', $code)->first();
+
+        if (!$userCode) {
+            return response()->json([
+                'message' => __('messages.not_associated', ['attribute' => __('messages.attributes.code')]),
+            ], 409);
+        }
+
+        $userCode->delete();
+
+        return response()->json([
+            'message' => __('messages.disassociated', ['attribute' => __('messages.attributes.code')]),
+        ]);
     }
 
     /**
