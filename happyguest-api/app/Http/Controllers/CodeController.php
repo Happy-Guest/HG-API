@@ -42,12 +42,6 @@ class CodeController extends Controller
      */
     public function user(int $id)
     {
-        if ($id !== auth()->id() && auth()->user()->role !== 'M') {
-            return response()->json([
-                'message' => __('messages.unauthorized'),
-            ], 403);
-        }
-
         UserCodeResource::$format = 'simple';
         return UserCodeResource::collection(UserCode::where('user_id', $id)->paginate(20));
     }
@@ -61,12 +55,6 @@ class CodeController extends Controller
      */
     public function associate(int $id, int $code)
     {
-        if ($id !== auth()->id() && auth()->user()->role !== 'M') {
-            return response()->json([
-                'message' => __('messages.unauthorized'),
-            ], 403);
-        }
-
         $userCode = UserCode::where('user_id', $id)->where('code_id', $code)->first();
 
         if ($userCode) {
@@ -94,12 +82,6 @@ class CodeController extends Controller
      */
     public function disassociate(int $id, int $code)
     {
-        if ($id !== auth()->id() && auth()->user()->role !== 'M') {
-            return response()->json([
-                'message' => __('messages.unauthorized'),
-            ], 403);
-        }
-
         $userCode = UserCode::where('user_id', $id)->where('code_id', $code)->first();
 
         if (!$userCode) {

@@ -29,17 +29,17 @@ Route::middleware('auth:api')->group(function () {
     Route::prefix('/users')->name('users.')->group(function () {
         // Codes by User
         Route::prefix('/{id}/codes')->name('codes.')->group(function () {
-            Route::get('/', [CodeController::class, 'user'])->name('index');
+            Route::get('/', [CodeController::class, 'user'])->middleware('autorize')->name('index');
 
             // Associate & Disassociate Code
-            Route::post('/{code}/associate', [CodeController::class, 'associate'])->name('associate');
-            Route::delete('/{code}/disassociate', [CodeController::class, 'disassociate'])->name('disassociate');
+            Route::post('/{code}/associate', [CodeController::class, 'associate'])->middleware('autorize')->name('associate');
+            Route::delete('/{code}/disassociate', [CodeController::class, 'disassociate'])->middleware('autorize')->name('disassociate');
         });
 
         Route::get('/', [UserController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/{id}', [UserController::class, 'show'])->middleware('role:M')->name('show');
-        Route::patch('/', [UserController::class, 'update'])->name('update');
-        Route::delete('/{id}', [UserController::class, 'destroy'])->name('destroy');
+        Route::patch('/{id}', [UserController::class, 'update'])->middleware('autorize')->name('update');
+        Route::delete('/{id}', [UserController::class, 'destroy'])->middleware('autorize')->name('destroy');
     });
 
     // Codes (Only Managers)
