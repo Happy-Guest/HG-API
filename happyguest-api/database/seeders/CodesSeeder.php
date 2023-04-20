@@ -23,7 +23,7 @@ class CodesSeeder extends Seeder
                 'rooms' => json_encode(['1']),
                 'entry_date' => '2021-01-01',
                 'exit_date' => '2021-01-02',
-                'used' => false,
+                'used' => true,
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
@@ -32,10 +32,19 @@ class CodesSeeder extends Seeder
                 'rooms' => json_encode(['2', '3']),
                 'entry_date' => '2021-01-01',
                 'exit_date' => '2021-01-21',
-                'used' => false,
+                'used' => true,
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
+            [
+                'code' => 'C135',
+                'rooms' => json_encode(['4']),
+                'entry_date' => '2021-02-13',
+                'exit_date' => '2021-02-17',
+                'used' => false,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ]
         ];
 
         DB::table('codes')->insert($codes);

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\UserCode;
 use App\Http\Resources\UserResource;
 use App\Http\Requests\UserRequest;
-use App\Models\UserCode;
 use App\Http\Resources\UserCodeResource;
 
 class UserController extends Controller
@@ -41,7 +41,7 @@ class UserController extends Controller
      */
     public function code(int $id)
     {
-        UserCodeResource::$format = 'simple';
+        UserCodeResource::$format = 'user';
         return UserCodeResource::collection(UserCode::where('code_id', $id)->paginate(20));
     }
 

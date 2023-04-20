@@ -28,6 +28,28 @@ class UserCodeResource extends JsonResource
                     'code_id' => $this->code_id,
                     'user_id' => $this->user_id,
                 ];
+            case 'code':
+                return [
+                    'id' => $this->id,
+                    'code' => [
+                        'id' => $this->code->id,
+                        'code' => $this->code->code,
+                        'rooms' => $this->code->rooms,
+                        'used' => $this->code->used,
+                    ],
+                    'user_id' => $this->user_id,
+                ];
+            case 'user':
+                return [
+                    'id' => $this->id,
+                    'code_id' => $this->code_id,
+                    'user' => [
+                        'id' => $this->user->id,
+                        'name' => $this->user->name,
+                        'email' => $this->user->email,
+                        'role' => $this->user->role,
+                    ],
+                ];
             case 'detailed':
                 return [
                     'id' => $this->id,

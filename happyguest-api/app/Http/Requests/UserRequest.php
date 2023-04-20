@@ -22,7 +22,6 @@ class UserRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id' => 'required|integer|exists:users,id',
             'name' => 'string|min:3|max:255',
             'email' => 'string|email|unique:users',
             'phone' => 'nullable|numeric|digits_between:9, 12',

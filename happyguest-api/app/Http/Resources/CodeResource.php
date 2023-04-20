@@ -34,6 +34,7 @@ class CodeResource extends JsonResource
                     'id' => $this->id,
                     'code' => $this->code,
                     'rooms' => $this->rooms,
+                    'used' => $this->used,
                     'entry_date' => $this->entry_date->format('Y/m/d H:i'),
                     'exit_date' => $this->exit_date->format('Y/m/d H:i'),
                     'created_at' => $this->created_at->format('Y/m/d H:i'),
