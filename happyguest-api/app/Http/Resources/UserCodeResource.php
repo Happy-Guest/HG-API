@@ -37,12 +37,10 @@ class UserCodeResource extends JsonResource
                         'rooms' => $this->code->rooms,
                         'used' => $this->code->used,
                     ],
-                    'user_id' => $this->user_id,
                 ];
             case 'user':
                 return [
                     'id' => $this->id,
-                    'code_id' => $this->code_id,
                     'user' => [
                         'id' => $this->user->id,
                         'name' => $this->user->name,
