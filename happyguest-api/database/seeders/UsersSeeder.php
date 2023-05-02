@@ -23,7 +23,7 @@ class UsersSeeder extends Seeder
                 'email' => 'diiogom21@happyguest.pt',
                 'phone' => '914310511',
                 'password' => bcrypt('123456789'),
-                'role' => 'M',
+                'role' => 'A',
                 'photo_url' => 'https://api.dicebear.com/6.x/avataaars/svg?seed=Diogo',
                 'created_at' => $now,
                 'updated_at' => $now,

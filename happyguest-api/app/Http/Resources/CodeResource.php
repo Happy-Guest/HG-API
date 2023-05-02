@@ -28,6 +28,7 @@ class CodeResource extends JsonResource
                     'code' => $this->code,
                     'rooms' => $this->rooms,
                     'used' => $this->used,
+                    'entry_date' => $this->entry_date->format('Y/m/d H:i'),
                 ];
             case 'detailed':
                 return [
