@@ -28,6 +28,7 @@ class UserResource extends JsonResource
                     'name' => $this->name,
                     'email' => $this->email,
                     'role' => $this->role,
+                    'blocked' => $this->blocked,
                     'photo_url' => $this->photo_url,
                 ];
             case 'detailed':
@@ -37,6 +38,7 @@ class UserResource extends JsonResource
                     'email' => $this->email,
                     'phone' => $this->phone,
                     'role' => $this->role,
+                    'blocked' => $this->blocked,
                     'photo_url' => $this->photo_url,
                     'created_at' => $this->created_at->format('Y/m/d H:i'),
                     'updated_at' => $this->updated_at->format('Y/m/d H:i'),

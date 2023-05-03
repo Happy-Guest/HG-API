@@ -213,6 +213,7 @@ return [
         'username'                 => 'username',
         'year'                     => 'year',
         'role'                     => 'role',
+        'blocked'                  => 'blocked',
         'photo_url'                => 'photo url',
         'code'                     => 'code',
         'rooms'                    => 'rooms',

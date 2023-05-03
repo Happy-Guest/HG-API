@@ -213,6 +213,7 @@ return [
         'year'                     => 'ano',
         'email'                    => 'email',
         'role'                     => 'tipo',
+        'blocked'                  => 'bloqueado',
         'photo_url'                => 'url da foto',
         'code'                     => 'código',
         'rooms'                    => 'quartos',
