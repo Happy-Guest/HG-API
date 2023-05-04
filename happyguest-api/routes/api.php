@@ -43,6 +43,8 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/{id}', [UserController::class, 'show'])->middleware('role:M')->name('show');
         Route::get('/role/{role}', [UserController::class, 'show_role'])->middleware('role:M')->name('role');
         Route::patch('/{id}', [UserController::class, 'update'])->middleware('autorize')->name('update');
+        Route::patch('/{id}/block', [UserController::class, 'block'])->middleware('role:A')->name('block');
+        Route::patch('/{id}/unblock', [UserController::class, 'unblock'])->middleware('role:A')->name('unblock');	
         Route::delete('/{id}', [UserController::class, 'destroy'])->middleware('autorize')->name('destroy');
     });
 

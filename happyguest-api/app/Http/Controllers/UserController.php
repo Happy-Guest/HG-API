@@ -34,7 +34,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified user.
+     * Display a listing of blocked users.
      *
      * @param User $user
      * @return UserResource
@@ -46,7 +46,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified user.
+     * Display a listing of unblocked users.
      *
      * @param User $user
      * @return UserResource
@@ -58,7 +58,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified user.
+     * Display a listing of users with the specified role.
      *
      * @param User $user
      * @return UserResource
@@ -91,6 +91,38 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
         $user->update($request->validated());
+
+        return response()->json([
+            'message' => __('messages.updated', ['attribute' => __('messages.attributes.user')]),
+        ]);
+    }
+
+    /**
+     * Update the specified user in storage.
+     *
+     * @param UserRequest $request
+     * @return UserResource
+     */
+    public function block(int $id)
+    {
+        $user = User::findOrFail($id);
+        $user->update(['blocked' => true]);
+
+        return response()->json([
+            'message' => __('messages.updated', ['attribute' => __('messages.attributes.user')]),
+        ]);
+    }
+
+    /**
+     * Update the specified user in storage.
+     *
+     * @param UserRequest $request
+     * @return UserResource
+     */
+    public function unblock(int $id)
+    {
+        $user = User::findOrFail($id);
+        $user->update(['blocked' => false]);
 
         return response()->json([
             'message' => __('messages.updated', ['attribute' => __('messages.attributes.user')]),
