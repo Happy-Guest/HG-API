@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\Auth\ChangePasswordRequest;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -47,13 +49,24 @@ class AuthController extends Controller
 
         $credentials = request(['email', 'password']);
 
+        // Check if combination of email and password is correct
         if (!Auth::attempt($credentials)) {
             return response()->json([
-                'message' => __('auth.failed'),
+                'message' => __('auth.password'),
             ], 401);
         }
 
         $user = $request->user();
+
+        // Check if user is blocked
+        if ($user->blocked) {
+            Auth::logout();
+            return response()->json([
+                'message' =>
+                __('auth.blocked'),
+            ], 401);
+        }
+
         $tokenResult = $user->createToken('Personal Access Token');
         $token = $tokenResult->token;
 
@@ -96,5 +109,32 @@ class AuthController extends Controller
     public function user(Request $request)
     {
         return response()->json($request->user());
+    }
+
+    /**
+     * Change the authenticated user's password.
+     *
+     * @param ChangePasswordRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function change_password(ChangePasswordRequest $request)
+    {
+        $request->validated();
+
+        $user = $request->user();
+
+        // Check if old password is correct
+        if (!Hash::check($request->old_password, $user->password)) {
+            return response()->json([
+                'message' => __('auth.password'),
+            ], 401);
+        }
+
+        $user->password = bcrypt($request->new_password);
+        $user->save();
+
+        return response()->json([
+            'message' => __('auth.password_changed'),
+        ]);
     }
 }

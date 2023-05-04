@@ -222,5 +222,7 @@ return [
         'used'                     => 'used',
         'user_id'                  => 'user id',
         'code_id'                  => 'code id',
+        'old_password'             => 'old password',
+        'new_password'             => 'new password',
     ],
 ];

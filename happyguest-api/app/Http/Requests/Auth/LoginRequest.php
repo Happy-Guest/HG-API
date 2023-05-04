@@ -22,9 +22,19 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|string|email',
+            'email' => 'required|string|email|exists:users',
             'password' => 'required|string',
             'remember_me' => 'boolean',
+        ];
+    }
+
+    /**
+     * Get the validation messages that apply to the request.
+     */
+    public function messages(): array
+    {
+        return [
+            'email.exists' => __('auth.email'),
         ];
     }
 }
