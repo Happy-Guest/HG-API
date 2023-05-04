@@ -38,7 +38,10 @@ Route::middleware('auth:api')->group(function () {
         });
 
         Route::get('/', [UserController::class, 'index'])->middleware('role:M')->name('index');
+        Route::get('/blocked', [UserController::class, 'show_blocked'])->middleware('role:M')->name('blocked');
+        Route::get('/unblocked', [UserController::class, 'show_unblocked'])->middleware('role:M')->name('unblocked');
         Route::get('/{id}', [UserController::class, 'show'])->middleware('role:M')->name('show');
+        Route::get('/role/{role}', [UserController::class, 'show_role'])->middleware('role:M')->name('role');
         Route::patch('/{id}', [UserController::class, 'update'])->middleware('autorize')->name('update');
         Route::delete('/{id}', [UserController::class, 'destroy'])->middleware('autorize')->name('destroy');
     });

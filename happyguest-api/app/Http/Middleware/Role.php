@@ -15,7 +15,7 @@ class Role
      */
     public function handle(Request $request, Closure $next, string $role): Response
     {
-        if (auth()->user()->role !== $role) {
+        if (auth()->user()->role !== $role && auth()->user()->role !== 'A') {
             return response()->json([
                 'message' => __('messages.unauthorized'),
             ], 403);

@@ -34,6 +34,42 @@ class UserController extends Controller
     }
 
     /**
+     * Display the specified user.
+     *
+     * @param User $user
+     * @return UserResource
+     */
+    public function show_blocked()
+    {
+        UserResource::$format = 'simple';
+        return UserResource::collection(User::where('blocked', true)->paginate(20));
+    }
+
+    /**
+     * Display the specified user.
+     *
+     * @param User $user
+     * @return UserResource
+     */
+    public function show_unblocked()
+    {
+        UserResource::$format = 'simple';
+        return UserResource::collection(User::where('blocked', false)->paginate(20));
+    }
+
+    /**
+     * Display the specified user.
+     *
+     * @param User $user
+     * @return UserResource
+     */
+    public function show_role(string $role)
+    {
+        UserResource::$format = 'simple';
+        return UserResource::collection(User::where('role', $role)->paginate(20));
+    }
+
+    /**
      * Display the specified code's users.
      *
      * @param User $user
