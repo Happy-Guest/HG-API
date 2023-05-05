@@ -58,6 +58,13 @@ class AuthController extends Controller
 
         $user = $request->user();
 
+        // Check if user is a client and is not using a mobile device
+        if ($user->role == 'C' && $request->device != 'mobile') {
+            return response()->json([
+                'message' => __('auth.unauthorized'),
+            ], 401);
+        }
+
         // Check if user is blocked
         if ($user->blocked) {
             Auth::logout();

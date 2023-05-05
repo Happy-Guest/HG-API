@@ -12,4 +12,5 @@ return [
     'logged_out' => 'Successfully logged out.',
     'unauthenticated' => 'You are not authenticated!',
     'password_changed' => 'Password successfully updated.',
+    'unauthorized' => 'You are not authorized to access this application.',
 ];
