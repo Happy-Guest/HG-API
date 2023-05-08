@@ -133,7 +133,11 @@ class AuthController extends Controller
         // Check if old password is correct
         if (!Hash::check($request->old_password, $user->password)) {
             return response()->json([
-                'message' => __('auth.password'),
+                'errors' => [
+                    'old_password' => [
+                        __('auth.password'),
+                    ],
+                ],
             ], 401);
         }
 
