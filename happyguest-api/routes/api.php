@@ -12,9 +12,9 @@ use App\Http\Controllers\CodeController;
 |
 | Roles: Admin > Manager > User
 | Middlewares: auth:api, role, autorize
-|    -> Role: If Manager, then Admin can access.
-|    -> Autorize: If id is not the same as authenticated user,
-|                 then Manager can access if user is not an Admin.
+|    -> Role: If indicated role is Manager, then Admin can access.
+|    -> Autorize: If indicated id is not the same as authenticated user,
+|                 verify if authenticated user is Manager or Admin.
 |
 */
 
