@@ -223,6 +223,6 @@ return [
         'user_id'                  => 'ID do utilizador',
         'code_id'                  => 'ID do código',
         'old_password'             => 'palavra-passe antiga',
-        'new_password'             => 'palavra-passe nova',
+        'new_password'             => 'nova palavra-passe',
     ],
 ];

@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UserRequest extends FormRequest
 {
@@ -23,7 +24,12 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => 'string|min:3|max:255',
-            'email' => 'string|email|unique:users|max:255',
+            'email' => [
+                'string',
+                'email',
+                Rule::unique('users')->ignore($this->user()->id, 'id'),
+                'max:255',
+            ],
             'phone' => 'nullable|numeric|digits_between:9, 12',
             'photo_url' => 'nullable|url|max:255',
         ];

@@ -15,6 +15,7 @@ class Role
      */
     public function handle(Request $request, Closure $next, string $role): Response
     {
+        // Verify if the user is authorized to access the route except for Admins
         if (auth()->user()->role !== $role && auth()->user()->role !== 'A') {
             return response()->json([
                 'message' => __('messages.unauthorized'),
