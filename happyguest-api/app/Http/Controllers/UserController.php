@@ -6,7 +6,10 @@ use App\Models\User;
 use App\Models\UserCode;
 use App\Http\Resources\UserResource;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\DeleteUserRequest;
 use App\Http\Resources\UserCodeResource;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -131,12 +134,23 @@ class UserController extends Controller
 
     /**
      * Remove the specified user from storage.
-     *
-     * @param User $user
-     * @return Response
-     */
-    public function destroy(int $id)
+    *
+    * @param DeleteUserRequest $request
+    * @param int $id
+    * @return \Illuminate\Http\Response
+    */
+    public function destroy(DeleteUserRequest $request, int $id)
     {
+        // Check if password is correct
+        if (!Hash::check($request->password, Auth::user()->password)) {
+            return response()->json(['errors' => [
+                'password' => [
+                        __('auth.password'),
+                    ],
+                ],
+            ], 401);
+        }
+
         User::findOrFail($id)->delete();
 
         return response()->json([
