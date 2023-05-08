@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             UsersSeeder::class,
             CodesSeeder::class,
             UserCodesSeeder::class,
+            ComplaintsSeeder::class,
         ]);
     }
 }

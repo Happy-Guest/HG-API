@@ -14,5 +14,6 @@ return [
     'attributes' => [
         'user' => 'User',
         'code' => 'Code',
+        'complaint' => 'Complaint',
     ],
 ];

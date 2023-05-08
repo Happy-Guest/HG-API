@@ -67,4 +67,12 @@ class User extends Authenticatable
     {
         return $this->hasManyThrough(Code::class, UserCode::class);
     }
+
+    /**
+     * Get the user complaints for the user.
+     */
+    public function complaints()
+    {
+        return $this->hasMany(Complaint::class);
+    }
 }

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CodeController;
+use App\Http\Controllers\ComplaintController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,5 +61,13 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/', [CodeController::class, 'store'])->name('store');
         Route::patch('/{id}', [CodeController::class, 'update'])->name('update');
         Route::delete('/{id}', [CodeController::class, 'destroy'])->name('destroy');
+    });
+
+    // Complaints
+    Route::prefix('/complaints')->name('complaints.')->group(function () {
+        Route::get('/', [ComplaintController::class, 'index'])->name('index');
+        Route::get('/{id}', [ComplaintController::class, 'show'])->name('show');
+        Route::post('/', [ComplaintController::class, 'store'])->name('store');
+        Route::delete('/{id}', [ComplaintController::class, 'destroy'])->name('destroy');
     });
 });
