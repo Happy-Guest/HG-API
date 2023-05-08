@@ -15,6 +15,10 @@ class Autorize
      */
     public function handle(Request $request, Closure $next): Response
     {
+        if (auth()->user()->role == 'A') {
+            return $next($request);
+        }
+
         if ($request->route('id') != auth()->id() && auth()->user()->role != 'M') {
             return response()->json([
                 'message' => __('messages.unauthorized'),

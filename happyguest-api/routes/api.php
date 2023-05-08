@@ -9,6 +9,13 @@ use App\Http\Controllers\CodeController;
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
+|
+| Roles: Admin > Manager > User
+| Middlewares: auth:api, role, autorize
+|    -> Role: If Manager, then Admin can access.
+|    -> Autorize: If id is not the same as authenticated user,
+|                 then Manager can access if user is not an Admin.
+|
 */
 
 // Auth
@@ -39,11 +46,11 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/role/{role}', [UserController::class, 'show_role'])->middleware('role:M')->name('role');
         Route::patch('/{id}', [UserController::class, 'update'])->middleware('autorize')->name('update');
         Route::patch('/{id}/block', [UserController::class, 'block'])->middleware('role:A')->name('block');
-        Route::patch('/{id}/unblock', [UserController::class, 'unblock'])->middleware('role:A')->name('unblock');	
+        Route::patch('/{id}/unblock', [UserController::class, 'unblock'])->middleware('role:A')->name('unblock');
         Route::delete('/{id}', [UserController::class, 'destroy'])->middleware('autorize')->name('destroy');
     });
 
-    // Codes (Only Managers)
+    // Codes (Only Managers & Admins)
     Route::prefix('/codes')->name('codes.')->middleware('role:M')->group(function () {
         // Users by Code
         Route::get('/{id}/users', [UserController::class, 'code'])->name('users');
