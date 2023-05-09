@@ -26,8 +26,8 @@ class CodeRequest extends FormRequest
             return [
                 'rooms' => 'array|min:1',
                 'rooms.*' => 'string|distinct',
-                'entry_date' => 'date_format:Y/m/d H:i:s|before:exit_date',
-                'exit_date' => 'date_format:Y/m/d H:i:s|after:entry_date',
+                'entry_date' => 'date_format:Y/m/d',
+                'exit_date' => 'date_format:Y/m/d|after:entry_date',
             ];
         }
 
@@ -40,8 +40,8 @@ class CodeRequest extends FormRequest
             ],
             'rooms' => 'required|array|min:1',
             'rooms.*' => 'required|string|distinct',
-            'entry_date' => 'required|date_format:Y/m/d H:i:s|before:exit_date',
-            'exit_date' => 'required|date_format:Y/m/d H:i:s|after:entry_date',
+            'entry_date' => 'required|date_format:Y/m/d',
+            'exit_date' => 'required|date_format:Y/m/d|after:entry_date',
         ];
     }
 }

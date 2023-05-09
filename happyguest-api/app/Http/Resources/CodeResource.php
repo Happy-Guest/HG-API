@@ -37,8 +37,8 @@ class CodeResource extends JsonResource
                     'code' => $this->code,
                     'rooms' => $this->rooms,
                     'used' => $this->used,
-                    'entry_date' => $this->entry_date->format('d/m/Y H:i'),
-                    'exit_date' => $this->exit_date->format('d/m/Y H:i'),
+                    'entry_date' => $this->entry_date->format('d/m/Y'),
+                    'exit_date' => $this->exit_date->format('d/m/Y'),
                     'created_at' => $this->created_at->format('d/m/Y H:i'),
                     'updated_at' => $this->updated_at->format('d/m/Y H:i'),
                 ];
