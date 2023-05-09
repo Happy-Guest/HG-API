@@ -50,6 +50,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'created_at' => 'datetime:d/m/Y',
         'updated_at' => 'datetime:d/m/Y',
+        'deleted_at' => 'datetime:d/m/Y',
     ];
 
     /**

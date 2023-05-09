@@ -24,18 +24,18 @@ class CodeRequest extends FormRequest
         if ($this->isMethod('patch')) {
             return [
                 'rooms' => 'array|min:1',
-                'rooms.*' => 'numeric',
-                'entry_date' => 'date_format:Y/m/d',
-                'exit_date' => 'date_format:Y/m/d',
+                'rooms.*' => 'string|distinct',
+                'entry_date' => 'date_format:Y/m/d H:i:s|before:exit_date',
+                'exit_date' => 'date_format:Y/m/d H:i:s|after:entry_date',
             ];
         }
 
         return [
             'code' => 'required|string|max:255',
             'rooms' => 'required|array|min:1',
-            'rooms.*' => 'required|numeric',
-            'entry_date' => 'required|date_format:Y/m/d',
-            'exit_date' => 'required|date_format:Y/m/d',
+            'rooms.*' => 'required|string|distinct',
+            'entry_date' => 'required|date_format:Y/m/d H:i:s|before:exit_date',
+            'exit_date' => 'required|date_format:Y/m/d H:i:s|after:entry_date',
         ];
     }
 }

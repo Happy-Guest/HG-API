@@ -36,6 +36,8 @@ class Code extends Model
         'exit_date' => 'datetime:d/m/Y',
         'created_at' => 'datetime:d/m/Y',
         'updated_at' => 'datetime:d/m/Y',
+        'deleted_at' => 'datetime:d/m/Y',
+        'rooms' => 'array',
     ];
 
     /**

@@ -33,7 +33,7 @@ class ComplaintRequest extends FormRequest
             'title' => 'required|string|min:5|max:255',
             'status' => 'required|in:P,S,R,C', // P: Pending, S: Solving, R: Resolved, C: Canceled
             'comment' => 'string|max:255',
-            'room' => 'required|numeric',
+            'room' => 'required|string',
         ];
     }
 }

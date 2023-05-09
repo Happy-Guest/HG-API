@@ -31,6 +31,8 @@ class Complaint extends Model
      */
     protected $casts = [
         'created_at' => 'datetime:d/m/Y',
+        'updated_at' => 'datetime:d/m/Y',
+        'deleted_at' => 'datetime:d/m/Y',
     ];
 
     /**
