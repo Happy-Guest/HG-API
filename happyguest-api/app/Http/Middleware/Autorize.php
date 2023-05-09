@@ -28,9 +28,9 @@ class Autorize
             ], 403);
         }
 
-        // Managers can't access Admins
+        // Managers can't access Admins or other Managers
         $user = User::findOrfail($request->route('id'));
-        if ($user->role == 'A' && auth()->user()->role == 'M') {
+        if (($user->role == 'A' || $user->role == 'M') && auth()->user()->role == 'M') {
             return response()->json([
                 'message' => __('messages.unauthorized'),
             ], 403);

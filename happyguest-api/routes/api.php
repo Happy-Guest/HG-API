@@ -28,6 +28,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/me', [AuthController::class, 'user'])->name('me');
     Route::post('/change-password', [AuthController::class, 'change_Password'])->name('change-password');
+    Route::post('/register-team', [AuthController::class, 'register_team'])->middleware('role:M')->name('register-team');
 
     // Users
     Route::prefix('/users')->name('users.')->group(function () {
@@ -46,8 +47,8 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/{id}', [UserController::class, 'show'])->middleware('role:M')->name('show');
         Route::get('/role/{role}', [UserController::class, 'show_role'])->middleware('role:M')->name('role');
         Route::patch('/{id}', [UserController::class, 'update'])->middleware('autorize')->name('update');
-        Route::patch('/{id}/block', [UserController::class, 'block'])->middleware('role:A')->name('block');
-        Route::patch('/{id}/unblock', [UserController::class, 'unblock'])->middleware('role:A')->name('unblock');
+        Route::patch('/{id}/block', [UserController::class, 'block'])->middleware('autorize')->name('block');
+        Route::patch('/{id}/unblock', [UserController::class, 'unblock'])->middleware('autorize')->name('unblock');
         Route::delete('/{id}', [UserController::class, 'destroy'])->middleware('autorize')->name('destroy');
     });
 
@@ -63,11 +64,11 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/{id}', [CodeController::class, 'destroy'])->name('destroy');
     });
 
-    // Complaints
+    // Complaints (???)
     Route::prefix('/complaints')->name('complaints.')->group(function () {
-        Route::get('/', [ComplaintController::class, 'index'])->name('index');
+        Route::get('/', [ComplaintController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/{id}', [ComplaintController::class, 'show'])->name('show');
         Route::post('/', [ComplaintController::class, 'store'])->name('store');
-        Route::delete('/{id}', [ComplaintController::class, 'destroy'])->name('destroy');
+        Route::delete('/{id}', [ComplaintController::class, 'destroy'])->middleware('role:M')->name('destroy');
     });
 });

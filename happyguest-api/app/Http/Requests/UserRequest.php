@@ -27,7 +27,7 @@ class UserRequest extends FormRequest
             'email' => [
                 'string',
                 'email',
-                Rule::unique('users')->ignore($this->user()->id, 'id')->whereNull('deleted_at'),
+                Rule::unique('users')->ignore($this->id, 'id')->whereNull('deleted_at'),
                 'max:255',
             ],
             'phone' => 'nullable|numeric|digits_between:9, 12',

@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\ChangePasswordRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Carbon\Carbon;
 
 class AuthController extends Controller
 {
     /**
-     * Register a new user.
+     * Register a new user (Client).
      *
      * @param RegisterRequest $request
      * @return \Illuminate\Http\JsonResponse
@@ -28,6 +28,39 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => bcrypt($request->password),
             'phone' => $request->phone,
+            'role' => 'C',
+        ]);
+
+        $user->save();
+
+        return response()->json([
+            'message' => __('auth.registered'),
+        ], 201);
+    }
+
+    /**
+     * Register a new user (Manager or Admin).
+     *
+     * @param RegisterRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function register_team(RegisterRequest $request)
+    {
+        $request->validated();
+
+        // Check if user is trying to register as a Manager or Admin
+        if (($request->role == 'A' && Auth::user()->role != 'A') || ($request->role == 'M' && Auth::user()->role != 'A')) {
+            return response()->json([
+                'message' => __('messages.unauthorized'),
+            ], 401);
+        }
+
+        $user = new User([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'phone' => $request->phone,
+            'role' => $request->role,
         ]);
 
         $user->save();

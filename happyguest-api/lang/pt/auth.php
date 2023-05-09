@@ -7,7 +7,7 @@ return [
     'password' => 'A palavra-passe inserida está incorreta!',
     'throttle' => 'O limite de tentativas de login foi atingido. Por favor tente novamente em :seconds segundos.',
     'blocked' => 'A sua conta foi bloqueada, por favor contacte o administrador!',
-    'registered' => 'Utilizador criado com sucesso.',
+    'registered' => 'Utilizador criado com sucesso!',
     'logged_in' => 'Sessão iniciada com sucesso.',
     'logged_out' => 'Sessão terminada com sucesso.',
     'unauthenticated' => 'Você não está autenticado!',

@@ -7,7 +7,7 @@ return [
     'password' => 'The password is incorrect!',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
     'blocked' => 'Your account has been blocked, please contact the administrator!',
-    'registered' => 'Successfully created user.',
+    'registered' => 'Successfully created user!',
     'logged_in' => 'Successfully logged in.',
     'logged_out' => 'Successfully logged out.',
     'unauthenticated' => 'You are not authenticated!',
