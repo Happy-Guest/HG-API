@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CodeRequest extends FormRequest
 {
@@ -31,7 +32,7 @@ class CodeRequest extends FormRequest
         }
 
         return [
-            'code' => 'required|string|max:255',
+            'code' => Rule::unique('codes')->whereNull('deleted_at') . 'required|string|max:255',
             'rooms' => 'required|array|min:1',
             'rooms.*' => 'required|string|distinct',
             'entry_date' => 'required|date_format:Y/m/d H:i:s|before:exit_date',

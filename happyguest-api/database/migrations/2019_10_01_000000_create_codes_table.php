@@ -20,6 +20,8 @@ return new class extends Migration
             $table->boolean('used')->default(false);
             $table->timestamps();
             $table->softDeletes();
+
+            $table->unique(['code', 'deleted_at']);
         });
     }
 
