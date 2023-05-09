@@ -40,8 +40,8 @@ class UserResource extends JsonResource
                     'role' => $this->role,
                     'blocked' => $this->blocked,
                     'photo_url' => $this->photo_url,
-                    'created_at' => $this->created_at->format('Y/m/d H:i'),
-                    'updated_at' => $this->updated_at->format('Y/m/d H:i'),
+                    'created_at' => $this->created_at->format('Y/m/d'),
+                    'updated_at' => $this->updated_at->format('Y/m/d'),
                 ];
             default:
                 return parent::toArray($request);

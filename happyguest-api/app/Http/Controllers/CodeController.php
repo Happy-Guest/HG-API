@@ -50,12 +50,14 @@ class CodeController extends Controller
      * Associate the specified code to the specified user.
      *
      * @param  int  $id
-     * @param  int  $code
+     * @param  string  $code
      * @return \Illuminate\Http\Response
      */
-    public function associate(int $id, int $code)
+    public function associate(int $id, string $code)
     {
-        $userCode = UserCode::where('user_id', $id)->where('code_id', $code)->first();
+        $codeId = Code::where('code', $code)->firstOrFail()->id;
+
+        $userCode = UserCode::where('user_id', $id)->where('code_id', $codeId)->first();
 
         if ($userCode) {
             return response()->json([
@@ -65,10 +67,10 @@ class CodeController extends Controller
 
         UserCode::create([
             'user_id' => $id,
-            'code_id' => $code,
+            'code_id' => $codeId,
         ]);
 
-        Code::findOrFail($code)->update([
+        Code::findOrFail($codeId)->update([
             'used' => true,
         ]);
 
@@ -81,12 +83,14 @@ class CodeController extends Controller
      * Disassociate the specified code from the specified user.
      *
      * @param  int  $id
-     * @param  int  $code
+     * @param  string  $code
      * @return \Illuminate\Http\Response
      */
-    public function disassociate(int $id, int $code)
+    public function disassociate(int $id, string $code)
     {
-        $userCode = UserCode::where('user_id', $id)->where('code_id', $code)->first();
+        $codeId = Code::where('code', $code)->firstOrFail()->id;
+
+        $userCode = UserCode::where('user_id', $id)->where('code_id', $codeId)->first();
 
         if (!$userCode) {
             return response()->json([
