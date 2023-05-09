@@ -24,10 +24,16 @@ class RegisterRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:3|max:255',
-            'email' => Rule::unique('users')->whereNull('deleted_at'),
+            'email' => [
+                Rule::unique('users')->whereNull('deleted_at'),
+                'required',
+                'string',
+                'email',
+                'max:255',
+            ],
             'password' => 'required|string|confirmed|min:5|max:255',
             'phone' => 'nullable|numeric|digits_between:9, 12',
-            'role' => 'required|in:C,M,A', // C: Client, M: Manager, A: Admin
+            'role' => 'nullable|in:C,M,A', // C: Client, M: Manager, A: Admin
             'photo_url' => 'nullable|url|max:255',
         ];
     }

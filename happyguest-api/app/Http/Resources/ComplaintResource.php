@@ -28,7 +28,7 @@ class ComplaintResource extends JsonResource
                     'title' => $this->title,
                     'status' => $this->status,
                     'room' => $this->room,
-                    'created_at' => $this->created_at->format('Y/m/d'),
+                    'created_at' => $this->created_at->format('d/m/Y'),
                 ];
             case 'detailed':
                 return [
@@ -43,8 +43,8 @@ class ComplaintResource extends JsonResource
                     'comment' => $this->comment,
                     'room' => $this->room,
                     'response' => $this->response,
-                    'created_at' => $this->created_at->format('Y/m/d H:i'),
-                    'updated_at' => $this->updated_at->format('Y/m/d H:i'),
+                    'created_at' => $this->created_at->format('d/m/Y H:i'),
+                    'updated_at' => $this->updated_at->format('d/m/Y H:i'),
                 ];
             default:
                 return parent::toArray($request);

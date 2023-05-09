@@ -28,7 +28,8 @@ class CodeResource extends JsonResource
                     'code' => $this->code,
                     'rooms' => $this->rooms,
                     'used' => $this->used,
-                    'entry_date' => $this->entry_date->format('Y/m/d'),
+                    'entry_date' => $this->entry_date->format('d/m/Y'),
+                    'exit_date' => $this->exit_date->format('d/m/Y'),
                 ];
             case 'detailed':
                 return [
@@ -36,10 +37,10 @@ class CodeResource extends JsonResource
                     'code' => $this->code,
                     'rooms' => $this->rooms,
                     'used' => $this->used,
-                    'entry_date' => $this->entry_date->format('Y/m/d H:i'),
-                    'exit_date' => $this->exit_date->format('Y/m/d H:i'),
-                    'created_at' => $this->created_at->format('Y/m/d H:i'),
-                    'updated_at' => $this->updated_at->format('Y/m/d H:i'),
+                    'entry_date' => $this->entry_date->format('d/m/Y H:i'),
+                    'exit_date' => $this->exit_date->format('d/m/Y H:i'),
+                    'created_at' => $this->created_at->format('d/m/Y H:i'),
+                    'updated_at' => $this->updated_at->format('d/m/Y H:i'),
                 ];
             default:
                 return parent::toArray($request);
