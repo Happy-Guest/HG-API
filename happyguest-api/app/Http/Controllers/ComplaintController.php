@@ -31,7 +31,7 @@ class ComplaintController extends Controller
         $complaint = Complaint::findOrFail($id);
 
         // Check if authenticated user is the same as the complaint's user
-        if ($complaint->user_id != auth()->user()->id && !auth()->user()->role != 'A' && !auth()->user()->role != 'M') {
+        if ($complaint->user_id != auth()->user()->id && auth()->user()->role != 'A' && auth()->user()->role != 'M') {
             return response()->json([
                 'message' => __('messages.unauthorized'),
             ], 401);
@@ -65,8 +65,26 @@ class ComplaintController extends Controller
 
         return response()->json([
             'message' => __('messages.created', ['attribute' => __('messages.attributes.complaint')]),
-            'code' => new ComplaintResource($complaint),
+            'complaint' => new ComplaintResource($complaint),
         ], 201);
+    }
+
+    /**
+     * Update the specified complaint in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(ComplaintRequest $request, int $id)
+    {
+        $complaint = Complaint::findOrFail($id);
+        $complaint->update($request->validated());
+
+        return response()->json([
+            'message' => __('messages.updated', ['attribute' => __('messages.attributes.complaint')]),
+            'complaint' => new ComplaintResource($complaint),
+        ]);
     }
 
     /**

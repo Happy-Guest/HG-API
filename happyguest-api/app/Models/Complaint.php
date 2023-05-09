@@ -21,6 +21,7 @@ class Complaint extends Model
         'status',
         'comment',
         'room',
+        'response',
     ];
 
     /**

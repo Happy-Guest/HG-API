@@ -23,18 +23,15 @@ class ComplaintRequest extends FormRequest
     {
         if ($this->isMethod('patch')) {
             return [
-                'user_id' => 'numeric|exists:users,id',
-                'title' => 'string|min:5|max:255',
+                'response' => 'string|max:255',
                 'status' => 'in:P,S,R,C', // P: Pending, S: Solving, R: Resolved, C: Canceled
-                'comment' => 'string|max:255',
-                'room' => 'numeric',
             ];
         }
 
         return [
             'user_id' => 'required|numeric|exists:users,id',
             'title' => 'required|string|min:5|max:255',
-            'status' => 'required|in:P,S,R,C',
+            'status' => 'required|in:P,S,R,C', // P: Pending, S: Solving, R: Resolved, C: Canceled
             'comment' => 'string|max:255',
             'room' => 'required|numeric',
         ];

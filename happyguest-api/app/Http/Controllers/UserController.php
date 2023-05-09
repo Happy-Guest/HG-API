@@ -97,6 +97,7 @@ class UserController extends Controller
 
         return response()->json([
             'message' => __('messages.updated', ['attribute' => __('messages.attributes.user')]),
+            'user' => new UserResource($user),
         ]);
     }
 

@@ -74,6 +74,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/', [ComplaintController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/{id}', [ComplaintController::class, 'show'])->name('show');
         Route::post('/', [ComplaintController::class, 'store'])->name('store');
+        Route::patch('/{id}', [ComplaintController::class, 'update'])->middleware('role:M')->name('update');
         Route::delete('/{id}', [ComplaintController::class, 'destroy'])->middleware('role:M')->name('destroy');
     });
 });
