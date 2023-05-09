@@ -25,7 +25,7 @@ class ComplaintRequest extends FormRequest
             return [
                 'user_id' => 'numeric|exists:users,id',
                 'title' => 'string|min:5|max:255',
-                'status' => 'in:P,R,C',
+                'status' => 'in:P,S,R,C', // P: Pending, S: Solving, R: Resolved, C: Canceled
                 'comment' => 'string|max:255',
                 'room' => 'numeric',
             ];
@@ -34,7 +34,7 @@ class ComplaintRequest extends FormRequest
         return [
             'user_id' => 'required|numeric|exists:users,id',
             'title' => 'required|string|min:5|max:255',
-            'status' => 'required|in:P,R,C',
+            'status' => 'required|in:P,S,R,C',
             'comment' => 'string|max:255',
             'room' => 'required|numeric',
         ];

@@ -27,7 +27,7 @@ class RegisterRequest extends FormRequest
             'email' => Rule::unique('users')->whereNull('deleted_at'),
             'password' => 'required|string|confirmed|min:5|max:255',
             'phone' => 'nullable|numeric|digits_between:9, 12',
-            'role' => 'required|in:C,M,A',
+            'role' => 'required|in:C,M,A', // C: Client, M: Manager, A: Admin
             'photo_url' => 'nullable|url|max:255',
         ];
     }

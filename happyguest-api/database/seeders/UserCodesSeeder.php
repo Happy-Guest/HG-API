@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use DateTime;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -17,15 +16,15 @@ class UserCodesSeeder extends Seeder
     {
         $user_codes = [
             [
-                'user_id' => 1,
+                'user_id' => 4,
                 'code_id' => 1,
             ],
             [
-                'user_id' => 1,
+                'user_id' => 4,
                 'code_id' => 2,
             ],
             [
-                'user_id' => 2,
+                'user_id' => 5,
                 'code_id' => 2,
             ],
         ];

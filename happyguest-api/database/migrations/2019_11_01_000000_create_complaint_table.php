@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('title');
-            $table->enum('status', ['P', 'R', 'C'])->default('P');;
+            $table->enum('status', ['P', 'S', 'R', 'C'])->default('P'); // P: Pending, S: Solving, R: Resolved, C: Canceled
             $table->string('comment');
             $table->string('room');
             $table->timestamps();

@@ -224,5 +224,9 @@ return [
         'code_id'                  => 'code id',
         'old_password'             => 'old password',
         'new_password'             => 'new password',
+        'title'                    => 'title',
+        'status'                   => 'status',
+        'comment'                  => 'comment',
+        'room'                     => 'room',
     ],
 ];

@@ -15,11 +15,10 @@ class ComplaintsSeeder extends Seeder
      */
     public function run()
     {
-
         $now = new DateTime();
         $complaints = [
             [
-                'user_id' => 3,
+                'user_id' => 4,
                 'title' => 'Serviço Insatisfatório',
                 'status' => 'P',
                 'comment' => 'Não Foi Atendido Adequadamente',
@@ -28,7 +27,7 @@ class ComplaintsSeeder extends Seeder
                 'updated_at' => $now,
             ],
             [
-                'user_id' => 3,
+                'user_id' => 4,
                 'title' => 'Atendimento Rude',
                 'status' => 'R',
                 'comment' => 'Fui Maltratado Por Um Funcionário',
@@ -37,7 +36,7 @@ class ComplaintsSeeder extends Seeder
                 'updated_at' => $now,
             ],
             [
-                'user_id' => 3,
+                'user_id' => 5,
                 'title' => 'Promessa Não Cumprida',
                 'status' => 'C',
                 'comment' => 'Não Recebi O Que Foi Prometido.',

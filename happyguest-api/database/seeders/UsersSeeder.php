@@ -15,7 +15,6 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-
         $now = new DateTime();
         $users = [
             [
@@ -34,7 +33,7 @@ class UsersSeeder extends Seeder
                 'email' => 'tomasn@happyguest.pt',
                 'phone' => '966938453',
                 'password' => bcrypt('123456789'),
-                'role' => 'M',
+                'role' => 'A',
                 'blocked' => false,
                 'photo_url' => 'https://api.dicebear.com/6.x/avataaars/svg?seed=Tomas',
                 'created_at' => $now,
@@ -44,6 +43,28 @@ class UsersSeeder extends Seeder
                 'name' => 'João Silva',
                 'email' => 'joao@email.pt',
                 'phone' => '966938453',
+                'password' => bcrypt('123456789'),
+                'role' => 'M',
+                'blocked' => false,
+                'photo_url' => null,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'name' => 'Maria Santos',
+                'email' => 'maria@email.pt',
+                'phone' => '924738372',
+                'password' => bcrypt('123456789'),
+                'role' => 'C',
+                'blocked' => false,
+                'photo_url' => null,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'name' => 'José Costa',
+                'email' => 'josec@hotmail.com',
+                'phone' => '934372738',
                 'password' => bcrypt('123456789'),
                 'role' => 'C',
                 'blocked' => false,

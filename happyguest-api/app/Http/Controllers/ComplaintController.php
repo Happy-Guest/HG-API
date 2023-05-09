@@ -26,10 +26,31 @@ class ComplaintController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(int $id) // Complaint $complaint  
+    public function show(int $id)
     {
+        $complaint = Complaint::findOrFail($id);
+
+        // Check if authenticated user is the same as the complaint's user
+        if ($complaint->user_id != auth()->user()->id && !auth()->user()->role != 'A' && !auth()->user()->role != 'M') {
+            return response()->json([
+                'message' => __('messages.unauthorized'),
+            ], 401);
+        }
+
         ComplaintResource::$format = 'detailed';
-        return new ComplaintResource(Complaint::findOrFail($id));
+        return new ComplaintResource($complaint);
+    }
+
+    /**
+     * Display the specified user's Complaints.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function user(int $id)
+    {
+        ComplaintResource::$format = 'simple';
+        return ComplaintResource::collection(Complaint::where('user_id', $id)->paginate(20));
     }
 
     /**

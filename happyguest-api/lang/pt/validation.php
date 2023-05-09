@@ -224,5 +224,9 @@ return [
         'code_id'                  => 'ID do código',
         'old_password'             => 'palavra-passe antiga',
         'new_password'             => 'nova palavra-passe',
+        'title'                   => 'título',
+        'status'                  => 'estado',
+        'comment'                 => 'comentário',
+        'room'                    => 'quarto',
     ],
 ];

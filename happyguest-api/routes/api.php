@@ -41,6 +41,11 @@ Route::middleware('auth:api')->group(function () {
             Route::delete('/{code}/disassociate', [CodeController::class, 'disassociate'])->middleware('autorize')->name('disassociate');
         });
 
+        // Complaints by User
+        Route::prefix('/{id}/complaints')->name('complaints.')->group(function () {
+            Route::get('/', [ComplaintController::class, 'user'])->middleware('autorize')->name('index');
+        });
+
         Route::get('/', [UserController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/blocked', [UserController::class, 'show_blocked'])->middleware('role:M')->name('blocked');
         Route::get('/unblocked', [UserController::class, 'show_unblocked'])->middleware('role:M')->name('unblocked');
@@ -64,7 +69,7 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/{id}', [CodeController::class, 'destroy'])->name('destroy');
     });
 
-    // Complaints (???)
+    // Complaints
     Route::prefix('/complaints')->name('complaints.')->group(function () {
         Route::get('/', [ComplaintController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/{id}', [ComplaintController::class, 'show'])->name('show');
