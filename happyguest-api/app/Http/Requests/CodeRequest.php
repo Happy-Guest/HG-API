@@ -24,11 +24,6 @@ class CodeRequest extends FormRequest
     {
         if ($this->isMethod('patch')) {
             return [
-                'code' => [
-                    Rule::unique('codes')->whereNull('deleted_at')->ignore($this->code),
-                    'string',
-                    'max:255',
-                ],
                 'rooms' => 'array|min:1',
                 'rooms.*' => 'string|distinct',
                 'entry_date' => 'date_format:Y/m/d',

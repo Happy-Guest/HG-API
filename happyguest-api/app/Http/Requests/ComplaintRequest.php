@@ -32,7 +32,7 @@ class ComplaintRequest extends FormRequest
             'user_id' => 'required|numeric|exists:users,id',
             'title' => 'required|string|min:5|max:255',
             'status' => 'required|in:P,S,R,C', // P: Pending, S: Solving, R: Resolved, C: Canceled
-            'comment' => 'string|max:255',
+            'comment' => 'required|string|max:255',
             'room' => 'nullable|string|max:255',
         ];
     }
