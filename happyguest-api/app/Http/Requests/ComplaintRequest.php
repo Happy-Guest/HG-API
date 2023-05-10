@@ -23,7 +23,7 @@ class ComplaintRequest extends FormRequest
     {
         if ($this->isMethod('patch')) {
             return [
-                'response' => 'string|max:255',
+                'response' => 'nullable|string|max:255',
                 'status' => 'in:P,S,R,C', // P: Pending, S: Solving, R: Resolved, C: Canceled
             ];
         }
