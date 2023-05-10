@@ -7,6 +7,9 @@ use App\Models\UserCode;
 use App\Http\Resources\CodeResource;
 use App\Http\Requests\CodeRequest;
 use App\Http\Resources\UserCodeResource;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\DeleteRequest;
 
 class CodeController extends Controller
 {
@@ -142,11 +145,23 @@ class CodeController extends Controller
     /**
      * Remove the specified code from storage.
      *
+     * @param  DeleteRequest  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(DeleteRequest $request, int $id)
     {
+        // Check if password is correct
+        if (!Hash::check($request->password, Auth::user()->password)) {
+            return response()->json([
+                'errors' => [
+                    'password' => [
+                        __('auth.password'),
+                    ],
+                ],
+            ], 401);
+        }
+
         Code::findOrFail($id)->delete();
 
         return response()->json([
