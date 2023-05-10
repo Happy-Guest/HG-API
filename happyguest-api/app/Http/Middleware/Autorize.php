@@ -16,6 +16,11 @@ class Autorize
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // Users can access themselves
+        if ($request->route('id') == auth()->id()) {
+            return $next($request);
+        }
+
         // Admins can access everything
         if (auth()->user()->role == 'A') {
             return $next($request);
