@@ -228,6 +228,7 @@ return [
         'status'                   => 'status',
         'comment'                  => 'comment',
         'room'                     => 'room',
+        'local'                    => 'local',
         'response'                 => 'response',
     ],
 ];

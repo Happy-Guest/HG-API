@@ -26,8 +26,8 @@ class ComplaintResource extends JsonResource
                 return [
                     'id' => $this->id,
                     'title' => $this->title,
+                    'local' => $this->local,
                     'status' => $this->status,
-                    'room' => $this->room,
                     'created_at' => $this->created_at->format('d/m/Y'),
                 ];
             case 'detailed':
@@ -39,9 +39,9 @@ class ComplaintResource extends JsonResource
                         'email' => $this->user->email,
                     ],
                     'title' => $this->title,
+                    'local' => $this->local,
                     'status' => $this->status,
                     'comment' => $this->comment,
-                    'room' => $this->room,
                     'response' => $this->response,
                     'created_at' => $this->created_at->format('d/m/Y H:i'),
                     'updated_at' => $this->updated_at->format('d/m/Y H:i'),

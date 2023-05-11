@@ -60,7 +60,7 @@ class ComplaintController extends Controller
      */
     public function store(ComplaintRequest $request)
     {
-        // Verrify if user has code
+        // Verify if user has code
 
         $complaint = Complaint::create($request->validated());
 

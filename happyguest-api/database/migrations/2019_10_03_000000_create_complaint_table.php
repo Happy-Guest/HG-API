@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->enum('status', ['P', 'S', 'R', 'C'])->default('P'); // P: Pending, S: Solving, R: Resolved, C: Canceled
             $table->string('comment');
-            $table->string('room')->nullable();
+            $table->string('local');
             $table->string('response')->nullable();
             $table->timestamps();
             $table->softDeletes();

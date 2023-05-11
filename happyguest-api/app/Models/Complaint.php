@@ -18,9 +18,9 @@ class Complaint extends Model
     protected $fillable = [
         'user_id',
         'title',
+        'local',
         'status',
         'comment',
-        'room',
         'response',
     ];
 
