@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ComplaintRequest;
 use App\Http\Resources\ComplaintResource;
 use App\Models\Complaint;
-use Illuminate\Http\Request;
 
 class ComplaintController extends Controller
 {
@@ -61,6 +60,8 @@ class ComplaintController extends Controller
      */
     public function store(ComplaintRequest $request)
     {
+        // Verrify if user has code
+
         $complaint = Complaint::create($request->validated());
 
         return response()->json([

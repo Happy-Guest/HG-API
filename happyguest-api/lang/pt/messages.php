@@ -11,6 +11,7 @@ return [
     'disassociated' => ':attribute desassociado com sucesso!',
     'already_associated' => ':attribute já está associado!',
     'not_associated' => ':attribute não está associado!',
+    'only_clients' => 'Apenas clientes podem ser associados a códigos!',
     'attributes' => [
         'user' => 'Utilizador',
         'code' => 'Código',

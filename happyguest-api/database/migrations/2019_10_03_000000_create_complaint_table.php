@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('complaints', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->string('title');
             $table->enum('status', ['P', 'S', 'R', 'C'])->default('P'); // P: Pending, S: Solving, R: Resolved, C: Canceled
             $table->string('comment');
@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('response')->nullable();
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

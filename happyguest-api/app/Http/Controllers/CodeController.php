@@ -10,6 +10,7 @@ use App\Http\Resources\UserCodeResource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DeleteRequest;
+use App\Models\User;
 
 class CodeController extends Controller
 {
@@ -62,10 +63,20 @@ class CodeController extends Controller
 
         $userCode = UserCode::where('user_id', $id)->where('code_id', $codeId)->first();
 
+        // Check if code is already associated to the user
         if ($userCode) {
             return response()->json([
                 'message' => __('messages.already_associated', ['attribute' => __('messages.attributes.code')]),
             ], 409);
+        }
+
+        $user = User::findOrFail($id);
+
+        // Check if user is not a client
+        if ($user->role != 'C') {
+            return response()->json([
+                'message' => __('messages.only_clients'),
+            ], 401);
         }
 
         UserCode::create([
@@ -95,6 +106,7 @@ class CodeController extends Controller
 
         $userCode = UserCode::where('user_id', $id)->where('code_id', $codeId)->first();
 
+        // Check if code is not associated to the user
         if (!$userCode) {
             return response()->json([
                 'message' => __('messages.not_associated', ['attribute' => __('messages.attributes.code')]),
