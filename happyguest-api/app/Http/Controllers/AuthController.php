@@ -31,6 +31,16 @@ class AuthController extends Controller
             'role' => 'C',
         ]);
 
+        // Check if user has uploaded a photo
+        if ($request->has('photo')) {
+            if ($request->file('photo')) {
+                $image = $request->file('image');
+                $image_name = $user->id . "_" . uniqid() . '.jpg';
+                $image->move(storage_path('app/public/fotos'), $image_name);
+                $user->photo_url = $image_name;
+            }
+        }
+
         $user->save();
 
         return response()->json([
@@ -62,6 +72,16 @@ class AuthController extends Controller
             'phone' => $request->phone,
             'role' => $request->role,
         ]);
+
+        // Check if user has uploaded a photo
+        if ($request->has('photo')) {
+            if ($request->file('photo')) {
+                $image = $request->file('image');
+                $image_name = $user->id . "_" . uniqid() . '.jpg';
+                $image->move(storage_path('app/public/fotos'), $image_name);
+                $user->photo_url = $image_name;
+            }
+        }
 
         $user->save();
 

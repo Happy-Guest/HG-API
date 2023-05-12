@@ -31,7 +31,7 @@ class UserRequest extends FormRequest
                 'max:255',
             ],
             'phone' => 'nullable|numeric|digits_between:9, 12',
-            'photo_url' => 'nullable|url|max:255',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }

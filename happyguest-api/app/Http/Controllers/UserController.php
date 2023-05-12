@@ -88,12 +88,24 @@ class UserController extends Controller
      * Update the specified user in storage.
      *
      * @param UserRequest $request
+     * @param int $id
      * @return UserResource
      */
     public function update(UserRequest $request, int $id)
     {
         $user = User::findOrFail($id);
         $user->update($request->validated());
+
+        // Check if user has uploaded a photo
+        if ($request->has('photo')) {
+            if ($request->file('photo')) {
+                $image = $request->file('image');
+                $image_name = $user->id . "_" . uniqid() . '.jpg';
+                $image->move(storage_path('app/public/fotos'), $image_name);
+                $user->photo_url = $image_name;
+                $user->save();
+            }
+        }
 
         return response()->json([
             'message' => __('messages.updated', ['attribute' => __('messages.attributes.user')]),
@@ -104,7 +116,7 @@ class UserController extends Controller
     /**
      * Update the specified user in storage.
      *
-     * @param UserRequest $request
+     * @param int $id
      * @return UserResource
      */
     public function block(int $id)
@@ -120,7 +132,7 @@ class UserController extends Controller
     /**
      * Update the specified user in storage.
      *
-     * @param UserRequest $request
+     * @param int $id
      * @return UserResource
      */
     public function unblock(int $id)

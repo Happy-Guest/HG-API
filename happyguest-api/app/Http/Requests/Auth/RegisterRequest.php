@@ -34,7 +34,7 @@ class RegisterRequest extends FormRequest
             'password' => 'required|string|confirmed|min:5|max:255',
             'phone' => 'nullable|numeric|digits_between:9, 12',
             'role' => 'nullable|in:C,M,A', // C: Client, M: Manager, A: Admin
-            'photo_url' => 'nullable|url|max:255',
+            'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
 }
