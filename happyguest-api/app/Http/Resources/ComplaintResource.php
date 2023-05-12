@@ -33,11 +33,11 @@ class ComplaintResource extends JsonResource
             case 'detailed':
                 return [
                     'id' => $this->id,
-                    'user' => [
+                    'user' => $this->user_id ? [
                         'id' => $this->user->id,
                         'name' => $this->user->name,
                         'email' => $this->user->email,
-                    ],
+                    ] : null,
                     'title' => $this->title,
                     'local' => $this->local,
                     'status' => $this->status,
