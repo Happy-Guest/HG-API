@@ -10,6 +10,7 @@ use App\Http\Requests\DeleteRequest;
 use App\Http\Resources\UserCodeResource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -119,10 +120,15 @@ class UserController extends Controller
      * @param int $id
      * @return UserResource
      */
-    public function block(int $id)
+    public function block(int $id, Request $request)
     {
         $user = User::findOrFail($id);
         $user->update(['blocked' => true]);
+
+        // Check if user is blocking himself
+        if ($user->id == Auth::user()->id) {
+            $request->user()->token()->revoke();
+        }
 
         return response()->json([
             'message' => __('messages.updated', ['attribute' => __('messages.attributes.user')]),
