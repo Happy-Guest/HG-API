@@ -31,15 +31,16 @@ class AuthController extends Controller
             'role' => 'C',
         ]);
 
+        $user->save();
+
         // Check if user has uploaded a photo
-        if ($request->has('photo')) {
+        if ($request->hasFile('photo')) {
             $image = $request->file('photo');
             $image_name = $user->id . "_" . uniqid() . '.jpg';
             $image->move(storage_path('app/public/user_photos'), $image_name);
             $user->photo_url = $image_name;
+            $user->update();
         }
-
-        $user->save();
 
         return response()->json([
             'message' => __('auth.registered'),
@@ -71,15 +72,16 @@ class AuthController extends Controller
             'role' => $request->role,
         ]);
 
+        $user->save();
+
         // Check if user has uploaded a photo
-        if ($request->has('photo')) {
+        if ($request->hasFile('photo')) {
             $image = $request->file('photo');
             $image_name = $user->id . "_" . uniqid() . '.jpg';
             $image->move(storage_path('app/public/user_photos'), $image_name);
             $user->photo_url = $image_name;
+            $user->update();
         }
-
-        $user->save();
 
         return response()->json([
             'message' => __('auth.registered'),
