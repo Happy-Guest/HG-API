@@ -98,6 +98,10 @@ class UserController extends Controller
 
         // Check if user has uploaded a image
         if ($request->hasFile('photo')) {
+            // Delete old image
+            if ($user->photo_url) {
+                unlink(storage_path('app/public/user_photos/' . $user->photo_url));
+            }
             $image = $request->file('photo');
             $image_name = $user->id . "_" . uniqid() . '.jpg';
             $image->move(storage_path('app/public/user_photos'), $image_name);
