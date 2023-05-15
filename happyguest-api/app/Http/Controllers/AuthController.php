@@ -33,12 +33,10 @@ class AuthController extends Controller
 
         // Check if user has uploaded a photo
         if ($request->has('photo')) {
-            if ($request->file('photo')) {
-                $image = $request->file('image');
-                $image_name = $user->id . "_" . uniqid() . '.jpg';
-                $image->move(storage_path('app/public/fotos'), $image_name);
-                $user->photo_url = $image_name;
-            }
+            $image = $request->file('photo');
+            $image_name = $user->id . "_" . uniqid() . '.jpg';
+            $image->move(storage_path('app/public/user_photos'), $image_name);
+            $user->photo_url = $image_name;
         }
 
         $user->save();
@@ -75,12 +73,10 @@ class AuthController extends Controller
 
         // Check if user has uploaded a photo
         if ($request->has('photo')) {
-            if ($request->file('photo')) {
-                $image = $request->file('image');
-                $image_name = $user->id . "_" . uniqid() . '.jpg';
-                $image->move(storage_path('app/public/fotos'), $image_name);
-                $user->photo_url = $image_name;
-            }
+            $image = $request->file('photo');
+            $image_name = $user->id . "_" . uniqid() . '.jpg';
+            $image->move(storage_path('app/public/user_photos'), $image_name);
+            $user->photo_url = $image_name;
         }
 
         $user->save();

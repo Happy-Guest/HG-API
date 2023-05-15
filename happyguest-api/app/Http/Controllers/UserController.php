@@ -95,18 +95,17 @@ class UserController extends Controller
     public function update(UserRequest $request, int $id)
     {
         $user = User::findOrFail($id);
-        $user->update($request->validated());
 
-        // Check if user has uploaded a photo
-        if ($request->has('photo')) {
-            if ($request->file('photo')) {
-                $image = $request->file('image');
-                $image_name = $user->id . "_" . uniqid() . '.jpg';
-                $image->move(storage_path('app/public/fotos'), $image_name);
-                $user->photo_url = $image_name;
-                $user->save();
-            }
+        // Check if user has uploaded a image
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $image_name = $user->id . "_" . uniqid() . '.jpg';
+            $image->move(storage_path('app/public/user_photos'), $image_name);
+            $user->photo_url = $image_name;
+            $user->update();
         }
+
+        $user->update($request->validated());
 
         return response()->json([
             'message' => __('messages.updated', ['attribute' => __('messages.attributes.user')]),
@@ -153,17 +152,18 @@ class UserController extends Controller
 
     /**
      * Remove the specified user from storage.
-    *
-    * @param DeleteRequest $request
-    * @param int $id
-    * @return \Illuminate\Http\Response
-    */
+     *
+     * @param DeleteRequest $request
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy(DeleteRequest $request, int $id)
     {
         // Check if password is correct
         if (!Hash::check($request->password, Auth::user()->password)) {
-            return response()->json(['errors' => [
-                'password' => [
+            return response()->json([
+                'errors' => [
+                    'password' => [
                         __('auth.password'),
                     ],
                 ],
