@@ -31,7 +31,7 @@ class Complaint extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'date' => 'datetime:d/m/Y H:i',
+        'date' => 'datetime:d/m/Y',
         'created_at' => 'datetime:d/m/Y',
         'updated_at' => 'datetime:d/m/Y',
         'deleted_at' => 'datetime:d/m/Y',

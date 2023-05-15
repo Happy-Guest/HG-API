@@ -154,7 +154,7 @@ return [
         'created_at'               => 'criado em',
         'creator'                  => 'O Criador',
         'current_password'         => 'Palavra-passe atual',
-        'date'                     => 'encontro',
+        'date'                     => 'data',
         'date_of_birth'            => 'data de nascimento',
         'day'                      => 'dia',
         'deleted_at'               => 'excluído em',
