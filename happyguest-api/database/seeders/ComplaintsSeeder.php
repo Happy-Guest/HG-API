@@ -20,6 +20,7 @@ class ComplaintsSeeder extends Seeder
             [
                 'user_id' => 4,
                 'title' => 'Serviço Insatisfatório',
+                'date' => '2021/01/01 10:00',
                 'status' => 'P',
                 'comment' => 'Não Foi Atendido Adequadamente',
                 'local' => 'Recepção',
@@ -29,6 +30,7 @@ class ComplaintsSeeder extends Seeder
             [
                 'user_id' => 4,
                 'title' => 'Atendimento Rude',
+                'date' => '2023/01/21 16:25',
                 'status' => 'R',
                 'comment' => 'Fui Maltratado Por Um Funcionário',
                 'local' => 'Restaurante',
@@ -38,6 +40,7 @@ class ComplaintsSeeder extends Seeder
             [
                 'user_id' => 5,
                 'title' => 'Promessa Não Cumprida',
+                'date' => '2023/05/11 22:12',
                 'status' => 'C',
                 'comment' => 'Não Recebi O Que Foi Prometido.',
                 'local' => 'Quarto',

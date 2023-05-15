@@ -39,6 +39,7 @@ class ComplaintResource extends JsonResource
                         'email' => $this->user->email,
                     ] : null,
                     'title' => $this->title,
+                    'date' => $this->date->format('d/m/Y H:i'),
                     'local' => $this->local,
                     'status' => $this->status,
                     'comment' => $this->comment,

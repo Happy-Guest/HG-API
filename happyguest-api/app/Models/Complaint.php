@@ -18,6 +18,7 @@ class Complaint extends Model
     protected $fillable = [
         'user_id',
         'title',
+        'date',
         'local',
         'status',
         'comment',
@@ -30,6 +31,7 @@ class Complaint extends Model
      * @var array<string, string>
      */
     protected $casts = [
+        'date' => 'datetime:d/m/Y H:i',
         'created_at' => 'datetime:d/m/Y',
         'updated_at' => 'datetime:d/m/Y',
         'deleted_at' => 'datetime:d/m/Y',

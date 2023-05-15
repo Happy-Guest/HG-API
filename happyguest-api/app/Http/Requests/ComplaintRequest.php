@@ -31,6 +31,7 @@ class ComplaintRequest extends FormRequest
         return [
             'user_id' => 'nullable|numeric|exists:users,id',
             'title' => 'required|string|min:5|max:255',
+            'date' => 'required|dateformat:Y/m/d H:i',
             'local' => 'required|string|max:255',
             'status' => 'required|in:P,S,R,C', // P: Pending, S: Solving, R: Resolved, C: Canceled
             'comment' => 'required|string|max:255',
