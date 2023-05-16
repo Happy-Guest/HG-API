@@ -35,7 +35,7 @@ class ComplaintRequest extends FormRequest
             'local' => 'required|string|max:255',
             'status' => 'required|in:P,S,R,C', // P: Pending, S: Solving, R: Resolved, C: Canceled
             'files' => 'nullable|array|max:10',
-            'files.*' => 'required|file|mimes:pdf,png,jpg,gif,svg,jpeg|max:10240', // 10MB
+            'files.*' => 'required|file|mimes:pdf,png,jpg,svg,jpeg|max:10240', // 10MB
             'comment' => 'required|string|max:255',
         ];
     }
