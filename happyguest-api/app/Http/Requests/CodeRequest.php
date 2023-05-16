@@ -37,6 +37,7 @@ class CodeRequest extends FormRequest
                 'required',
                 'string',
                 'max:255',
+                'uppercase'
             ],
             'rooms' => 'required|array|min:1',
             'rooms.*' => 'required|string|distinct',
