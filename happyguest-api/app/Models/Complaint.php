@@ -44,4 +44,12 @@ class Complaint extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    /**
+     * Get the complaint files for the complaint.
+     */
+    public function files()
+    {
+        return $this->hasMany(ComplaintFile::class);
+    }
 }

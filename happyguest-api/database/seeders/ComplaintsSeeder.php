@@ -46,6 +46,16 @@ class ComplaintsSeeder extends Seeder
                 'local' => 'Quarto',
                 'created_at' => $now,
                 'updated_at' => $now,
+            ],
+            [
+                'user_id' => null,
+                'title' => 'Muito Barulho',
+                'date' => '2023/05/14 01:24',
+                'status' => 'P',
+                'comment' => 'Não Consegui Dormir Por Causa Do Barulho.',
+                'local' => 'Quarto',
+                'created_at' => $now,
+                'updated_at' => $now,
             ]
         ];
 

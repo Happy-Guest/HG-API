@@ -43,6 +43,12 @@ class ComplaintResource extends JsonResource
                     'local' => $this->local,
                     'status' => $this->status,
                     'comment' => $this->comment,
+                    'files' => $this->files->map(function ($file) {
+                        return [
+                            'id' => $file->id,
+                            'filename' => $file->filename,
+                        ];
+                    }),
                     'response' => $this->response,
                     'created_at' => $this->created_at->format('d/m/Y H:i'),
                     'updated_at' => $this->updated_at->format('d/m/Y H:i'),

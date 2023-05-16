@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ComplaintRequest;
 use App\Http\Resources\ComplaintResource;
 use App\Models\Complaint;
+use App\Models\ComplaintFile;
 
 class ComplaintController extends Controller
 {
@@ -60,9 +61,19 @@ class ComplaintController extends Controller
      */
     public function store(ComplaintRequest $request)
     {
-        // Verify if user has code
-
         $complaint = Complaint::create($request->validated());
+
+        // Store files
+        if ($request->has('files')) {
+            foreach ($request->file('files') as $file) {
+                $filename = $file->getClientOriginalName();
+                $file->move(storage_path('app/public/complaint_files/' . $complaint->id . '/'), $filename);
+                ComplaintFile::create([
+                    'complaint_id' => $complaint->id,
+                    'filename' => $filename,
+                ]);
+            }
+        }
 
         return response()->json([
             'message' => __('messages.created', ['attribute' => __('messages.attributes.complaint')]),

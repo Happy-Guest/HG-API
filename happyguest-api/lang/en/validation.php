@@ -222,6 +222,7 @@ return [
         'used'                     => 'used',
         'user_id'                  => 'user id',
         'code_id'                  => 'code id',
+        'complaint_id'             => 'complaint id',
         'old_password'             => 'old password',
         'new_password'             => 'new password',
         'title'                    => 'title',
@@ -230,5 +231,8 @@ return [
         'room'                     => 'room',
         'local'                    => 'local',
         'response'                 => 'response',
+        'files'                    => 'files',
+        'file'                     => 'file',
+        'filename'                 => 'filename',
     ],
 ];

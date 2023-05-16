@@ -31,9 +31,11 @@ class ComplaintRequest extends FormRequest
         return [
             'user_id' => 'nullable|numeric|exists:users,id',
             'title' => 'required|string|min:5|max:255',
-            'date' => 'required|dateformat:Y/m/d',
+            'date' => 'required|dateformat:Y/m/d|before_or_equal:today',
             'local' => 'required|string|max:255',
             'status' => 'required|in:P,S,R,C', // P: Pending, S: Solving, R: Resolved, C: Canceled
+            'files' => 'required',
+            'files.*' => 'required|file|mimes:pdf,png,jpg,gif,svg,jpeg|max:10240', // 10MB
             'comment' => 'required|string|max:255',
         ];
     }

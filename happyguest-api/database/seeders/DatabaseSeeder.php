@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Facades\File;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,5 +18,16 @@ class DatabaseSeeder extends Seeder
             UserCodesSeeder::class,
             ComplaintsSeeder::class,
         ]);
+
+        // Delete all files from public storage
+        $files = glob(public_path('storage/user_photos/*'));
+        $files = array_merge($files, glob(public_path('storage/complaint_files/*')));
+        foreach ($files as $file) {
+            if (is_file($file)) {
+                unlink($file);
+            } else {
+                File::deleteDirectory($file);
+            }
+        }
     }
 }

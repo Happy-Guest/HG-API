@@ -14,7 +14,7 @@ return [
     'array'                => 'O campo :attribute deverá conter uma coleção de elementos.',
     'ascii'                => 'O :attribute deve conter apenas caracteres alfanuméricos de byte único e símbolos.',
     'before'               => 'O campo :attribute deverá conter uma data anterior a :date.',
-    'before_or_equal'      => 'O Campo :attribute deverá conter uma data anterior ou igual a :date.',
+    'before_or_equal'      => 'O campo :attribute deverá conter uma data anterior ou igual a :date.',
     'between'              => [
         'array'   => 'O campo :attribute deverá conter entre :min - :max elementos.',
         'file'    => 'O campo :attribute deverá ter um tamanho entre :min - :max kilobytes.',
@@ -178,6 +178,7 @@ return [
         'mobile'                   => 'Móvel',
         'month'                    => 'mês',
         'name'                     => 'nome',
+        'name'                     => 'nome',
         'national_code'            => 'código nacional',
         'number'                   => 'número',
         'password'                 => 'palavra-passe',
@@ -222,6 +223,7 @@ return [
         'used'                     => 'usado',
         'user_id'                  => 'ID do utilizador',
         'code_id'                  => 'ID do código',
+        'complaint_id'             => 'ID da reclamação',
         'old_password'             => 'palavra-passe antiga',
         'new_password'             => 'nova palavra-passe',
         'title'                   => 'título',
@@ -230,5 +232,8 @@ return [
         'room'                    => 'quarto',
         'local'                   => 'local',
         'response'                => 'resposta',
+        'files'                   => 'ficheiros',
+        'file'                    => 'ficheiro',
+        'filename'                => 'nome do ficheiro',
     ],
 ];
