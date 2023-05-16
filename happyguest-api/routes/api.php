@@ -71,6 +71,9 @@ Route::middleware('auth:api')->group(function () {
 
     // Complaints
     Route::prefix('/complaints')->name('complaints.')->group(function () {
+        // File by Complaint
+        Route::get('/{id}/file/{file}', [ComplaintController::class, 'file'])->name('file');
+
         Route::get('/', [ComplaintController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/{id}', [ComplaintController::class, 'show'])->name('show');
         Route::post('/', [ComplaintController::class, 'store'])->name('store');

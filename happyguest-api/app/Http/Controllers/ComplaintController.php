@@ -6,6 +6,8 @@ use App\Http\Requests\ComplaintRequest;
 use App\Http\Resources\ComplaintResource;
 use App\Models\Complaint;
 use App\Models\ComplaintFile;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Response;
 
 class ComplaintController extends Controller
 {
@@ -54,6 +56,27 @@ class ComplaintController extends Controller
     }
 
     /**
+     * Display the specified Complaint's files.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function file(int $id, int $file)
+    {
+        $complaint = Complaint::findOrFail($id);
+        $complaint_file = ComplaintFile::where('complaint_id', $id)->where('id', $file)->firstOrFail();
+
+        // Check if authenticated user is the same as the complaint's user
+        if ($complaint->user_id != auth()->user()->id && auth()->user()->role != 'A' && auth()->user()->role != 'M') {
+            return response()->json([
+                'message' => __('messages.unauthorized'),
+            ], 401);
+        }
+
+        return response()->file(storage_path('app/complaint_files/' . $complaint->id . '/' . $complaint_file->filename));
+    }
+
+    /**
      * Store a newly created complaint in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -67,7 +90,7 @@ class ComplaintController extends Controller
         if ($request->has('files')) {
             foreach ($request->file('files') as $file) {
                 $filename = $file->getClientOriginalName();
-                $file->move(storage_path('app/public/complaint_files/' . $complaint->id . '/'), $filename);
+                $file->move(storage_path('app/complaint_files/' . $complaint->id . '/'), $filename);
                 ComplaintFile::create([
                     'complaint_id' => $complaint->id,
                     'filename' => $filename,
@@ -76,7 +99,7 @@ class ComplaintController extends Controller
         }
 
         return response()->json([
-            'message' => __('messages.created', ['attribute' => __('messages.attributes.complaint')]),
+            'message' => __('messages.created2', ['attribute' => __('messages.attributes.complaint')]),
             'complaint' => new ComplaintResource($complaint),
         ], 201);
     }

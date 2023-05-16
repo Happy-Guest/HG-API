@@ -7,6 +7,7 @@ return [
     'updated' => ':attribute atualizado com sucesso!',
     'deleted' => ':attribute eliminado com sucesso!',
     'created' => ':attribute criado com sucesso!',
+    'created2' => ':attribute criada com sucesso!',
     'associated' => ':attribute associado com sucesso!',
     'disassociated' => ':attribute desassociado com sucesso!',
     'already_associated' => ':attribute já está associado!',
