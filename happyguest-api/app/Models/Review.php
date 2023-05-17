@@ -10,7 +10,7 @@ class Review extends Model
 {
     public $timestamps = ["created_at"];
 
-    use HasFactory, SoftDeletes;
+    use HasFactory;
 
     /**
      * The attributes that are mass assignable.
@@ -22,6 +22,7 @@ class Review extends Model
         'stars',
         'comment',
         'autorize',
+        'shared',
     ];
 
     /**

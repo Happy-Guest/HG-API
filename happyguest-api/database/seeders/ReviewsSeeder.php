@@ -22,6 +22,7 @@ class ReviewsSeeder extends Seeder
                 'stars' => 5,
                 'comment' => 'Muito bom',
                 'autorize' => false,
+                'shared' => false,
                 'created_at' => $now,
             ],
             [
@@ -29,6 +30,7 @@ class ReviewsSeeder extends Seeder
                 'stars' => 2,
                 'comment' => 'Muito mau',
                 'autorize' => false,
+                'shared' => false,
                 'created_at' => $now,
             ],
             [
@@ -36,6 +38,7 @@ class ReviewsSeeder extends Seeder
                 'stars' => 4,
                 'comment' => 'Bom',
                 'autorize' => true,
+                'shared' => true,
                 'created_at' => $now,
             ],
         ];

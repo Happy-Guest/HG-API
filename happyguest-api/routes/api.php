@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\StatisticController;
+use App\Http\Controllers\ReviewController;
 
 /*
 |--------------------------------------------------------------------------

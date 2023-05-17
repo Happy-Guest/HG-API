@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class ReviewRequest extends FormRequest
 {
@@ -27,6 +26,7 @@ class ReviewRequest extends FormRequest
             'stars' => 'required|numeric|min:1|max:5',
             'comment' => 'nullable|string|max:255',
             'autorize' => 'required|boolean',
+            'shared' => 'nullable|boolean',
         ];
     }
 }

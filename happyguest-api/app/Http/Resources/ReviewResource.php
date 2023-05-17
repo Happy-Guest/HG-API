@@ -28,6 +28,7 @@ class ReviewResource extends JsonResource
                     'user_id' => $this->user_id,
                     'stars' => $this->stars,
                     'autorize' => $this->autorize,
+                    'shared' => $this->shared,
                     'created_at' => $this->created_at->format('d/m/Y'),
                 ];
             case 'detailed':
@@ -40,6 +41,7 @@ class ReviewResource extends JsonResource
                     'stars' => $this->stars,
                     'comment' => $this->comment,
                     'autorize' => $this->autorize,
+                    'shared' => $this->shared,
                     'created_at' => $this->created_at->format('d/m/Y'),
                 ];
             default:

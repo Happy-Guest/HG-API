@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedTinyInteger('stars');
             $table->string('comment')->nullable();
             $table->boolean('autorize')->default(false);
+            $table->boolean('shared')->default(false);
             $table->timestamp('created_at')->useCurrent();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
