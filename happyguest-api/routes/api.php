@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CodeController;
 use App\Http\Controllers\ComplaintController;
+use App\Http\Controllers\StatisticController;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,5 +80,10 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/', [ComplaintController::class, 'store'])->name('store');
         Route::patch('/{id}', [ComplaintController::class, 'update'])->middleware('role:M')->name('update');
         Route::delete('/{id}', [ComplaintController::class, 'destroy'])->middleware('role:M')->name('destroy');
+    });
+
+    // Stats
+    Route::prefix('/stats')->name('stats.')->group(function () {
+        Route::get('/home', [StatisticController::class, 'index'])->middleware('role:M')->name('home');
     });
 });

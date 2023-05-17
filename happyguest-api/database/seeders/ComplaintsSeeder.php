@@ -15,7 +15,10 @@ class ComplaintsSeeder extends Seeder
      */
     public function run()
     {
+        $lastMonth = new DateTime();
+        $lastMonth->modify('-1 month');
         $now = new DateTime();
+
         $complaints = [
             [
                 'user_id' => 4,
@@ -24,7 +27,7 @@ class ComplaintsSeeder extends Seeder
                 'status' => 'P',
                 'comment' => 'Não Foi Atendido Adequadamente',
                 'local' => 'Recepção',
-                'created_at' => $now,
+                'created_at' => $lastMonth,
                 'updated_at' => $now,
             ],
             [
@@ -34,7 +37,7 @@ class ComplaintsSeeder extends Seeder
                 'status' => 'R',
                 'comment' => 'Fui Maltratado Por Um Funcionário',
                 'local' => 'Restaurante',
-                'created_at' => $now,
+                'created_at' => $lastMonth,
                 'updated_at' => $now,
             ],
             [
@@ -44,7 +47,7 @@ class ComplaintsSeeder extends Seeder
                 'status' => 'C',
                 'comment' => 'Não Recebi O Que Foi Prometido.',
                 'local' => 'Quarto',
-                'created_at' => $now,
+                'created_at' => $lastMonth,
                 'updated_at' => $now,
             ],
             [

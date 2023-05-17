@@ -15,7 +15,10 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
+        $lastMonth = new DateTime();
+        $lastMonth->modify('-1 month');
         $now = new DateTime();
+
         $users = [
             [
                 'name' => 'Diogo Mendes',
@@ -25,7 +28,7 @@ class UsersSeeder extends Seeder
                 'role' => 'A',
                 'blocked' => false,
                 'photo_url' => null,
-                'created_at' => $now,
+                'created_at' => $lastMonth,
                 'updated_at' => $now,
             ],
             [
@@ -58,13 +61,24 @@ class UsersSeeder extends Seeder
                 'role' => 'C',
                 'blocked' => false,
                 'photo_url' => null,
-                'created_at' => $now,
+                'created_at' => $lastMonth,
                 'updated_at' => $now,
             ],
             [
                 'name' => 'José Costa',
                 'email' => 'josec@hotmail.com',
                 'phone' => '934372738',
+                'password' => bcrypt('123456789'),
+                'role' => 'C',
+                'blocked' => false,
+                'photo_url' => null,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'name' => 'Ana Rodrigues',
+                'email' => 'anar@mail.com',
+                'phone' => '918374372',
                 'password' => bcrypt('123456789'),
                 'role' => 'C',
                 'blocked' => false,
