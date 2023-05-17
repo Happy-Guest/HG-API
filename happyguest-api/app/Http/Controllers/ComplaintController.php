@@ -115,7 +115,7 @@ class ComplaintController extends Controller
         $complaint->update($request->validated());
 
         return response()->json([
-            'message' => __('messages.updated', ['attribute' => __('messages.attributes.complaint')]),
+            'message' => __('messages.updated2', ['attribute' => __('messages.attributes.complaint')]),
             'complaint' => new ComplaintResource($complaint),
         ]);
     }
@@ -131,7 +131,7 @@ class ComplaintController extends Controller
         Complaint::findOrFail($id)->delete();
 
         return response()->json([
-            'message' => __('messages.deleted', ['attribute' => __('messages.attributes.complaint')]),
+            'message' => __('messages.deleted2', ['attribute' => __('messages.attributes.complaint')]),
         ]);
     }
 

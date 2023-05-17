@@ -25,7 +25,7 @@ class ReviewResource extends JsonResource
             case 'simple':
                 return [
                     'id' => $this->id,
-                    'user_id' => $this->user_id,
+                    'user' => $this->user_id ? $this->user->name : null,
                     'stars' => $this->stars,
                     'autorize' => $this->autorize,
                     'shared' => $this->shared,

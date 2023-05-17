@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Review;
 use App\Http\Requests\ReviewRequest;
 use App\Http\Resources\ReviewResource;
-use App\Models\Review;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\DeleteRequest;
 
 class ReviewController extends Controller
 {
@@ -74,13 +77,23 @@ class ReviewController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(DeleteRequest $request, int $id)
     {
+        // Check if password is correct
+        if (!Hash::check($request->password, Auth::user()->password)) {
+            return response()->json([
+                'errors' => [
+                    'password' => [
+                        __('auth.password'),
+                    ],
+                ],
+            ], 401);
+        }
+
         Review::findOrFail($id)->delete();
 
         return response()->json([
             'message' => __('messages.deleted', ['attribute' => __('messages.attributes.review')]),
         ]);
     }
-
 }

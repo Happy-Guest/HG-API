@@ -5,7 +5,9 @@ declare(strict_types=1);
 return [
     'unauthorized' => 'You do not have permissions to execute this action!',
     'updated' => ':attribute updated successfully!',
+    'updated2' => ':attribute updated successfully!',
     'deleted' => ':attribute deleted successfully!',
+    'deleted2' => ':attribute deleted successfully!',
     'created' => ':attribute created successfully!',
     'created2' => ':attribute created successfully!',
     'associated' => ':attribute associated successfully!',
@@ -17,5 +19,6 @@ return [
         'user' => 'User',
         'code' => 'Code',
         'complaint' => 'Complaint',
+        'review' => 'Review',
     ],
 ];
