@@ -192,7 +192,6 @@ return [
         'remember'                 => 'remember',
         'restored_at'              => 'restored at',
         'result_text_under_image'  => 'result text under image',
-        'role'                     => 'role',
         'second'                   => 'second',
         'sex'                      => 'sex',
         'short_text'               => 'short text',
@@ -234,5 +233,9 @@ return [
         'files'                    => 'files',
         'file'                     => 'file',
         'filename'                 => 'filename',
+        'stars'                    => 'stars',
+        'autorize'                 => 'autorize',
+        'complaint'                => 'complaint',
+        'review'                   => 'review',
     ],
 ];

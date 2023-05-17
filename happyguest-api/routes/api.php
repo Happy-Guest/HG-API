@@ -47,6 +47,11 @@ Route::middleware('auth:api')->group(function () {
             Route::get('/', [ComplaintController::class, 'user'])->middleware('autorize')->name('index');
         });
 
+        // Reviews by User
+        Route::prefix('/{id}/reviews')->name('reviews.')->group(function () {
+            Route::get('/', [ReviewController::class, 'user'])->middleware('autorize')->name('index');
+        });
+
         Route::get('/', [UserController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/blocked', [UserController::class, 'show_blocked'])->middleware('role:M')->name('blocked');
         Route::get('/unblocked', [UserController::class, 'show_unblocked'])->middleware('role:M')->name('unblocked');
@@ -82,7 +87,15 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/{id}', [ComplaintController::class, 'destroy'])->middleware('role:M')->name('destroy');
     });
 
-    // Stats
+    // Reviews
+    Route::prefix('/reviews')->name('reviews.')->group(function () {
+        Route::get('/', [ReviewController::class, 'index'])->middleware('role:M')->name('index');
+        Route::get('/{id}', [ReviewController::class, 'show'])->name('show');
+        Route::post('/', [ReviewController::class, 'store'])->name('store');
+        Route::delete('/{id}', [ReviewController::class, 'destroy'])->middleware('role:M')->name('destroy');
+    });
+
+    // Statistics
     Route::prefix('/stats')->name('stats.')->group(function () {
         Route::get('/home', [StatisticController::class, 'index'])->middleware('role:M')->name('home');
     });

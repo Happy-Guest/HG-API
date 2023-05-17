@@ -6,8 +6,6 @@ use App\Http\Requests\ComplaintRequest;
 use App\Http\Resources\ComplaintResource;
 use App\Models\Complaint;
 use App\Models\ComplaintFile;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Response;
 
 class ComplaintController extends Controller
 {

@@ -17,9 +17,10 @@ class DatabaseSeeder extends Seeder
             CodesSeeder::class,
             UserCodesSeeder::class,
             ComplaintsSeeder::class,
+            ReviewsSeeder::class,
         ]);
 
-        // Delete all files from public storage
+        // Delete all files from public storage and storage
         $files = glob(public_path('storage/user_photos/*'));
         $files = array_merge($files, glob(storage_path('app/complaint_files/*')));
         foreach ($files as $file) {
