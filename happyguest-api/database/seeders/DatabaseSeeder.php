@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // Delete all files from public storage and storage
-        $files = glob(public_path('storage/user_photos/*'));
+        $files = glob(storage_path('app/public/user_photos/*'));
         $files = array_merge($files, glob(storage_path('app/complaint_files/*')));
         foreach ($files as $file) {
             if (is_file($file)) {
