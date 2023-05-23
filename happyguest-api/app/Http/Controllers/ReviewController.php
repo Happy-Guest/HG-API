@@ -8,18 +8,60 @@ use App\Http\Resources\ReviewResource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DeleteRequest;
+use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
     /**
      * Display a listing of the Reviews.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $reviews = Review::query();
+
+        // Filter the reviews
+        if ($request->has('filter') && $request->filter != 'ALL') {
+            switch ($request->filter) {
+                case 'S': // Shared
+                    $reviews->where('shared', true);
+                    break;
+                case 'NS': // Not shared
+                    $reviews->where('shared', false);
+                    break;
+                case 'A': // Autorized
+                    $reviews->where('autorize', true);
+                    break;
+                case 'NA': // Not autorized
+                    $reviews->where('autorize', false);
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_filter'),
+                    ], 400);
+            }
+        }
+
+        // Order the reviews
+        if ($request->has('order') ) {
+            switch ($request->order) {
+                case 'ASC': // Ascending
+                    $reviews->orderBy('created_at', 'asc');
+                    break;
+                case 'DESC': // Descending
+                    $reviews->orderBy('created_at', 'desc');
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_order'),
+                    ], 400);
+            }
+        }
+
         ReviewResource::$format = 'simple';
-        return ReviewResource::collection(Review::paginate(20));
+        return ReviewResource::collection($reviews->paginate(20));
     }
 
     /**

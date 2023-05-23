@@ -15,6 +15,8 @@ return [
     'already_associated' => ':attribute is already associated!',
     'not_associated' => ':attribute is not associated!',
     'only_clients' => 'Only clients can be associated to codes!',
+    'invalid_filter' => 'The indicated filter does not exist!',
+    'invalid_order' => 'The indicated order does not exist!',
     'attributes' => [
         'user' => 'User',
         'code' => 'Code',
