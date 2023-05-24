@@ -112,6 +112,13 @@ class CodeController extends Controller
             ], 409);
         }
 
+        // Check if the code is still valid
+        if (Code::findOrFail($codeId)->exit_date < date('Y-m-d H:i:s')) {
+            return response()->json([
+                'message' => __('messages.expired', ['attribute' => __('messages.attributes.code')]),
+            ], 409);
+        }
+
         $user = User::findOrFail($id);
 
         // Check if user is not a client

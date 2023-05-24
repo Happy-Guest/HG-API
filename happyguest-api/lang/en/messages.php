@@ -13,6 +13,7 @@ return [
     'associated' => ':attribute associated successfully!',
     'disassociated' => ':attribute disassociated successfully!',
     'already_associated' => ':attribute is already associated!',
+    'expired' => ':attribute has already expired!',
     'not_associated' => ':attribute is not associated!',
     'only_clients' => 'Only clients can be associated to codes!',
     'invalid_filter' => 'The indicated filter does not exist!',
