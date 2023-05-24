@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DeleteRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class CodeController extends Controller
 {
@@ -18,12 +19,53 @@ class CodeController extends Controller
     /**
      * Display a listing of the codes.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        CodeResource::$format = 'simple';
-        return CodeResource::collection(Code::paginate(20));
+        $codes = Code::query();
+
+        // Filter the codes
+        if ($request->has('filter') && $request->filter != 'ALL') {
+            switch ($request->filter) {
+                case 'V': // Valid
+                    $codes->where('exit_date', '>', date('Y-m-d H:i:s'))->where('entry_date', '<', date('Y-m-d H:i:s'));
+                    break;
+                case 'E': // Expired
+                    $codes->where('exit_date', '<', date('Y-m-d H:i:s'));
+                    break;
+                case 'U': // Used
+                    $codes->where('used', true);
+                    break;
+                case 'NU': // Not used
+                    $codes->where('used', false);
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_filter'),
+                    ], 400);
+            }
+        }
+
+        // Order the codes
+        if ($request->has('order') ) {
+            switch ($request->order) {
+                case 'ASC': // Ascending
+                    $codes->orderBy('id', 'asc');
+                    break;
+                case 'DESC': // Descending
+                    $codes->orderBy('id', 'desc');
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_order'),
+                    ], 400);
+            }
+        }
+
+        CodeResource::$format = 'code';
+        return CodeResource::collection($codes->paginate(20));
     }
 
     /**

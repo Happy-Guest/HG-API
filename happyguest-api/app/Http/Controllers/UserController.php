@@ -17,12 +17,52 @@ class UserController extends Controller
     /**
      * Display a listing of the users.
      *
+     * @param Request $request
      * @return UserCollection
      */
-    public function index()
+    public function index(Request $request)
     {
+        $users = User::query();
+
+        // Filter the users
+        if ($request->has('filter') && $request->filter != 'ALL') {
+            switch ($request->filter) {
+                case 'C': // Client
+                case 'M': // Manager
+                case 'A': // Admin
+                    $users->where('role', $request->filter);
+                    break;
+                case 'NB': // Not blocked
+                    $users->where('blocked', false);
+                    break;
+                case 'B': // Blocked
+                    $users->where('blocked', true);
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_filter'),
+                    ], 400);
+            }
+        }
+
+        // Order the users
+        if ($request->has('order') ) {
+            switch ($request->order) {
+                case 'ASC': // Ascending
+                    $users->orderBy('id', 'asc');
+                    break;
+                case 'DESC': // Descending
+                    $users->orderBy('id', 'desc');
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_order'),
+                    ], 400);
+            }
+        }
+
         UserResource::$format = 'simple';
-        return UserResource::collection(User::paginate(20));
+        return UserResource::collection($users->paginate(20));
     }
 
     /**

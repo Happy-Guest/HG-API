@@ -48,10 +48,10 @@ class ReviewController extends Controller
         if ($request->has('order') ) {
             switch ($request->order) {
                 case 'ASC': // Ascending
-                    $reviews->orderBy('created_at', 'asc');
+                    $reviews->orderBy('id', 'asc');
                     break;
                 case 'DESC': // Descending
-                    $reviews->orderBy('created_at', 'desc');
+                    $reviews->orderBy('id', 'desc');
                     break;
                 default:
                     return response()->json([

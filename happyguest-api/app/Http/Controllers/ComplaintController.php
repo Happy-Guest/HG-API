@@ -6,18 +6,54 @@ use App\Http\Requests\ComplaintRequest;
 use App\Http\Resources\ComplaintResource;
 use App\Models\Complaint;
 use App\Models\ComplaintFile;
+use Illuminate\Http\Request;
 
 class ComplaintController extends Controller
 {
     /**
      * Display a listing of the Complaints.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        $complaints = Complaint::query();
+
+        // Filter the complaints
+        if (request()->has('filter') && request()->filter != 'ALL') {
+            switch (request()->filter) {
+                case 'P': // Pending
+                case 'S': // Solving
+                case 'R': // Resolved
+                case 'C': // Cancelled
+                    $complaints->where('status', request()->filter);
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_filter'),
+                    ], 400);
+            }
+        }
+
+        // Order the complaints
+        if (request()->has('order') ) {
+            switch (request()->order) {
+                case 'ASC': // Ascending
+                    $complaints->orderBy('id', 'asc');
+                    break;
+                case 'DESC': // Descending
+                    $complaints->orderBy('id', 'desc');
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_order'),
+                    ], 400);
+            }
+        }
+
         ComplaintResource::$format = 'simple';
-        return ComplaintResource::collection(Complaint::paginate(20));
+        return ComplaintResource::collection($complaints->paginate(20));
     }
 
     /**
