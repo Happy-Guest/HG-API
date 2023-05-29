@@ -23,5 +23,6 @@ return [
         'code' => 'Code',
         'complaint' => 'Complaint',
         'review' => 'Review',
+        'checkout' => 'Checkout',
     ],
 ];

@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Review extends Model
+class Checkout extends Model
 {
     const UPDATED_AT = null;
 
@@ -18,10 +18,7 @@ class Review extends Model
      */
     protected $fillable = [
         'user_id',
-        'stars',
-        'comment',
-        'autorize',
-        'shared',
+        'code_id',
     ];
 
     /**
@@ -34,7 +31,15 @@ class Review extends Model
     ];
 
     /**
-     * Get the user that owns the user complaint.
+     * Get the code that owns the checkout.
+     */
+    public function code()
+    {
+        return $this->belongsTo(Code::class);
+    }
+
+    /**
+     * Get the user that owns the checkout.
      */
     public function user()
     {

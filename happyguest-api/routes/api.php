@@ -7,6 +7,7 @@ use App\Http\Controllers\CodeController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\StatisticController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\CheckOutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,11 @@ Route::middleware('auth:api')->group(function () {
             Route::get('/', [ReviewController::class, 'user'])->middleware('autorize')->name('index');
         });
 
+        // Checkouts by User
+        Route::prefix('/{id}/checkouts')->name('checkouts.')->group(function () {
+            Route::get('/', [CheckOutController::class, 'user'])->middleware('autorize')->name('index');
+        });
+
         Route::get('/', [UserController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/blocked', [UserController::class, 'show_blocked'])->middleware('role:M')->name('blocked');
         Route::get('/unblocked', [UserController::class, 'show_unblocked'])->middleware('role:M')->name('unblocked');
@@ -92,8 +98,15 @@ Route::middleware('auth:api')->group(function () {
     Route::prefix('/reviews')->name('reviews.')->group(function () {
         Route::get('/', [ReviewController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/{id}', [ReviewController::class, 'show'])->name('show');
-        Route::post('/', [ReviewController::class, 'store'])->name('store');
+        Route::post('/', [ReviewController::class, 'store'])->middleware('role:C')->name('store');
         Route::delete('/{id}', [ReviewController::class, 'destroy'])->middleware('role:M')->name('destroy');
+    });
+
+    // Checkouts
+    Route::prefix('/checkouts')->name('checkouts.')->group(function () {
+        Route::get('/', [CheckoutController::class, 'index'])->middleware('role:M')->name('index');
+        Route::get('/{id}', [CheckoutController::class, 'show'])->name('show');
+        Route::post('/', [CheckoutController::class, 'store'])->middleware('role:C')->name('store');
     });
 
     // Statistics

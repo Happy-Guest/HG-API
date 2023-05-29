@@ -55,4 +55,12 @@ class Code extends Model
     {
         return $this->belongsToMany(User::class, 'user_codes');
     }
+
+    /**
+     * Get the checkout for the code.
+     */
+    public function checkout()
+    {
+        return $this->hasOne(Checkout::class);
+    }
 }

@@ -76,4 +76,12 @@ class User extends Authenticatable
     {
         return $this->hasMany(Complaint::class);
     }
+
+    /**
+     * Get the user checkout for the user.
+     */
+    public function checkout()
+    {
+        return $this->hasMany(Checkout::class);
+    }
 }

@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             UserCodesSeeder::class,
             ComplaintsSeeder::class,
             ReviewsSeeder::class,
+            CheckoutsSeeder::class,
         ]);
 
         // Delete all files from public storage and storage
