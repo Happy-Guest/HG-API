@@ -20,14 +20,14 @@ class checkoutsSeeder extends Seeder
             [
                 'user_id' => 4,
                 'code_id' => 1,
-                'created_at' => $now,
+                'created_at' => $now->add(new \DateInterval('P3D'))->format('Y-m-d'),
             ],
             [
                 'user_id' => 5,
                 'code_id' => 2,
                 'created_at' => $now,
             ],
-           
+
         ];
 
         DB::table('checkouts')->insert($checkouts);

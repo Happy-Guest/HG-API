@@ -14,7 +14,7 @@ class CheckoutResource extends JsonResource
      */
     public static string $format = 'default';
 
-     /**
+    /**
      * Transform the resource into an array.
      *
      * @return array<string, mixed>
@@ -25,17 +25,17 @@ class CheckoutResource extends JsonResource
             case 'simple':
                 return [
                     'id' => $this->id,
-                    'user' => $this->user_id ? $this->user->name : null,
-                    'code' => $this->code_id ? $this->code->code : null,
+                    'user' => $this->user->name,
+                    'code' => $this->code->code,
                     'created_at' => $this->created_at->format('d/m/Y'),
                 ];
             case 'detailed':
                 return [
                     'id' => $this->id,
-                    'user' => $this->user_id ? [
+                    'user' => [
                         'id' => $this->user->id,
                         'name' => $this->user->name,
-                    ] : null,
+                    ],
                     'code' => $this->code->code,
                     'created_at' => $this->created_at->format('d/m/Y'),
                 ];

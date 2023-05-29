@@ -11,7 +11,7 @@ class CheckoutController extends Controller
 {
     /**
      * Display a listing of the Checkouts.
-     * 
+     *
      ** @param Request $request
      * @return \Illuminate\Http\Response
      */
@@ -19,9 +19,9 @@ class CheckoutController extends Controller
     {
         $checkouts = Checkout::query();
 
-                // Order the complaints
-        if (request()->has('order') ) {
-            switch (request()->order) {
+        // Order the checkouts
+        if ($request->has('order')) {
+            switch ($request->order) {
                 case 'ASC': // Ascending
                     $checkouts->orderBy('id', 'asc');
                     break;
@@ -39,7 +39,7 @@ class CheckoutController extends Controller
         return CheckoutResource::collection($checkouts->paginate(20));
     }
 
-   /**
+    /**
      * Display the specified Checkout.
      *
      * @param  int  $id
@@ -47,18 +47,20 @@ class CheckoutController extends Controller
      */
     public function show(int $id)
     {
-         $checkout = Checkout::findOrFail($id);
+        $checkout = Checkout::findOrFail($id);
 
-         if ($checkout->user_id != auth()->user()->id && auth()->user()->role != 'A' && auth()->user()->role != 'M') {
+        // Check if the user is authorized to view the checkout
+        if ($checkout->user_id != auth()->user()->id && auth()->user()->role != 'A' && auth()->user()->role != 'M') {
             return response()->json([
                 'message' => __('messages.unauthorized'),
             ], 401);
         }
+
         CheckoutResource::$format = 'detailed';
         return new CheckoutResource($checkout);
     }
 
-      /**
+    /**
      * Display the specified user's Checkouts.
      *
      * @param  int  $id
@@ -69,7 +71,7 @@ class CheckoutController extends Controller
         CheckoutResource::$format = 'simple';
         return CheckoutResource::collection(CheckOut::where('user_id', $id)->paginate(20));
     }
-    
+
     /**
      * Store a newly created checkout in storage.
      *
@@ -78,11 +80,18 @@ class CheckoutController extends Controller
      */
     public function store(CheckoutRequest $request)
     {
-           $checkout = Checkout::create($request->validated());
+        $checkout = Checkout::create($request->validated());
+
+        // Check if the code has already been checked out
+        if ($request->code->checkouts()->count() >= 1) {
+            return response()->json([
+                'message' => __('messages.checked_out'),
+            ], 400);
+        }
 
         return response()->json([
             'message' => __('messages.created', ['attribute' => __('messages.attributes.checkout')]),
-            'review' => new CheckoutResource($checkout),
+            'checkout' => new CheckoutResource($checkout),
         ], 201);
     }
 }

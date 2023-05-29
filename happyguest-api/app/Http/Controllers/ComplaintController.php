@@ -21,13 +21,13 @@ class ComplaintController extends Controller
         $complaints = Complaint::query();
 
         // Filter the complaints
-        if (request()->has('filter') && request()->filter != 'ALL') {
-            switch (request()->filter) {
+        if ($request->has('filter') && $request->filter != 'ALL') {
+            switch ($request->filter) {
                 case 'P': // Pending
                 case 'S': // Solving
                 case 'R': // Resolved
                 case 'C': // Cancelled
-                    $complaints->where('status', request()->filter);
+                    $complaints->where('status', $request->filter);
                     break;
                 default:
                     return response()->json([
@@ -37,8 +37,8 @@ class ComplaintController extends Controller
         }
 
         // Order the complaints
-        if (request()->has('order')) {
-            switch (request()->order) {
+        if ($request->has('order')) {
+            switch ($request->order) {
                 case 'ASC': // Ascending
                     $complaints->orderBy('id', 'asc');
                     break;

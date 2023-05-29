@@ -18,11 +18,12 @@ return [
     'only_clients' => 'Apenas clientes podem ser associados a códigos!',
     'invalid_filter' => 'O filtro indicado não existe!',
     'invalid_order' => 'A ordem indicada não existe!',
+    'checked_out' => 'Já foi efetuado um check-out para este código!',
     'attributes' => [
         'user' => 'Utilizador',
         'code' => 'Código',
         'complaint' => 'Reclamação',
         'review' => 'Avaliação',
-        'checkout' => 'Check-out',
+        'checkout' => 'Check-Out',
     ],
 ];
