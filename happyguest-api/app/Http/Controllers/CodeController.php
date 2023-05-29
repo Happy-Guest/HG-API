@@ -49,7 +49,7 @@ class CodeController extends Controller
         }
 
         // Order the codes
-        if ($request->has('order') ) {
+        if ($request->has('order')) {
             switch ($request->order) {
                 case 'ASC': // Ascending
                     $codes->orderBy('id', 'asc');

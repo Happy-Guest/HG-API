@@ -45,7 +45,7 @@ class ReviewController extends Controller
         }
 
         // Order the reviews
-        if ($request->has('order') ) {
+        if ($request->has('order')) {
             switch ($request->order) {
                 case 'ASC': // Ascending
                     $reviews->orderBy('id', 'asc');

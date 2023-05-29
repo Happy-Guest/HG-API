@@ -46,7 +46,7 @@ class UserController extends Controller
         }
 
         // Order the users
-        if ($request->has('order') ) {
+        if ($request->has('order')) {
             switch ($request->order) {
                 case 'ASC': // Ascending
                     $users->orderBy('id', 'asc');

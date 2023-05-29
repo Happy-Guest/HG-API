@@ -15,7 +15,6 @@ class CodesSeeder extends Seeder
      */
     public function run()
     {
-
         $now = new DateTime();
         $codes = [
             [

@@ -37,7 +37,7 @@ class ComplaintController extends Controller
         }
 
         // Order the complaints
-        if (request()->has('order') ) {
+        if (request()->has('order')) {
             switch (request()->order) {
                 case 'ASC': // Ascending
                     $complaints->orderBy('id', 'asc');
@@ -170,5 +170,4 @@ class ComplaintController extends Controller
             'message' => __('messages.deleted2', ['attribute' => __('messages.attributes.complaint')]),
         ]);
     }
-
 }
