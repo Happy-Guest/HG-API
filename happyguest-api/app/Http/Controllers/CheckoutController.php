@@ -6,6 +6,7 @@ use App\Http\Requests\CheckoutRequest;
 use App\Http\Resources\CheckoutResource;
 use App\Models\Checkout;
 use Illuminate\Http\Request;
+use App\Models\Code;
 
 class CheckoutController extends Controller
 {
@@ -80,14 +81,16 @@ class CheckoutController extends Controller
      */
     public function store(CheckoutRequest $request)
     {
-        $checkout = Checkout::create($request->validated());
+        $request->validated();
 
         // Check if the code has already been checked out
-        if ($request->code->checkouts()->count() >= 1) {
+        if (Checkout::where('code_id', $request->code_id)->exists()) {
             return response()->json([
                 'message' => __('messages.checked_out'),
             ], 400);
         }
+
+        $checkout = Checkout::create($request->validated());
 
         return response()->json([
             'message' => __('messages.created', ['attribute' => __('messages.attributes.checkout')]),
