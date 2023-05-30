@@ -119,6 +119,13 @@ class AuthController extends Controller
             ], 401);
         }
 
+        // Check if user is a manager or admin and is using a mobile device
+        if (($user->role == 'M' || $user->role == 'A') && $request->device == 'mobile') {
+            return response()->json([
+                'message' => __('auth.unauthorized'),
+            ], 401);
+        }
+
         // Check if user is blocked
         if ($user->blocked) {
             Auth::logout();
