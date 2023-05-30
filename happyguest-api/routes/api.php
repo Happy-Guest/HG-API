@@ -112,5 +112,6 @@ Route::middleware('auth:api')->group(function () {
     // Statistics
     Route::prefix('/stats')->name('stats.')->group(function () {
         Route::get('/home', [StatisticController::class, 'index'])->middleware('role:M')->name('home');
+        Route::get('/graph', [StatisticController::class, 'graph'])->middleware('role:M')->name('graph');
     });
 });

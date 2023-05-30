@@ -15,9 +15,13 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
+        $now = new DateTime();
         $lastMonth = new DateTime();
         $lastMonth->modify('-1 month');
-        $now = new DateTime();
+        $fourMonthsAgo = new DateTime();
+        $fourMonthsAgo->modify('-4 month');
+        $eightMonthsAgo = new DateTime();
+        $eightMonthsAgo->modify('-8 month');
 
         $users = [
             [
@@ -28,7 +32,7 @@ class UsersSeeder extends Seeder
                 'role' => 'A',
                 'blocked' => false,
                 'photo_url' => null,
-                'created_at' => $lastMonth,
+                'created_at' => $now,
                 'updated_at' => $now,
             ],
             [
@@ -45,9 +49,20 @@ class UsersSeeder extends Seeder
             [
                 'name' => 'João Silva',
                 'email' => 'joao@email.pt',
-                'phone' => '966938453',
+                'phone' => null,
                 'password' => bcrypt('123456789'),
                 'role' => 'M',
+                'blocked' => false,
+                'photo_url' => null,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'name' => 'Daniel Santos',
+                'email' => 'dani@email.pt',
+                'phone' => null,
+                'password' => bcrypt('123456789'),
+                'role' => 'C',
                 'blocked' => false,
                 'photo_url' => null,
                 'created_at' => $now,
@@ -67,23 +82,34 @@ class UsersSeeder extends Seeder
             [
                 'name' => 'José Costa',
                 'email' => 'josec@hotmail.com',
-                'phone' => '934372738',
+                'phone' => null,
                 'password' => bcrypt('123456789'),
                 'role' => 'C',
                 'blocked' => false,
                 'photo_url' => null,
-                'created_at' => $now,
+                'created_at' => $fourMonthsAgo,
                 'updated_at' => $now,
             ],
             [
                 'name' => 'Ana Rodrigues',
                 'email' => 'anar@mail.com',
-                'phone' => '918374372',
+                'phone' => null,
                 'password' => bcrypt('123456789'),
                 'role' => 'C',
                 'blocked' => true,
                 'photo_url' => null,
-                'created_at' => $now,
+                'created_at' => $eightMonthsAgo,
+                'updated_at' => $now,
+            ],
+            [
+                'name' => 'Rui Pereira',
+                'email' => 'rpereira@mail.pt',
+                'phone' => null,
+                'password' => bcrypt('123456789'),
+                'role' => 'C',
+                'blocked' => false,
+                'photo_url' => null,
+                'created_at' => $eightMonthsAgo,
                 'updated_at' => $now,
             ],
         ];

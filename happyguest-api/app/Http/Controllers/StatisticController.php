@@ -42,4 +42,35 @@ class StatisticController extends Controller
             'percentageCodesUsed' => $percentageCodesUsed,
         ]);
     }
+
+    public function graph()
+    {
+        // Number of clients by month
+        $clientsByMonth = User::selectRaw('count(*) as total, MONTH(created_at) as month')
+            ->where('role', 'C')
+            ->where('created_at', '>=', now()->subMonths(12))
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        // Number of codes by month
+        $codesByMonth = Code::selectRaw('count(*) as total, MONTH(created_at) as month')
+            ->where('created_at', '>=', now()->subMonths(12))
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        // Number of complaints by month
+        $complaintsByMonth = Complaint::selectRaw('count(*) as total, MONTH(created_at) as month')
+            ->where('created_at', '>=', now()->subMonths(12))
+            ->groupBy('month')
+            ->orderBy('month')
+            ->get();
+
+        return response()->json([
+            'clientsByMonth' => $clientsByMonth,
+            'codesByMonth' => $codesByMonth,
+            'complaintsByMonth' => $complaintsByMonth,
+        ]);
+    }
 }
