@@ -81,7 +81,7 @@ class UsersSeeder extends Seeder
                 'phone' => '918374372',
                 'password' => bcrypt('123456789'),
                 'role' => 'C',
-                'blocked' => false,
+                'blocked' => true,
                 'photo_url' => null,
                 'created_at' => $now,
                 'updated_at' => $now,
