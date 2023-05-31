@@ -16,14 +16,8 @@ class UsersSeeder extends Seeder
     public function run()
     {
         $now = new DateTime();
-        $lastMonth = new DateTime();
-        $lastMonth->modify('-1 month');
-        $fourMonthsAgo = new DateTime();
-        $fourMonthsAgo->modify('-4 month');
-        $eightMonthsAgo = new DateTime();
-        $eightMonthsAgo->modify('-8 month');
-
         $users = [
+            // Admins
             [
                 'name' => 'Diogo Mendes',
                 'email' => 'diiogom21@happyguest.pt',
@@ -46,15 +40,39 @@ class UsersSeeder extends Seeder
                 'created_at' => $now,
                 'updated_at' => $now,
             ],
+            // Managers
             [
                 'name' => 'João Silva',
-                'email' => 'joao@email.pt',
+                'email' => 'joaos@email.pt',
                 'phone' => null,
                 'password' => bcrypt('123456789'),
                 'role' => 'M',
                 'blocked' => false,
                 'photo_url' => null,
                 'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'name' => 'Andreia Santos',
+                'email' => 'andreia_santos@email.pt',
+                'phone' => null,
+                'password' => bcrypt('123456789'),
+                'role' => 'M',
+                'blocked' => false,
+                'photo_url' => null,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            // Clients
+            [
+                'name' => 'Ana Rodrigues',
+                'email' => 'anar@mail.com',
+                'phone' => null,
+                'password' => bcrypt('123456789'),
+                'role' => 'C',
+                'blocked' => true,
+                'photo_url' => null,
+                'created_at' => '2023-01-24 12:03:01',
                 'updated_at' => $now,
             ],
             [
@@ -65,7 +83,7 @@ class UsersSeeder extends Seeder
                 'role' => 'C',
                 'blocked' => false,
                 'photo_url' => null,
-                'created_at' => $now,
+                'created_at' => '2023-02-13 17:11:23',
                 'updated_at' => $now,
             ],
             [
@@ -76,7 +94,7 @@ class UsersSeeder extends Seeder
                 'role' => 'C',
                 'blocked' => false,
                 'photo_url' => null,
-                'created_at' => $lastMonth,
+                'created_at' => '2023-03-26 09:23:12',
                 'updated_at' => $now,
             ],
             [
@@ -87,18 +105,18 @@ class UsersSeeder extends Seeder
                 'role' => 'C',
                 'blocked' => false,
                 'photo_url' => null,
-                'created_at' => $fourMonthsAgo,
+                'created_at' => '2023-03-30 14:23:12',
                 'updated_at' => $now,
             ],
             [
-                'name' => 'Ana Rodrigues',
-                'email' => 'anar@mail.com',
+                'name' => 'Marta Pereira',
+                'email' => 'martap@mail.pt',
                 'phone' => null,
                 'password' => bcrypt('123456789'),
                 'role' => 'C',
-                'blocked' => true,
+                'blocked' => false,
                 'photo_url' => null,
-                'created_at' => $eightMonthsAgo,
+                'created_at' => '2023-04-15 11:23:12',
                 'updated_at' => $now,
             ],
             [
@@ -109,7 +127,18 @@ class UsersSeeder extends Seeder
                 'role' => 'C',
                 'blocked' => false,
                 'photo_url' => null,
-                'created_at' => $eightMonthsAgo,
+                'created_at' => '2023-04-16 23:12:02',
+                'updated_at' => $now,
+            ],
+            [
+                'name' => 'David Silva',
+                'email' => 'davsilva@hotmail.com',
+                'phone' => '925035705',
+                'password' => bcrypt('123456789'),
+                'role' => 'C',
+                'blocked' => false,
+                'photo_url' => null,
+                'created_at' => $now->sub(new \DateInterval('P3D'))->format('Y-m-d H:i:s'),
                 'updated_at' => $now,
             ],
         ];

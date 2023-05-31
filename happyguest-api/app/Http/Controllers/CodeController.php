@@ -112,7 +112,7 @@ class CodeController extends Controller
         }
 
         // Check if the code is still valid
-        if (Code::findOrFail($codeId)->exit_date < date('Y-m-d H:i:s')) {
+        if (Code::findOrFail($codeId)->exit_date < date('Y-m-d')) {
             return response()->json([
                 'message' => __('messages.expired', ['attribute' => __('messages.attributes.code')]),
             ], 409);

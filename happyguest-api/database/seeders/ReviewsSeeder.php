@@ -18,27 +18,35 @@ class ReviewsSeeder extends Seeder
         $now = new DateTime();
         $reviews = [
             [
-                'user_id' => 4,
-                'stars' => 5,
-                'comment' => 'Muito bom',
+                'user_id' => null,
+                'stars' => 2,
+                'comment' => 'Muito mau.',
                 'autorize' => false,
                 'shared' => false,
-                'created_at' => $now,
+                'created_at' => '2023-01-26 14:25'
+            ],
+            [
+                'user_id' => 7,
+                'stars' => 5,
+                'comment' => 'Muito bom! Recomendo.',
+                'autorize' => false,
+                'shared' => false,
+                'created_at' => '2023-04-03 21:12'
             ],
             [
                 'user_id' => null,
-                'stars' => 2,
-                'comment' => 'Muito mau',
-                'autorize' => false,
-                'shared' => false,
-                'created_at' => $now,
-            ],
-            [
-                'user_id' => 5,
                 'stars' => 4,
-                'comment' => 'Bom',
+                'comment' => 'Hotel com boas atividades e funcionários simpáticos.',
                 'autorize' => true,
                 'shared' => true,
+                'created_at' => '2023-04-23 11:34'
+            ],
+            [
+                'user_id' => 11,
+                'stars' => 4,
+                'comment' => 'Bom hotel com boa localização.',
+                'autorize' => true,
+                'shared' => false,
                 'created_at' => $now,
             ],
         ];

@@ -15,49 +15,46 @@ class ComplaintsSeeder extends Seeder
      */
     public function run()
     {
-        $lastMonth = new DateTime();
-        $lastMonth->modify('-1 month');
         $now = new DateTime();
-
         $complaints = [
             [
-                'user_id' => 4,
+                'user_id' => 5,
                 'title' => 'Serviço Insatisfatório',
-                'date' => '2021/01/01 10:00',
-                'status' => 'P',
-                'comment' => 'Não Foi Atendido Adequadamente',
+                'date' => '2023-01-24 10:00',
+                'status' => 'C',
+                'comment' => 'Não me senti bem atendida.',
                 'local' => 'Recepção',
-                'created_at' => $lastMonth,
-                'updated_at' => $now,
-            ],
-            [
-                'user_id' => 4,
-                'title' => 'Atendimento Rude',
-                'date' => '2023/01/21 16:25',
-                'status' => 'R',
-                'comment' => 'Fui Maltratado Por Um Funcionário',
-                'local' => 'Restaurante',
-                'created_at' => $lastMonth,
+                'created_at' => '2023-01-24 12:23',
                 'updated_at' => $now,
             ],
             [
                 'user_id' => 5,
-                'title' => 'Promessa Não Cumprida',
-                'date' => '2023/05/11 22:12',
-                'status' => 'C',
-                'comment' => 'Não Recebi O Que Foi Prometido.',
+                'title' => 'Atendimento Rude',
+                'date' => '2023-01-26 13:25',
+                'status' => 'R',
+                'comment' => 'Serviço muito mal feito e demorado.',
+                'local' => 'Restaurante',
+                'created_at' => '2023-01-26 14:00',
+                'updated_at' => $now,
+            ],
+            [
+                'user_id' => 9,
+                'title' => 'Pedido Errado',
+                'date' => '2023-04-18 22:12',
+                'status' => 'R',
+                'comment' => 'Não recebi o que pedi no quarto.',
                 'local' => 'Quarto',
-                'created_at' => $lastMonth,
+                'created_at' => '2023-04-18 22:30',
                 'updated_at' => $now,
             ],
             [
                 'user_id' => null,
                 'title' => 'Muito Barulho',
-                'date' => '2023/05/14 01:24',
-                'status' => 'P',
+                'date' => $now->sub(new \DateInterval('P3D'))->format('Y-m-d H:i:s'),
+                'status' => 'S',
                 'comment' => 'Não Consegui Dormir Por Causa Do Barulho.',
                 'local' => 'Quarto',
-                'created_at' => $now,
+                'created_at' => $now->sub(new \DateInterval('P3D'))->format('Y-m-d H:i:s'),
                 'updated_at' => $now,
             ]
         ];

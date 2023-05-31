@@ -16,16 +16,24 @@ class UserCodesSeeder extends Seeder
     {
         $user_codes = [
             [
-                'user_id' => 4,
+                'user_id' => 5,
                 'code_id' => 1,
             ],
             [
-                'user_id' => 4,
-                'code_id' => 2,
+                'user_id' => 7,
+                'code_id' => 3,
             ],
             [
-                'user_id' => 5,
-                'code_id' => 2,
+                'user_id' => 9,
+                'code_id' => 4,
+            ],
+            [
+                'user_id' => 10,
+                'code_id' => 4,
+            ],
+            [
+                'user_id' => 11,
+                'code_id' => 5,
             ],
         ];
 

@@ -16,9 +16,8 @@ use App\Http\Controllers\CheckoutController;
 |
 | Roles: Admin > Manager > User
 | Middlewares: auth:api, role, autorize
-|    -> Role: If indicated role is Manager, then Admin can access.
-|    -> Autorize: If indicated id is not the same as authenticated user,
-|                 verify if authenticated user is Manager or Admin.
+|  -> Role: If indicated role is Manager, then Admin can access.
+|  -> Autorize: If indicated id is not the same as authenticated user, verify if authenticated user is Manager or Admin.
 |
 */
 
@@ -106,7 +105,7 @@ Route::middleware('auth:api')->group(function () {
     Route::prefix('/checkouts')->name('checkouts.')->group(function () {
         Route::get('/', [CheckoutController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/{id}', [CheckoutController::class, 'show'])->name('show');
-        Route::post('/', [CheckoutController::class, 'store'])->middleware('role:C')->name('store');
+        Route::post('/', [CheckoutController::class, 'store'])->name('store');
         Route::patch('/{id}/validate', [CheckoutController::class, 'updateValidate'])->middleware('autorize')->name('updateValidate');
     });
 
