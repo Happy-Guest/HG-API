@@ -22,23 +22,6 @@ class RegisterRequest extends FormRequest
      */
     public function rules(): array
     {
-        if ($this->request->get('device') == 'mobile') {
-            return [
-                'data.name' => 'required|string|min:3|max:255',
-                'data.email' => [
-                    Rule::unique('users')->whereNull('deleted_at'),
-                    'required',
-                    'string',
-                    'email',
-                    'max:255',
-                ],
-                'data.password' => 'required|string|confirmed|min:5|max:255',
-                'data.phone' => 'nullable|numeric|digits_between:9, 12',
-                'data.role' => 'nullable|in:C,M,A', // C: Client, M: Manager, A: Admin
-                'data.photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            ];
-        }
-
         return [
             'name' => 'required|string|min:3|max:255',
             'email' => [
