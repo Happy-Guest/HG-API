@@ -33,15 +33,20 @@ class AuthController extends Controller
 
         $user->save();
 
-        // Check if user has uploaded a photo
+        // Check if user has uploaded a photo (Base64)
         if ($request->has('photoBase64')) {
             $image = $request->photoBase64;
             $image_name = $user->id . "_" . uniqid() . '.jpg';
-            $image_path = storage_path('app/public/user_photos') . '/' . $image_name;
-            file_put_contents($image_path, base64_decode($image));
+            $image = str_replace('data:image/jpeg;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            $image_data = base64_decode($image);
+            file_put_contents(storage_path('app/public/user_photos') . '/' . $image_name, $image_data);
             $user->photo_url = $image_name;
             $user->update();
-        } else if ($request->hasFile('photo')) {
+        }
+
+        // Check if user has uploaded a photo
+        if ($request->hasFile('photo')) {
             $image = $request->file('photo');
             $image_name = $user->id . "_" . uniqid() . '.jpg';
             $image->move(storage_path('app/public/user_photos'), $image_name);
