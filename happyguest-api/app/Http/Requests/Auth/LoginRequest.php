@@ -22,20 +22,10 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|string|email|exists:users',
+            'email' => 'required|string|email',
             'password' => 'required|string',
             'remember_me' => 'boolean',
             'device' => 'string',
-        ];
-    }
-
-    /**
-     * Get the validation messages that apply to the request.
-     */
-    public function messages(): array
-    {
-        return [
-            'email.exists' => __('auth.email'),
         ];
     }
 }
