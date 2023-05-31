@@ -15,12 +15,11 @@ use Illuminate\Http\Request;
 
 class CodeController extends Controller
 {
-
     /**
      * Display a listing of the codes.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return CodeCollection
      */
     public function index(Request $request)
     {
@@ -72,7 +71,7 @@ class CodeController extends Controller
      * Display the specified code.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return CodeResource
      */
     public function show(int $id)
     {
@@ -84,7 +83,7 @@ class CodeController extends Controller
      * Display the specified user's codes.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return UserCodeCollection
      */
     public function user(int $id)
     {
@@ -97,7 +96,7 @@ class CodeController extends Controller
      *
      * @param  int  $id
      * @param  string  $code
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function associate(int $id, string $code)
     {
@@ -147,7 +146,7 @@ class CodeController extends Controller
      *
      * @param  int  $id
      * @param  string  $code
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function disassociate(int $id, string $code)
     {
@@ -172,8 +171,8 @@ class CodeController extends Controller
     /**
      * Store a newly created code in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  CodeRequest  $request
+     * @return CodeResource
      */
     public function store(CodeRequest $request)
     {
@@ -188,9 +187,9 @@ class CodeController extends Controller
     /**
      * Update the specified code in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  CodeRequest  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return CodeResource
      */
     public function update(CodeRequest $request, int $id)
     {
@@ -208,7 +207,7 @@ class CodeController extends Controller
      *
      * @param  DeleteRequest  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function destroy(DeleteRequest $request, int $id)
     {

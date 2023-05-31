@@ -20,7 +20,7 @@ return new class extends Migration
             $table->boolean('shared')->default(false);
             $table->timestamp('created_at')->useCurrent();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

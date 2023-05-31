@@ -10,7 +10,7 @@ class StatisticController extends Controller
 {
 
     /**
-     * Display a listing of the resource.
+     * Display statistics.
      *
      * @return \Illuminate\Http\Response
      */
@@ -43,6 +43,11 @@ class StatisticController extends Controller
         ]);
     }
 
+    /**
+     * Display statistics for the graph.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function graph()
     {
         // Number of clients by month

@@ -68,7 +68,7 @@ class UserController extends Controller
     /**
      * Display the specified user.
      *
-     * @param User $user
+     * @param int $id
      * @return UserResource
      */
     public function show(int $id)
@@ -80,7 +80,6 @@ class UserController extends Controller
     /**
      * Display a listing of blocked users.
      *
-     * @param User $user
      * @return UserResource
      */
     public function show_blocked()
@@ -92,7 +91,6 @@ class UserController extends Controller
     /**
      * Display a listing of unblocked users.
      *
-     * @param User $user
      * @return UserResource
      */
     public function show_unblocked()
@@ -104,7 +102,7 @@ class UserController extends Controller
     /**
      * Display a listing of users with the specified role.
      *
-     * @param User $user
+     * @param string $role
      * @return UserResource
      */
     public function show_role(string $role)
@@ -116,7 +114,7 @@ class UserController extends Controller
     /**
      * Display the specified code's users.
      *
-     * @param User $user
+     * @param int $id
      * @return UserCodeCollection
      */
     public function code(int $id)
@@ -161,7 +159,8 @@ class UserController extends Controller
      * Update the specified user in storage.
      *
      * @param int $id
-     * @return UserResource
+     * @param Request $request
+     * @return JsonResponse
      */
     public function block(int $id, Request $request)
     {
@@ -182,7 +181,7 @@ class UserController extends Controller
      * Update the specified user in storage.
      *
      * @param int $id
-     * @return UserResource
+     * @return JsonResponse
      */
     public function unblock(int $id)
     {
@@ -199,7 +198,7 @@ class UserController extends Controller
      *
      * @param DeleteRequest $request
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function destroy(DeleteRequest $request, int $id)
     {

@@ -15,8 +15,8 @@ class ReviewController extends Controller
     /**
      * Display a listing of the Reviews.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return ReviewCollection
      */
     public function index(Request $request)
     {
@@ -68,7 +68,7 @@ class ReviewController extends Controller
      * Display the specified Review.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return ReviewResource
      */
     public function show(int $id)
     {
@@ -89,7 +89,7 @@ class ReviewController extends Controller
      * Display the specified user's Reviews.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return ReviewCollection
      */
     public function user(int $id)
     {
@@ -100,8 +100,8 @@ class ReviewController extends Controller
     /**
      * Store a newly created review in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  ReviewRequest  $request
+     * @return ReviewResource
      */
     public function store(ReviewRequest $request)
     {
@@ -116,8 +116,9 @@ class ReviewController extends Controller
     /**
      * Remove the specified review from storage.
      *
+     * @param  DeleteRequest  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function destroy(DeleteRequest $request, int $id)
     {

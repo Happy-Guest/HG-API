@@ -14,7 +14,7 @@ class ComplaintController extends Controller
      * Display a listing of the Complaints.
      *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return ComplaintCollection
      */
     public function index(Request $request)
     {
@@ -60,7 +60,7 @@ class ComplaintController extends Controller
      * Display the specified Complaint.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return ComplaintResource
      */
     public function show(int $id)
     {
@@ -81,7 +81,7 @@ class ComplaintController extends Controller
      * Display the specified user's Complaints.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return ComplaintCollection
      */
     public function user(int $id)
     {
@@ -90,10 +90,11 @@ class ComplaintController extends Controller
     }
 
     /**
-     * Display the specified Complaint's files.
+     * Display the specified Complaint's file.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  int  $file
+     * @return File
      */
     public function file(int $id, int $file)
     {
@@ -113,8 +114,8 @@ class ComplaintController extends Controller
     /**
      * Store a newly created complaint in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  ComplaintRequest  $request
+     * @return ComplaintResource
      */
     public function store(ComplaintRequest $request)
     {
@@ -141,9 +142,9 @@ class ComplaintController extends Controller
     /**
      * Update the specified complaint in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  ComplaintRequest  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return ComplaintResource
      */
     public function update(ComplaintRequest $request, int $id)
     {
@@ -160,7 +161,7 @@ class ComplaintController extends Controller
      * Remove the specified complaint from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function destroy(int $id)
     {

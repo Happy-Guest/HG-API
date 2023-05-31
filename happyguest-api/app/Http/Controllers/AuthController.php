@@ -17,7 +17,7 @@ class AuthController extends Controller
      * Register a new user (Client).
      *
      * @param RegisterRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function register(RegisterRequest $request)
     {
@@ -63,7 +63,7 @@ class AuthController extends Controller
      * Register a new user (Manager or Admin).
      *
      * @param RegisterRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function register_team(RegisterRequest $request)
     {
@@ -104,7 +104,7 @@ class AuthController extends Controller
      * Login a user.
      *
      * @param LoginRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function login(LoginRequest $request)
     {
@@ -179,7 +179,7 @@ class AuthController extends Controller
      * Logout a user.
      *
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function logout(Request $request)
     {
@@ -194,7 +194,7 @@ class AuthController extends Controller
      * Get the authenticated user.
      *
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function user(Request $request)
     {
@@ -205,7 +205,7 @@ class AuthController extends Controller
      * Change the authenticated user's password.
      *
      * @param ChangePasswordRequest $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function change_password(ChangePasswordRequest $request)
     {

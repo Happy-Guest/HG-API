@@ -12,8 +12,8 @@ class CheckoutController extends Controller
     /**
      * Display a listing of the Checkouts.
      *
-     ** @param Request $request
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @return CheckoutCollection
      */
     public function index(Request $request)
     {
@@ -43,7 +43,7 @@ class CheckoutController extends Controller
      * Display the specified Checkout.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return CheckoutResource
      */
     public function show(int $id)
     {
@@ -56,7 +56,7 @@ class CheckoutController extends Controller
             ], 401);
         }
 
-        CheckoutResource::$format = 'detailed';
+        CheckoutResource::$format = 'simple';
         return new CheckoutResource($checkout);
     }
 
@@ -64,7 +64,7 @@ class CheckoutController extends Controller
      * Display the specified user's Checkouts.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return CheckoutCollection
      */
     public function user(int $id)
     {
@@ -90,8 +90,8 @@ class CheckoutController extends Controller
     /**
      * Store a newly created checkout in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param CheckoutRequest $request
+     * @return CheckoutResource
      */
     public function store(CheckoutRequest $request)
     {
