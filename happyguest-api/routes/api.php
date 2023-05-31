@@ -7,7 +7,7 @@ use App\Http\Controllers\CodeController;
 use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\StatisticController;
 use App\Http\Controllers\ReviewController;
-use App\Http\Controllers\CheckOutController;
+use App\Http\Controllers\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ Route::middleware('auth:api')->group(function () {
 
         // Checkouts by User
         Route::prefix('/{id}/checkouts')->name('checkouts.')->group(function () {
-            Route::get('/', [CheckOutController::class, 'user'])->middleware('autorize')->name('index');
+            Route::get('/', [CheckoutController::class, 'user'])->middleware('autorize')->name('index');
         });
 
         Route::get('/', [UserController::class, 'index'])->middleware('role:M')->name('index');

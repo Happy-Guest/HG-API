@@ -6,7 +6,6 @@ use App\Http\Requests\CheckoutRequest;
 use App\Http\Resources\CheckoutResource;
 use App\Models\Checkout;
 use Illuminate\Http\Request;
-use App\Models\Code;
 
 class CheckoutController extends Controller
 {
