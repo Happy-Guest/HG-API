@@ -23,19 +23,17 @@ class RegisterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'params' => [
-                'name' => 'required|string|min:3|max:255',
-                'email' => [
-                    Rule::unique('users')->whereNull('deleted_at'),
-                    'required',
-                    'string',
-                    'email',
-                    'max:255',
-                ],
-                'password' => 'required|string|confirmed|min:5|max:255',
-                'phone' => 'nullable|numeric|digits_between:9, 12',
-                'role' => 'nullable|in:C,M,A', // C: Client, M: Manager, A: Admin
+            'name' => 'required|string|min:3|max:255',
+            'email' => [
+                Rule::unique('users')->whereNull('deleted_at'),
+                'required',
+                'string',
+                'email',
+                'max:255',
             ],
+            'password' => 'required|string|confirmed|min:5|max:255',
+            'phone' => 'nullable|numeric|digits_between:9, 12',
+            'role' => 'nullable|in:C,M,A', // C: Client, M: Manager, A: Admin
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
