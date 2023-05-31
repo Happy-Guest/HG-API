@@ -8,7 +8,6 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\ChangePasswordRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\Rule;
 use App\Models\User;
 use Carbon\Carbon;
 
@@ -20,21 +19,9 @@ class AuthController extends Controller
      * @param RegisterRequest $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function register(Request $request)
+    public function register(RegisterRequest $request)
     {
-        $request->validate( [
-            $request->name => 'required|string|min:3|max:255',
-            $request->email => [
-                Rule::unique('users')->whereNull('deleted_at'),
-                'required',
-                'string',
-                'email',
-                'max:255',
-            ],
-            $request->password => 'required|string|confirmed|min:5|max:255',
-            $request->phone => 'nullable|numeric|digits_between:9, 12',
-            $request->photo => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+        $request->validated();
 
         $user = new User([
             'name' => $request->name,
