@@ -73,6 +73,21 @@ class CheckoutController extends Controller
     }
 
     /**
+     * Update the specified checkout in storage.
+     *
+     * @param int $id
+     * @return CheckoutResource
+     */
+    public function updateValidate(int $id)
+    {
+        $checkout = Checkout::findOrFail($id);
+        $checkout->update(['validated' => true]);
+
+        return response()->json([
+            'message' => __('messages.updated', ['attribute' => __('messages.attributes.checkout')]),
+        ]);
+    }
+    /**
      * Store a newly created checkout in storage.
      *
      * @param  \Illuminate\Http\Request  $request

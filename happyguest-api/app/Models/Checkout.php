@@ -19,6 +19,7 @@ class Checkout extends Model
     protected $fillable = [
         'user_id',
         'code_id',
+        'validated'
     ];
 
     /**

@@ -25,8 +25,12 @@ class CheckoutResource extends JsonResource
             case 'simple':
                 return [
                     'id' => $this->id,
-                    'user' => $this->user->name,
+                   'user' => [
+                        'id' => $this->user->id,
+                        'name' => $this->user->name,
+                    ],
                     'code' => $this->code->code,
+                    'validated' => $this->validated,
                     'created_at' => $this->created_at->format('d/m/Y'),
                 ];
             case 'detailed':
@@ -37,6 +41,7 @@ class CheckoutResource extends JsonResource
                         'name' => $this->user->name,
                     ],
                     'code' => $this->code->code,
+                    'validated' => $this->validated,
                     'created_at' => $this->created_at->format('d/m/Y'),
                 ];
             default:

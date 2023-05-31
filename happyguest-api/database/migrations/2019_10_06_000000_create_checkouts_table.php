@@ -15,10 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('code_id');
+            $table->boolean('validated');
             $table->timestamp('created_at')->useCurrent();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('code_id')->references('id')->on('codes')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('code_id')->references('id')->on('codes');
         });
     }
 

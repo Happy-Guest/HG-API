@@ -107,6 +107,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/', [CheckoutController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/{id}', [CheckoutController::class, 'show'])->name('show');
         Route::post('/', [CheckoutController::class, 'store'])->middleware('role:C')->name('store');
+        Route::patch('/{id}/validate', [CheckoutController::class, 'updateValidate'])->middleware('autorize')->name('updateValidate');
     });
 
     // Statistics
