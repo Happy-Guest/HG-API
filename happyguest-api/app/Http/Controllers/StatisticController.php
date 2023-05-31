@@ -10,9 +10,9 @@ class StatisticController extends Controller
 {
 
     /**
-     * Display statistics.
+     * Display statistics of the application.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function index()
     {
@@ -46,7 +46,7 @@ class StatisticController extends Controller
     /**
      * Display statistics for the graph.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function graph()
     {

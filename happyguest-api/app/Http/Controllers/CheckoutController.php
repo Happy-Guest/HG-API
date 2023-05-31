@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class CheckoutController extends Controller
 {
     /**
-     * Display a listing of the Checkouts.
+     * Display a listing of checkouts.
      *
      * @param Request $request
      * @return CheckoutCollection
@@ -40,7 +40,7 @@ class CheckoutController extends Controller
     }
 
     /**
-     * Display the specified Checkout.
+     * Display the specified checkout.
      *
      * @param  int  $id
      * @return CheckoutResource
@@ -61,7 +61,7 @@ class CheckoutController extends Controller
     }
 
     /**
-     * Display the specified user's Checkouts.
+     * Display the specified user's checkouts.
      *
      * @param  int  $id
      * @return CheckoutCollection
@@ -73,7 +73,7 @@ class CheckoutController extends Controller
     }
 
     /**
-     * Update the specified checkout in storage.
+     * Update the specified checkout in storage. (Validate)
      *
      * @param int $id
      * @return CheckoutResource

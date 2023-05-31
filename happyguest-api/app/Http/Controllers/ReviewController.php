@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 class ReviewController extends Controller
 {
     /**
-     * Display a listing of the Reviews.
+     * Display a listing of reviews.
      *
      * @param Request $request
      * @return ReviewCollection
@@ -65,7 +65,7 @@ class ReviewController extends Controller
     }
 
     /**
-     * Display the specified Review.
+     * Display the specified review.
      *
      * @param  int  $id
      * @return ReviewResource
@@ -86,7 +86,7 @@ class ReviewController extends Controller
     }
 
     /**
-     * Display the specified user's Reviews.
+     * Display the specified user's reviews.
      *
      * @param  int  $id
      * @return ReviewCollection

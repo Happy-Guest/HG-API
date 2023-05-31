@@ -15,7 +15,7 @@ use Illuminate\Http\Request;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the users.
+     * Display a listing of users.
      *
      * @param Request $request
      * @return UserCollection
@@ -112,7 +112,7 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified code's users.
+     * Display the specified user's codes.
      *
      * @param int $id
      * @return UserCodeCollection
@@ -156,7 +156,7 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified user in storage.
+     * Update the specified user in storage. (Block)
      *
      * @param int $id
      * @param Request $request
@@ -178,7 +178,7 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified user in storage.
+     * Update the specified user in storage. (Unblock)
      *
      * @param int $id
      * @return JsonResponse

@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class ComplaintController extends Controller
 {
     /**
-     * Display a listing of the Complaints.
+     * Display a listing of complaints.
      *
      * @param Request $request
      * @return ComplaintCollection
@@ -57,7 +57,7 @@ class ComplaintController extends Controller
     }
 
     /**
-     * Display the specified Complaint.
+     * Display the specified complaint.
      *
      * @param  int  $id
      * @return ComplaintResource
@@ -78,7 +78,7 @@ class ComplaintController extends Controller
     }
 
     /**
-     * Display the specified user's Complaints.
+     * Display the specified user's complaints.
      *
      * @param  int  $id
      * @return ComplaintCollection
@@ -90,7 +90,7 @@ class ComplaintController extends Controller
     }
 
     /**
-     * Display the specified Complaint's file.
+     * Display the specified complaint's file.
      *
      * @param  int  $id
      * @param  int  $file

@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 class CodeController extends Controller
 {
     /**
-     * Display a listing of the codes.
+     * Display a listing of codes.
      *
      * @param Request $request
      * @return CodeCollection
@@ -80,7 +80,7 @@ class CodeController extends Controller
     }
 
     /**
-     * Display the specified user's codes.
+     * Display the specified code's users.
      *
      * @param  int  $id
      * @return UserCodeCollection

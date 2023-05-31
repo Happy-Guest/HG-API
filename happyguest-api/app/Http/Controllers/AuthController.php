@@ -14,7 +14,7 @@ use Carbon\Carbon;
 class AuthController extends Controller
 {
     /**
-     * Register a new user (Client).
+     * Register a new user (Mobile)
      *
      * @param RegisterRequest $request
      * @return JsonResponse
@@ -60,7 +60,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Register a new user (Manager or Admin).
+     * Register a new user. (Dashboard)
      *
      * @param RegisterRequest $request
      * @return JsonResponse
@@ -202,7 +202,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Change the authenticated user's password.
+     * Change the authenticated user password.
      *
      * @param ChangePasswordRequest $request
      * @return JsonResponse
