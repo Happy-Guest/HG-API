@@ -98,6 +98,16 @@ class AuthController extends Controller
     {
         $request->validated();
 
+        // Check if user exists
+        if (!User::where('email', $request->email)->first()) {
+            return response()->json([
+                'message' => __('auth.email'),
+                'errors' => [
+                    'email' => [__('auth.email')],
+                ],
+            ], 401);
+        }
+
         $credentials = request(['email', 'password']);
 
         // Check if combination of email and password is correct
