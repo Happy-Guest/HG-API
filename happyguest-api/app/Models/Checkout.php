@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Checkout extends Model
 {
-    const UPDATED_AT = null;
+    public $timestamps = false;
 
     use HasFactory;
 

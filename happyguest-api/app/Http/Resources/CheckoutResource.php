@@ -41,7 +41,7 @@ class CheckoutResource extends JsonResource
                         'code' => $this->code->code,
                         'rooms' => $this->code->rooms,
                         'entry_date' => $this->code->entry_date->format('d/m/Y'),
-                        'expiration_date' => $this->code->expiration_date->format('d/m/Y'),
+                        'exit_date' => $this->code->exit_date->format('d/m/Y'),
                     ],
                     'validated' => $this->validated,
                     'date' => $this->date->format('d/m/Y'),
