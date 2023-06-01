@@ -56,6 +56,7 @@ class StatisticController extends Controller
             ->where('created_at', '>=', now()->subMonths(12))
             ->groupBy('month')
             ->orderBy('month')
+            ->withTrashed()
             ->get();
 
         // Number of codes by month
@@ -63,6 +64,7 @@ class StatisticController extends Controller
             ->where('created_at', '>=', now()->subMonths(12))
             ->groupBy('month')
             ->orderBy('month')
+            ->withTrashed()
             ->get();
 
         // Number of complaints by month
@@ -70,6 +72,7 @@ class StatisticController extends Controller
             ->where('created_at', '>=', now()->subMonths(12))
             ->groupBy('month')
             ->orderBy('month')
+            ->withTrashed()
             ->get();
 
         return response()->json([
