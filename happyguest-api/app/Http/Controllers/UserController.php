@@ -38,6 +38,9 @@ class UserController extends Controller
                 case 'B': // Blocked
                     $users->where('blocked', true);
                     break;
+                case 'D': // Deleted
+                    $users->where('deleted_at', '!=', null)->withTrashed();
+                    break;
                 default:
                     return response()->json([
                         'message' => __('messages.invalid_filter'),

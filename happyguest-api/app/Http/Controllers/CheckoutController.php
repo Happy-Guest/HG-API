@@ -6,6 +6,9 @@ use App\Http\Requests\CheckoutRequest;
 use App\Http\Resources\CheckoutResource;
 use App\Models\Checkout;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\DeleteRequest;
 
 class CheckoutController extends Controller
 {
@@ -126,5 +129,32 @@ class CheckoutController extends Controller
             'message' => __('messages.created', ['attribute' => __('messages.attributes.checkout')]),
             'checkout' => new CheckoutResource($checkout),
         ], 201);
+    }
+
+    /**
+     * Remove the specified checkout from storage.
+     *
+     * @param  DeleteRequest  $request
+     * @param  int  $id
+     * @return JsonResponse
+     */
+    public function destroy(DeleteRequest $request, int $id)
+    {
+        // Check if password is correct
+        if (!Hash::check($request->password, Auth::user()->password)) {
+            return response()->json([
+                'errors' => [
+                    'password' => [
+                        __('auth.password'),
+                    ],
+                ],
+            ], 401);
+        }
+
+        Checkout::findOrFail($id)->delete();
+
+        return response()->json([
+            'message' => __('messages.deleted', ['attribute' => __('messages.attributes.checkout')]),
+        ]);
     }
 }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('code_id');
             $table->boolean('validated')->default(false);
-            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('date')->useCurrent();
 
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('code_id')->references('id')->on('codes');

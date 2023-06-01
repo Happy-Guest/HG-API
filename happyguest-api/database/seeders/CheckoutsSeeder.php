@@ -21,19 +21,19 @@ class CheckoutsSeeder extends Seeder
                 'user_id' => 7,
                 'code_id' => 3,
                 'validated' => true,
-                'created_at' => '2023-04-03 16:25'
+                'date' => '2023-04-03 16:25'
             ],
             [
                 'user_id' => 9,
                 'code_id' => 4,
                 'validated' => true,
-                'created_at' => '2023-04-20 21:12',
+                'date' => '2023-04-20 21:12',
             ],
             [
                 'user_id' => 11,
                 'code_id' => 5,
                 'validated' => false,
-                'created_at' => $now,
+                'date' => $now,
             ]
 
         ];

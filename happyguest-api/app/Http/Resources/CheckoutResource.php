@@ -28,7 +28,7 @@ class CheckoutResource extends JsonResource
                     'user' => $this->user->name,
                     'code' => $this->code->code,
                     'validated' => $this->validated,
-                    'created_at' => $this->created_at->format('d/m/Y'),
+                    'date' => $this->date->format('d/m/Y'),
                 ];
             case 'detailed':
                 return [
@@ -44,7 +44,7 @@ class CheckoutResource extends JsonResource
                         'expiration_date' => $this->code->expiration_date->format('d/m/Y'),
                     ],
                     'validated' => $this->validated,
-                    'created_at' => $this->created_at->format('d/m/Y'),
+                    'date' => $this->date->format('d/m/Y'),
                 ];
             default:
                 return parent::toArray($request);

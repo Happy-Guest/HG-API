@@ -29,6 +29,9 @@ class ComplaintController extends Controller
                 case 'C': // Cancelled
                     $complaints->where('status', $request->filter);
                     break;
+                case 'D': // Deleted
+                    $complaints->where('deleted_at', '!=', null)->withTrashed();
+                    break;
                 default:
                     return response()->json([
                         'message' => __('messages.invalid_filter'),

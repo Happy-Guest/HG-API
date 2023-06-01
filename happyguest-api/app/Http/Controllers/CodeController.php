@@ -40,6 +40,9 @@ class CodeController extends Controller
                 case 'NU': // Not used
                     $codes->where('used', false);
                     break;
+                case 'D': // Deleted
+                    $codes->where('deleted_at', '!=', null)->withTrashed();
+                    break;
                 default:
                     return response()->json([
                         'message' => __('messages.invalid_filter'),

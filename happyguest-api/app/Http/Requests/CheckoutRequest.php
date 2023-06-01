@@ -24,7 +24,8 @@ class CheckoutRequest extends FormRequest
         return [
             'user_id' => 'required|exists:users,id',
             'code_id' => 'required|exists:codes,id',
-            'validated' => 'nullable|boolean'
+            'validated' => 'nullable|boolean',
+            'date' => 'nullable|dateformat:Y/m/d|before_or_equal:today',
         ];
     }
 }
