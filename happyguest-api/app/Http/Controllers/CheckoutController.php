@@ -72,7 +72,7 @@ class CheckoutController extends Controller
             ], 401);
         }
 
-        CheckoutResource::$format = 'simple';
+        CheckoutResource::$format = 'detailed';
         return new CheckoutResource($checkout);
     }
 
