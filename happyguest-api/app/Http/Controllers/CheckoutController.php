@@ -19,6 +19,22 @@ class CheckoutController extends Controller
     {
         $checkouts = Checkout::query();
 
+        // Filter the checkouts
+        if ($request->has('filter') && $request->filter != 'ALL') {
+            switch ($request->filter) {
+                case 'V': // Valid
+                    $checkouts->where('validated', true);
+                    break;
+                case 'NV': // Not valid
+                    $checkouts->where('validated', false);
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_filter'),
+                    ], 400);
+            }
+        }
+
         // Order the checkouts
         if ($request->has('order')) {
             switch ($request->order) {
