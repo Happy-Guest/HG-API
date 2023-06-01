@@ -19,7 +19,8 @@ class Checkout extends Model
     protected $fillable = [
         'user_id',
         'code_id',
-        'validated'
+        'validated',
+        'date',
     ];
 
     /**
@@ -28,7 +29,7 @@ class Checkout extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'created_at' => 'datetime:d/m/Y',
+        'date' => 'datetime:d/m/Y',
     ];
 
     /**
