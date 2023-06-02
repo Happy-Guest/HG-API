@@ -6,6 +6,7 @@ use App\Http\Requests\ComplaintRequest;
 use App\Http\Resources\ComplaintResource;
 use App\Models\Complaint;
 use App\Models\ComplaintFile;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\DeleteRequest;
 use Illuminate\Support\Facades\Hash;
@@ -125,6 +126,20 @@ class ComplaintController extends Controller
      */
     public function store(ComplaintRequest $request)
     {
+        // Check if user is a customer
+        if ($request->user_id) {
+            $user = User::findOrFail($request->user_id);
+            if ($user->role != 'C') {
+                return response()->json([
+                    'errors' => [
+                        'user_id' => [
+                            __('messages.invalid_user'),
+                        ],
+                    ],
+                ], 400);
+            }
+        }
+
         $complaint = Complaint::create($request->validated());
 
         // Store files

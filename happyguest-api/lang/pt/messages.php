@@ -19,6 +19,7 @@ return [
     'invalid_filter' => 'O filtro indicado não existe!',
     'invalid_order' => 'A ordem indicada não existe!',
     'checked_out' => 'Já foi efetuado um check-out para este código!',
+    'invalid_user' => 'O utilizador indicado não é um cliente!',
     'attributes' => [
         'user' => 'Utilizador',
         'code' => 'Código',

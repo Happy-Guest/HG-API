@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CheckoutRequest;
 use App\Http\Resources\CheckoutResource;
 use App\Models\Checkout;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
@@ -115,6 +116,18 @@ class CheckoutController extends Controller
     public function store(CheckoutRequest $request)
     {
         $request->validated();
+
+        // Check if the user is a customer
+        $user = User::findOrFail($request->user_id);
+        if ($user->role != 'C') {
+            return response()->json([
+                'errors' => [
+                    'user_id' => [
+                        __('messages.invalid_user'),
+                    ],
+                ],
+            ], 400);
+        }
 
         // Check if the code has already been checked out
         if (Checkout::where('code_id', $request->code_id)->exists()) {
