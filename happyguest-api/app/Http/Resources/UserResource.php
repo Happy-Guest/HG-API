@@ -37,6 +37,8 @@ class UserResource extends JsonResource
                     'name' => $this->name,
                     'email' => $this->email,
                     'phone' => $this->phone,
+                    'address' => $this->address,
+                    'birth_date' => $this->birth_date ? $this->birth_date->format('d/m/Y') : null,
                     'role' => $this->role,
                     'blocked' => $this->blocked,
                     'photo_url' => $this->photo_url,

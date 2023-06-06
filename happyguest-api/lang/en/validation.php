@@ -237,5 +237,7 @@ return [
         'autorize'                 => 'autorize',
         'complaint'                => 'complaint',
         'review'                   => 'review',
+        'address'                  => 'address',
+        'birth date'               => 'birth date',
     ],
 ];

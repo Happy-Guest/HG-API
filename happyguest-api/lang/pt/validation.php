@@ -237,5 +237,7 @@ return [
         'autorize'                => 'autorizar',
         'complaint'               => 'reclamação',
         'review'                  => 'avaliação',
+        'address'                 => 'morada',
+        'birth date'              => 'data de nascimento',
     ],
 ];
