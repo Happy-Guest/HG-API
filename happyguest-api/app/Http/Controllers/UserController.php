@@ -137,6 +137,22 @@ class UserController extends Controller
     {
         $user = User::findOrFail($id);
 
+        // Check if user has uploaded a photo (Base64)
+        if ($request->has('photoBase64')) {
+            // Delete old image
+            if ($user->photo_url) {
+                unlink(storage_path('app/public/user_photos/' . $user->photo_url));
+            }
+            $image = $request->photoBase64;
+            $image_name = $user->id . "_" . uniqid() . '.jpg';
+            $image = str_replace('data:image/jpeg;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
+            $image_data = base64_decode($image);
+            file_put_contents(storage_path('app/public/user_photos') . '/' . $image_name, $image_data);
+            $user->photo_url = $image_name;
+            $user->update();
+        }
+
         // Check if user has uploaded a image
         if ($request->hasFile('photo')) {
             // Delete old image
