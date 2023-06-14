@@ -138,7 +138,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         // Check if user has uploaded a photo (Base64)
-        if ($request->has('photoBase64')) {
+        if ($request->has('photoBase64') && $request->photoBase64 != null) {
             // Delete old image
             if ($user->photo_url) {
                 unlink(storage_path('app/public/user_photos/' . $user->photo_url));
