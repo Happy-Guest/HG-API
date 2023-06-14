@@ -179,11 +179,11 @@ class CodeController extends Controller
      */
     public function valid_code(int $id)
     {
-        $user = User::findOrFail($id);
+        $userCode = UserCode::where('user_id', $id)->first();
 
         // Check if user has a valid code
         $hasValidCode = false;
-        foreach ($user->codes as $code) {
+        foreach ($userCode as $code) {
             if ($code->exit_date >= now()) {
                 $hasValidCode = true;
                 break;
