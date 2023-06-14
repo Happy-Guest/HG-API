@@ -41,6 +41,9 @@ Route::middleware('auth:api')->group(function () {
             // Associate & Disassociate Code
             Route::post('/{code}/associate', [CodeController::class, 'associate'])->middleware('autorize')->name('associate');
             Route::delete('/{code}/disassociate', [CodeController::class, 'disassociate'])->middleware('autorize')->name('disassociate');
+
+            // Has Valid Code
+            Route::get('/valid', [CodeController::class, 'valid_code'])->middleware('autorize')->name('valid-code');
         });
 
         // Complaints by User

@@ -172,6 +172,31 @@ class CodeController extends Controller
     }
 
     /**
+     * Display the specified user's valid codes.
+     *
+     * @param int $id
+     * @return JsonResponse
+     */
+    public function valid_code(int $id)
+    {
+        $user = User::findOrFail($id);
+
+        // Check if user has a valid code
+        $hasValidCode = false;
+        foreach ($user->codes as $code) {
+            if ($code->exit_date >= now()) {
+                $hasValidCode = true;
+                break;
+            }
+        }
+
+        return response()->json([
+            'message' => __('messages.has_valid_code'),
+            'hasValidCode' => $hasValidCode,
+        ]);
+    }
+
+    /**
      * Store a newly created code in storage.
      *
      * @param  CodeRequest  $request

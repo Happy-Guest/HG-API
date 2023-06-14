@@ -20,6 +20,7 @@ return [
     'invalid_order' => 'The indicated order does not exist!',
     'checked_out' => 'A check-out has already been made for this code!',
     'invalid_user' => 'The indicated user is not a client!',
+    'has_valid_code' => 'The indicated user has a valid code!',
     'attributes' => [
         'user' => 'User',
         'code' => 'Code',
