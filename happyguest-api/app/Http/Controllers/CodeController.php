@@ -179,13 +179,13 @@ class CodeController extends Controller
      */
     public function valid_code(int $id)
     {
-        $userCodes = UserCode::where('user_id', $id)->first();
+        $userCodes = UserCode::where('user_id', $id)->get();
 
         // Check if user has a valid code
         $hasValidCode = false;
         if ($userCodes) {
-            foreach ($userCodes as $code) {
-                if (Code::findOrFail($code->id)->exit_date >= date('Y-m-d')) {
+            foreach ($userCodes as $userCode) {
+                if (Code::findOrFail($userCode->code_id)->exit_date > date('Y-m-d')) {
                     $hasValidCode = true;
                     break;
                 }
@@ -194,7 +194,7 @@ class CodeController extends Controller
 
         return response()->json([
             'message' => $hasValidCode ? __('messages.has_valid_code') : __('messages.has_not_valid_code'),
-            'hasValidCode' => $hasValidCode,
+            'validCode' => $hasValidCode,
         ]);
     }
 
