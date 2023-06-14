@@ -21,6 +21,7 @@ return [
     'checked_out' => 'A check-out has already been made for this code!',
     'invalid_user' => 'The indicated user is not a client!',
     'has_valid_code' => 'The indicated user has a valid code!',
+    'has_not_valid_code' => 'The indicated user does not have a valid code!',
     'attributes' => [
         'user' => 'User',
         'code' => 'Code',

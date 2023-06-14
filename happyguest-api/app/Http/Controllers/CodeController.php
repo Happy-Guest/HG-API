@@ -193,7 +193,7 @@ class CodeController extends Controller
         }
 
         return response()->json([
-            'message' => __('messages.has_valid_code'),
+            'message' => $hasValidCode ? __('messages.has_valid_code') : __('messages.has_not_valid_code'),
             'hasValidCode' => $hasValidCode,
         ]);
     }
