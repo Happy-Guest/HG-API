@@ -32,7 +32,7 @@ class UserRequest extends FormRequest
             ],
             'phone' => 'nullable|numeric|digits_between:9, 12',
             'address' => 'nullable|string|max:255',
-            'birth_date' => 'nullable|date_format:Y/m/d|before:today',
+            'birth_date' => 'nullable|date_format:Y/m/d|before:today|after:1900/01/01',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
     }
