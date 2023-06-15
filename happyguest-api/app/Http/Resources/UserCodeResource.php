@@ -35,8 +35,8 @@ class UserCodeResource extends JsonResource
                         'id' => $this->code->id,
                         'code' => $this->code->code,
                         'rooms' => $this->code->rooms,
-                        'entry_date' => $this->entry_date->format('d/m/Y'),
-                        'exit_date' => $this->exit_date->format('d/m/Y'),
+                        'entry_date' => $this->code->entry_date->format('d/m/Y'),
+                        'exit_date' => $this->code->exit_date->format('d/m/Y'),
                         'used' => $this->code->used,
                     ],
                 ];
