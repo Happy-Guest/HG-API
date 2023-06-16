@@ -29,6 +29,7 @@ Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::middleware('auth:api')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
     Route::get('/me', [AuthController::class, 'user'])->name('me');
+    Route::get('/valid-code', [CodeController::class, 'valid_code'])->name('valid-code');
     Route::post('/change-password', [AuthController::class, 'change_Password'])->name('change-password');
     Route::post('/register-team', [AuthController::class, 'register_team'])->middleware('role:M')->name('register-team');
 
@@ -41,9 +42,6 @@ Route::middleware('auth:api')->group(function () {
             // Associate & Disassociate Code
             Route::post('/{code}/associate', [CodeController::class, 'associate'])->middleware('autorize')->name('associate');
             Route::delete('/{code}/disassociate', [CodeController::class, 'disassociate'])->middleware('autorize')->name('disassociate');
-
-            // Has Valid Code
-            Route::get('/valid', [CodeController::class, 'valid_code'])->middleware('autorize')->name('valid-code');
         });
 
         // Complaints by User

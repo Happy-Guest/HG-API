@@ -174,12 +174,12 @@ class CodeController extends Controller
     /**
      * Display the specified user's valid codes.
      *
-     * @param int $id
+     * @param Request $request
      * @return JsonResponse
      */
-    public function valid_code(int $id)
+    public function valid_code(Request $request)
     {
-        $userCodes = UserCode::where('user_id', $id)->get();
+        $userCodes = UserCode::where('user_id', $request->user()->id)->get();
 
         // Check if user has a valid code
         $hasValidCode = false;
@@ -196,6 +196,7 @@ class CodeController extends Controller
             'message' => $hasValidCode ? __('messages.has_valid_code') : __('messages.has_not_valid_code'),
             'validCode' => $hasValidCode,
         ]);
+        //return response()->json($request->user());
     }
 
     /**
