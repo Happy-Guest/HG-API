@@ -66,7 +66,7 @@ class CodeController extends Controller
             }
         }
 
-        CodeResource::$format = 'code';
+        CodeResource::$format = 'simple';
         return CodeResource::collection($codes->paginate(20));
     }
 
@@ -196,7 +196,6 @@ class CodeController extends Controller
             'message' => $hasValidCode ? __('messages.has_valid_code') : __('messages.has_not_valid_code'),
             'validCode' => $hasValidCode,
         ]);
-        //return response()->json($request->user());
     }
 
     /**
