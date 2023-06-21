@@ -89,12 +89,53 @@ class ReviewController extends Controller
      * Display the specified user's reviews.
      *
      * @param  int  $id
+     * @param  Request  $request
      * @return ReviewCollection
      */
-    public function user(int $id)
+    public function user(int $id, Request $request)
     {
+        $reviews = Review::where('user_id', $id);
+
+        // Filter the reviews
+        if ($request->has('filter') && $request->filter != 'ALL') {
+            switch ($request->filter) {
+                case 'S': // Shared
+                    $reviews->where('shared', true);
+                    break;
+                case 'NS': // Not shared
+                    $reviews->where('shared', false);
+                    break;
+                case 'A': // Autorized
+                    $reviews->where('autorize', true);
+                    break;
+                case 'NA': // Not autorized
+                    $reviews->where('autorize', false);
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_filter'),
+                    ], 400);
+            }
+        }
+
+        // Order the reviews
+        if ($request->has('order')) {
+            switch ($request->order) {
+                case 'ASC': // Ascending
+                    $reviews->orderBy('id', 'asc');
+                    break;
+                case 'DESC': // Descending
+                    $reviews->orderBy('id', 'desc');
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_order'),
+                    ], 400);
+            }
+        }
+
         ReviewResource::$format = 'simple';
-        return ReviewResource::collection(Review::where('user_id', $id)->paginate(20));
+        return ReviewResource::collection($reviews->paginate(20));
     }
 
     /**

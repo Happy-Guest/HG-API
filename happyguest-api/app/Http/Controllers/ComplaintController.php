@@ -88,12 +88,50 @@ class ComplaintController extends Controller
      * Display the specified user's complaints.
      *
      * @param  int  $id
+     * @param  Request  $request
      * @return ComplaintCollection
      */
-    public function user(int $id)
+    public function user(int $id, Request $request)
     {
+        $complaints = Complaint::where('user_id', $id);
+
+        // Filter the complaints
+        if ($request->has('filter') && $request->filter != 'ALL') {
+            switch ($request->filter) {
+                case 'P': // Pending
+                case 'S': // Solving
+                case 'R': // Resolved
+                case 'C': // Cancelled
+                    $complaints->where('status', $request->filter);
+                    break;
+                case 'D': // Deleted
+                    $complaints->where('deleted_at', '!=', null)->withTrashed();
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_filter'),
+                    ], 400);
+            }
+        }
+
+        // Order the complaints
+        if ($request->has('order')) {
+            switch ($request->order) {
+                case 'ASC': // Ascending
+                    $complaints->orderBy('id', 'asc');
+                    break;
+                case 'DESC': // Descending
+                    $complaints->orderBy('id', 'desc');
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_order'),
+                    ], 400);
+            }
+        }
+
         ComplaintResource::$format = 'simple';
-        return ComplaintResource::collection(Complaint::where('user_id', $id)->paginate(20));
+        return ComplaintResource::collection($complaints->paginate(20));
     }
 
     /**

@@ -86,12 +86,67 @@ class CodeController extends Controller
      * Display the specified code's users.
      *
      * @param  int  $id
+     * @param Request $request
      * @return UserCodeCollection
      */
-    public function user(int $id)
+    public function user(int $id, Request $request)
     {
+        $userCodes = UserCode::where('user_id', $id);
+
+        // Filter the user codes
+        if ($request->has('filter') && $request->filter != 'ALL') {
+            switch ($request->filter) {
+                case 'V': // Valid
+                    $userCodes->whereHas('code', function ($query) {
+                        $query->where('exit_date', '>', date('Y-m-d H:i:s'))
+                            ->where('entry_date', '<', date('Y-m-d H:i:s'));
+                    });
+                    break;
+                case 'E': // Expired
+                    $userCodes->whereHas('code', function ($query) {
+                        $query->where('exit_date', '<', date('Y-m-d H:i:s'));
+                    });
+                    break;
+                case 'U': // Used
+                    $userCodes->whereHas('code', function ($query) {
+                        $query->where('used', true);
+                    });
+                    break;
+                case 'NU': // Not used
+                    $userCodes->whereHas('code', function ($query) {
+                        $query->where('used', false);
+                    });
+                    break;
+                case 'D': // Deleted
+                    $userCodes->whereHas('code', function ($query) {
+                        $query->whereNotNull('deleted_at')->withTrashed();
+                    });
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_filter'),
+                    ], 400);
+            }
+        }
+
+        // Order the user codes
+        if ($request->has('order')) {
+            switch ($request->order) {
+                case 'ASC': // Ascending
+                    $userCodes->orderBy('id', 'asc');
+                    break;
+                case 'DESC': // Descending
+                    $userCodes->orderBy('id', 'desc');
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_order'),
+                    ], 400);
+            }
+        }
+
         UserCodeResource::$format = 'code';
-        return UserCodeResource::collection(UserCode::where('user_id', $id)->paginate(20));
+        return UserCodeResource::collection($userCodes->paginate(20));
     }
 
     /**
