@@ -22,6 +22,7 @@ return [
     'invalid_user' => 'O utilizador indicado não é um cliente!',
     'has_valid_code' => 'O utilizador indicado tem um código válido!',
     'has_not_valid_code' => 'O utilizador indicado não tem um código válido!',
+    'recent_review' => 'Já fez uma avaliação na última semana!',
     'attributes' => [
         'user' => 'Utilizador',
         'code' => 'Código',

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DeleteRequest;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 class ReviewController extends Controller
 {
@@ -147,19 +148,25 @@ class ReviewController extends Controller
     public function store(ReviewRequest $request)
     {
         // Check if user has a recent review
-        if (Review::where('user_id', auth()->user()->id)->where('created_at', '>', now()->subDays(7))->exists()) {
+        if (auth()->user()->role != 'A' && auth()->user()->last_review != null && auth()->user()->last_review > now()->subWeek()) {
             return response()->json([
                 'message' => __('messages.recent_review'),
-            ], 400);
+            ], 429);
         }
 
         $review = Review::create($request->validated());
+
+        // Update user's last review
+        $user = User::findOrFail(auth()->user()->id);
+        $user->last_review = now();
+        $user->save();
 
         return response()->json([
             'message' => __('messages.created2', ['attribute' => __('messages.attributes.review')]),
             'review' => new ReviewResource($review),
         ], 201);
     }
+
 
     /**
      * Remove the specified review from storage.

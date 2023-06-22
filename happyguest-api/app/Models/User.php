@@ -31,6 +31,7 @@ class User extends Authenticatable
         'birth_date',
         'blocked',
         'photo_url',
+        'last_review',
     ];
 
     /**
@@ -51,6 +52,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'birth_date' => 'datetime:d/m/Y',
+        'last_review' => 'datetime:d/m/Y',
         'created_at' => 'datetime:d/m/Y',
         'updated_at' => 'datetime:d/m/Y',
         'deleted_at' => 'datetime:d/m/Y',

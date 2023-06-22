@@ -23,6 +23,7 @@ return new class extends Migration
             $table->date('birth_date')->nullable();
             $table->boolean('blocked')->default(false);
             $table->string('photo_url')->nullable();
+            $table->date('last_review')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

@@ -42,6 +42,7 @@ class UserResource extends JsonResource
                     'role' => $this->role,
                     'blocked' => $this->blocked,
                     'photo_url' => $this->photo_url,
+                    'last_review' => $this->last_review ? $this->last_review->format('d/m/Y') : null,
                     'created_at' => $this->created_at->format('d/m/Y'),
                     'updated_at' => $this->updated_at->format('d/m/Y'),
                 ];

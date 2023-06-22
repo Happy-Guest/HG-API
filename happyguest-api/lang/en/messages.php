@@ -22,6 +22,7 @@ return [
     'invalid_user' => 'The indicated user is not a client!',
     'has_valid_code' => 'The indicated user has a valid code!',
     'has_not_valid_code' => 'The indicated user does not have a valid code!',
+    'recent_review' => 'You have already made a review in the last week!',
     'attributes' => [
         'user' => 'User',
         'code' => 'Code',
