@@ -25,7 +25,7 @@ class ReviewRequest extends FormRequest
             'user_id' => 'nullable|exists:users,id',
             'stars' => 'required|numeric|min:1|max:5',
             'comment' => 'nullable|string|max:255',
-            'autorize' => 'required|boolean',
+            'authorize' => 'required|boolean',
             'shared' => 'nullable|boolean',
         ];
     }

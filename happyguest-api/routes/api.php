@@ -15,7 +15,7 @@ use App\Http\Controllers\CheckoutController;
 |--------------------------------------------------------------------------
 |
 | Roles: Admin > Manager > User
-| Middlewares: auth:api, role, autorize
+| Middlewares: auth:api, role, authorize
 |  -> Role: If indicated role is Manager, then Admin can access.
 |  -> Autorize: If indicated id is not the same as authenticated user, verify if authenticated user is Manager or Admin.
 |  -> Valid-Code: Verify if the user has a valid code.
@@ -37,26 +37,26 @@ Route::middleware('auth:api')->group(function () {
     Route::prefix('/users')->name('users.')->group(function () {
         // Codes by User
         Route::prefix('/{id}/codes')->name('codes.')->group(function () {
-            Route::get('/', [CodeController::class, 'user'])->middleware('autorize')->name('index');
+            Route::get('/', [CodeController::class, 'user'])->middleware('authorize')->name('index');
 
             // Associate & Disassociate Code
-            Route::post('/{code}/associate', [CodeController::class, 'associate'])->middleware('autorize')->name('associate');
-            Route::delete('/{code}/disassociate', [CodeController::class, 'disassociate'])->middleware('autorize')->name('disassociate');
+            Route::post('/{code}/associate', [CodeController::class, 'associate'])->middleware('authorize')->name('associate');
+            Route::delete('/{code}/disassociate', [CodeController::class, 'disassociate'])->middleware('authorize')->name('disassociate');
         });
 
         // Complaints by User
         Route::prefix('/{id}/complaints')->name('complaints.')->group(function () {
-            Route::get('/', [ComplaintController::class, 'user'])->middleware('autorize')->name('index');
+            Route::get('/', [ComplaintController::class, 'user'])->middleware('authorize')->name('index');
         });
 
         // Reviews by User
         Route::prefix('/{id}/reviews')->name('reviews.')->group(function () {
-            Route::get('/', [ReviewController::class, 'user'])->middleware('autorize')->name('index');
+            Route::get('/', [ReviewController::class, 'user'])->middleware('authorize')->name('index');
         });
 
         // Checkouts by User
         Route::prefix('/{id}/checkouts')->name('checkouts.')->group(function () {
-            Route::get('/', [CheckoutController::class, 'user'])->middleware('autorize')->name('index');
+            Route::get('/', [CheckoutController::class, 'user'])->middleware('authorize')->name('index');
         });
 
         Route::get('/', [UserController::class, 'index'])->middleware('role:M')->name('index');
@@ -64,10 +64,10 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/unblocked', [UserController::class, 'show_unblocked'])->middleware('role:M')->name('unblocked');
         Route::get('/{id}', [UserController::class, 'show'])->middleware('role:M')->name('show');
         Route::get('/role/{role}', [UserController::class, 'show_role'])->middleware('role:M')->name('role');
-        Route::post('/{id}', [UserController::class, 'update'])->middleware('autorize')->name('update');
-        Route::patch('/{id}/block', [UserController::class, 'block'])->middleware('autorize')->name('block');
-        Route::patch('/{id}/unblock', [UserController::class, 'unblock'])->middleware('autorize')->name('unblock');
-        Route::delete('/{id}', [UserController::class, 'destroy'])->middleware('autorize')->name('destroy');
+        Route::post('/{id}', [UserController::class, 'update'])->middleware('authorize')->name('update');
+        Route::patch('/{id}/block', [UserController::class, 'block'])->middleware('authorize')->name('block');
+        Route::patch('/{id}/unblock', [UserController::class, 'unblock'])->middleware('authorize')->name('unblock');
+        Route::delete('/{id}', [UserController::class, 'destroy'])->middleware('authorize')->name('destroy');
     });
 
     // Codes (Only Managers & Admins)
@@ -107,7 +107,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/', [CheckoutController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/{id}', [CheckoutController::class, 'show'])->name('show');
         Route::post('/', [CheckoutController::class, 'store'])->middleware('valid-code')->name('store');
-        Route::patch('/{id}/validate', [CheckoutController::class, 'updateValidate'])->middleware('autorize')->name('updateValidate');
+        Route::patch('/{id}/validate', [CheckoutController::class, 'updateValidate'])->middleware('authorize')->name('updateValidate');
         Route::delete('/{id}', [CheckoutController::class, 'destroy'])->middleware('role:M')->name('destroy');
     });
 

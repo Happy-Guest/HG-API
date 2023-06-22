@@ -33,10 +33,10 @@ class ReviewController extends Controller
                     $reviews->where('shared', false);
                     break;
                 case 'A': // Autorized
-                    $reviews->where('autorize', true);
+                    $reviews->where('authorize', true);
                     break;
-                case 'NA': // Not autorized
-                    $reviews->where('autorize', false);
+                case 'NA': // Not authorized
+                    $reviews->where('authorize', false);
                     break;
                 default:
                     return response()->json([
@@ -107,10 +107,10 @@ class ReviewController extends Controller
                     $reviews->where('shared', false);
                     break;
                 case 'A': // Autorized
-                    $reviews->where('autorize', true);
+                    $reviews->where('authorize', true);
                     break;
-                case 'NA': // Not autorized
-                    $reviews->where('autorize', false);
+                case 'NA': // Not authorized
+                    $reviews->where('authorize', false);
                     break;
                 default:
                     return response()->json([

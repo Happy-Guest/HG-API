@@ -20,7 +20,7 @@ class Review extends Model
         'user_id',
         'stars',
         'comment',
-        'autorize',
+        'authorize',
         'shared',
     ];
 

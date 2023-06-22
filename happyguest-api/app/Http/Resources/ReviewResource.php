@@ -27,7 +27,7 @@ class ReviewResource extends JsonResource
                     'id' => $this->id,
                     'user' => $this->user_id ? $this->user->name : null,
                     'stars' => $this->stars,
-                    'autorize' => $this->autorize,
+                    'authorize' => $this->authorize,
                     'shared' => $this->shared,
                     'created_at' => $this->created_at->format('d/m/Y'),
                 ];
@@ -40,7 +40,7 @@ class ReviewResource extends JsonResource
                     ] : null,
                     'stars' => $this->stars,
                     'comment' => $this->comment,
-                    'autorize' => $this->autorize,
+                    'authorize' => $this->authorize,
                     'shared' => $this->shared,
                     'created_at' => $this->created_at->format('d/m/Y'),
                 ];

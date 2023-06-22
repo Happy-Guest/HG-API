@@ -235,7 +235,7 @@ return [
         'file'                     => 'file',
         'filename'                 => 'filename',
         'stars'                    => 'stars',
-        'autorize'                 => 'autorize',
+        'authorize'                 => 'authorize',
         'shared'                   => 'shared',
         'complaint'                => 'complaint',
         'review'                   => 'review',

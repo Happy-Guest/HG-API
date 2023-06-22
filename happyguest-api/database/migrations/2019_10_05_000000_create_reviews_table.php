@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id')->nullable();
             $table->unsignedTinyInteger('stars');
             $table->string('comment')->nullable();
-            $table->boolean('autorize')->default(false);
+            $table->boolean('authorize')->default(false);
             $table->boolean('shared')->default(false);
             $table->timestamp('created_at')->useCurrent();
 

@@ -235,7 +235,7 @@ return [
         'file'                    => 'ficheiro',
         'filename'                => 'nome do ficheiro',
         'stars'                   => 'estrelas',
-        'autorize'                => 'autorizar',
+        'authorize'                => 'autorizar',
         'shared'                  => 'partilhado',
         'complaint'               => 'reclamação',
         'review'                  => 'avaliação',
