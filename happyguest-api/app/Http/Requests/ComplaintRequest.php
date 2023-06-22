@@ -32,11 +32,11 @@ class ComplaintRequest extends FormRequest
             'user_id' => 'nullable|numeric|exists:users,id',
             'title' => 'required|string|min:5|max:255',
             'date' => 'required|dateformat:Y/m/d|before_or_equal:today',
-            'local' => 'required|string|max:255',
+            'local' => 'required|string|min:5|max:255',
             'status' => 'required|in:P,S,R,C', // P: Pending, S: Solving, R: Resolved, C: Canceled
             'files' => 'nullable|array|max:10',
             'files.*' => 'required|file|mimes:pdf,png,jpg,svg,jpeg|max:10240', // 10MB
-            'comment' => 'required|string|max:255',
+            'comment' => 'required|string|min:5|max:255',
         ];
     }
 }
