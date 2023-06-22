@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\DeleteRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ComplaintController extends Controller
 {
@@ -179,6 +180,19 @@ class ComplaintController extends Controller
         }
 
         $complaint = Complaint::create($request->validated());
+
+        // Check if user has uploaded files (Base64)
+        if ($request->has('filesBase64') && $request->filesBase64 != null) {
+            foreach ($request->filesBase64 as $file) {
+                $filename = $file->getClientOriginalName();
+                $file = base64_decode($file);
+                Storage::put('complaint_files/' . $complaint->id . '/' . $filename, $file);
+                ComplaintFile::create([
+                    'complaint_id' => $complaint->id,
+                    'filename' => $filename,
+                ]);
+            }
+        }
 
         // Store files
         if ($request->has('files')) {
