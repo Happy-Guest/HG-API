@@ -146,6 +146,13 @@ class ReviewController extends Controller
      */
     public function store(ReviewRequest $request)
     {
+        // Check if user has a recent review
+        if (Review::where('user_id', auth()->user()->id)->where('created_at', '>', now()->subDays(7))->exists()) {
+            return response()->json([
+                'message' => __('messages.recent_review'),
+            ], 400);
+        }
+
         $review = Review::create($request->validated());
 
         return response()->json([

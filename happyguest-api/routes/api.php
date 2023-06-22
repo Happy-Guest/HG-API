@@ -18,7 +18,7 @@ use App\Http\Controllers\CheckoutController;
 | Middlewares: auth:api, role, autorize
 |  -> Role: If indicated role is Manager, then Admin can access.
 |  -> Autorize: If indicated id is not the same as authenticated user, verify if authenticated user is Manager or Admin.
-|
+|  -> Valid-Code: Verify if the user has a valid code.
 */
 
 // Auth
@@ -89,7 +89,7 @@ Route::middleware('auth:api')->group(function () {
 
         Route::get('/', [ComplaintController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/{id}', [ComplaintController::class, 'show'])->name('show');
-        Route::post('/', [ComplaintController::class, 'store'])->name('store');
+        Route::post('/', [ComplaintController::class, 'store'])->middleware('valid-code')->name('store');
         Route::patch('/{id}', [ComplaintController::class, 'update'])->middleware('role:M')->name('update');
         Route::delete('/{id}', [ComplaintController::class, 'destroy'])->middleware('role:M')->name('destroy');
     });
@@ -98,7 +98,7 @@ Route::middleware('auth:api')->group(function () {
     Route::prefix('/reviews')->name('reviews.')->group(function () {
         Route::get('/', [ReviewController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/{id}', [ReviewController::class, 'show'])->name('show');
-        Route::post('/', [ReviewController::class, 'store'])->middleware('role:C')->name('store');
+        Route::post('/', [ReviewController::class, 'store'])->middleware(['valid-code'])->name('store');
         Route::delete('/{id}', [ReviewController::class, 'destroy'])->middleware('role:M')->name('destroy');
     });
 
@@ -106,7 +106,7 @@ Route::middleware('auth:api')->group(function () {
     Route::prefix('/checkouts')->name('checkouts.')->group(function () {
         Route::get('/', [CheckoutController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/{id}', [CheckoutController::class, 'show'])->name('show');
-        Route::post('/', [CheckoutController::class, 'store'])->name('store');
+        Route::post('/', [CheckoutController::class, 'store'])->middleware('valid-code')->name('store');
         Route::patch('/{id}/validate', [CheckoutController::class, 'updateValidate'])->middleware('autorize')->name('updateValidate');
         Route::delete('/{id}', [CheckoutController::class, 'destroy'])->middleware('role:M')->name('destroy');
     });
