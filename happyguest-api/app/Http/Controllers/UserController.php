@@ -10,7 +10,6 @@ use App\Http\Requests\DeleteRequest;
 use App\Http\Resources\UserCodeResource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -149,10 +148,7 @@ class UserController extends Controller
             $image = str_replace('data:image/jpeg;base64,', '', $image);
             $image = str_replace(' ', '+', $image);
             $image_data = base64_decode($image);
-            $interventionImage = Image::make($image_data);
-            // Correct the orientation of the image
-            $interventionImage->orientate();
-            file_put_contents(storage_path('app/public/user_photos') . '/' . $image_name, $interventionImage);
+            file_put_contents(storage_path('app/public/user_photos') . '/' . $image_name, $image_data);
             $user->photo_url = $image_name;
             $user->update();
         }
