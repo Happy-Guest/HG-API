@@ -140,6 +140,7 @@ return [
     'uppercase'            => 'The :attribute must be uppercase.',
     'url'                  => 'The :attribute format is invalid.',
     'uuid'                 => 'The :attribute must be a valid UUID.',
+    'dateformat'           => 'The :attribute must have a valid date format.',
     'attributes'           => [
         'address'                  => 'address',
         'age'                      => 'age',

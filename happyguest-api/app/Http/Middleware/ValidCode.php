@@ -38,7 +38,7 @@ class ValidCode
         // Verify if the user is authorized to access the route except for Admins
         if (!$hasValidCode) {
             return response()->json([
-                'message' => __('messages.has_not_valid_code'),
+                'message' => __('messages.has_not_valid_code2'),
             ], 403);
         }
 

@@ -107,7 +107,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/', [CheckoutController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/{id}', [CheckoutController::class, 'show'])->name('show');
         Route::post('/', [CheckoutController::class, 'store'])->middleware('valid-code')->name('store');
-        Route::patch('/{id}/validate', [CheckoutController::class, 'updateValidate'])->middleware('authorize')->name('updateValidate');
+        Route::patch('/{id}/validate', [CheckoutController::class, 'updateValidate'])->middleware('role:M')->name('updateValidate');
         Route::delete('/{id}', [CheckoutController::class, 'destroy'])->middleware('role:M')->name('destroy');
     });
 

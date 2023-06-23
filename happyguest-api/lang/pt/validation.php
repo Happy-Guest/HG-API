@@ -140,6 +140,7 @@ return [
     'uppercase'            => 'O campo :attribute deve ser em maiúsculas.',
     'url'                  => 'O formato do URL indicado para o campo :attribute é inválido.',
     'uuid'                 => ':Attribute tem de ser um UUID válido.',
+    'dateformat'           => 'O :attribute deve ter um formato de data válido.',
     'attributes'           => [
         'address'                  => 'Morada',
         'age'                      => 'era',
