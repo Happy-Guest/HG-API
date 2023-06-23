@@ -24,7 +24,7 @@ class ReviewRequest extends FormRequest
         return [
             'user_id' => 'nullable|exists:users,id',
             'stars' => 'required|numeric|min:1|max:5',
-            'comment' => 'nullable|string|max:255',
+            'comment' => 'nullable|string|min:5|max:255',
             'authorize' => 'required|boolean',
             'shared' => 'nullable|boolean',
         ];
