@@ -182,17 +182,21 @@ class ComplaintController extends Controller
         $complaint = Complaint::create($request->validated());
 
         // Check if user has uploaded files (Base64)
-        if ($request->has('filesBase64') && $request->filesBase64 != null) {
-            $i = 1;
-            foreach ($request->filesBase64 as $file) {
-                $filename = $request->fileNames[$i];
-                $file = base64_decode($file);
-                Storage::put('complaint_files/' . $complaint->id . '/' . $filename, $file);
-                ComplaintFile::create([
-                    'complaint_id' => $complaint->id,
-                    'filename' => $filename,
-                ]);
-                $i++;
+        if ($request->has('filesBase64') && $request->filesBase64 != null && $request->has('fileNames')) {
+            $filesBase64 = $request->filesBase64;
+            $fileNames = $request->fileNames;
+            $count = count($filesBase64);
+            for ($i = 0; $i < $count; $i++) {
+                $file = $filesBase64[$i];
+                if (isset($fileNames[$i])) {
+                    $filename = $fileNames[$i];
+                    $file = base64_decode($file);
+                    Storage::put('complaint_files/' . $complaint->id . '/' . $filename, $file);
+                    ComplaintFile::create([
+                        'complaint_id' => $complaint->id,
+                        'filename' => $filename,
+                    ]);
+                }
             }
         }
 
