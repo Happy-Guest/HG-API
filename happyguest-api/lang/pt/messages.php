@@ -30,5 +30,9 @@ return [
         'complaint' => 'Reclamação',
         'review' => 'Avaliação',
         'checkout' => 'Check-Out',
+        'order' => 'Pedido',
+        'item' => 'Item',
+        'reseve' => 'Reserva',
+        'service' => 'Serviço',
     ],
 ];

@@ -102,6 +102,42 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/{id}', [ReviewController::class, 'destroy'])->middleware('role:M')->name('destroy');
     });
 
+    //Orders
+    Route::prefix('/orders')->name('orders.')->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->middleware('role:M')->name('index');
+        Route::get('/{id}', [OrderController::class, 'show'])->name('show');
+        Route::post('/', [OrderController::class, 'store'])->middleware('valid-code')->name('store');
+        Route::patch('/{id}', [OrderController::class, 'update'])->middleware('role:M')->name('update');
+        Route::delete('/{id}', [OrderController::class, 'destroy'])->middleware('role:M')->name('destroy');
+    });
+
+    //Items
+    Route::prefix('/items')->name('items.')->group(function () {
+        Route::get('/', [ItemController::class, 'index'])->middleware('role:M')->name('index');
+        Route::get('/{id}', [ItemController::class, 'show'])->name('show');
+        Route::post('/', [ItemController::class, 'store'])->middleware('role:M')->name('store');
+        Route::patch('/{id}', [ItemController::class, 'update'])->middleware('role:M')->name('update');
+        Route::delete('/{id}', [ItemController::class, 'destroy'])->middleware('role:M')->name('destroy');
+    });
+
+    //Services
+    Route::prefix('/services')->name('services.')->group(function () {
+        Route::get('/', [ServiceController::class, 'index'])->middleware('role:M')->name('index');
+        Route::get('/{id}', [ServiceController::class, 'show'])->name('show');
+        Route::post('/', [ServiceController::class, 'store'])->middleware('role:M')->name('store');
+        Route::patch('/{id}', [ServiceController::class, 'update'])->middleware('role:M')->name('update');
+        Route::delete('/{id}', [ServiceController::class, 'destroy'])->middleware('role:M')->name('destroy');
+    });
+
+    //Reserves
+    Route::prefix('/reserves')->name('reserves.')->group(function () {
+        Route::get('/', [ReserveController::class, 'index'])->middleware('role:M')->name('index');
+        Route::get('/{id}', [ReserveController::class, 'show'])->name('show');
+        Route::post('/', [ReserveController::class, 'store'])->middleware('valid-code')->name('store');
+        Route::patch('/{id}', [ReserveController::class, 'update'])->middleware('role:M')->name('update');
+        Route::delete('/{id}', [ReserveController::class, 'destroy'])->middleware('role:M')->name('destroy');
+    });
+
     // Checkouts
     Route::prefix('/checkouts')->name('checkouts.')->group(function () {
         Route::get('/', [CheckoutController::class, 'index'])->middleware('role:M')->name('index');
