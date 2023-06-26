@@ -43,7 +43,16 @@ class ServiceResource extends JsonResource
                     'limit' => $this->limit,
                     'description' => $this->description,
                     'descriptionEN' => $this->descriptionEN,
-                    'items' => ItemResource::collection($this->whenLoaded('serviceItems')),
+                    'items' => $this->serviceItems->map(function ($item) {
+                        return [
+                            'id' => $item->id,
+                            'name' => $item->name,
+                            'type' => $item->type,
+                            'category' => $item->category,
+                            'stock' => $item->stock,
+                            'price' => $item->price,
+                        ];
+                    }),
                     'menu_url' => $this->menu_url,
                     'created_at' => $this->created_at->format('d/m/Y'),
                     'updated_at' => $this->updated_at->format('d/m/Y'),
