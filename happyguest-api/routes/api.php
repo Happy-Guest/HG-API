@@ -8,6 +8,10 @@ use App\Http\Controllers\ComplaintController;
 use App\Http\Controllers\StatisticController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ItemController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\ReserveController;
 
 /*
 |--------------------------------------------------------------------------
