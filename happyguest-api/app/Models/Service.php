@@ -24,6 +24,7 @@ class Service extends Model
         'occupation',
         'limit',
         'description',
+        'menu_url',
     ];
 
     /**

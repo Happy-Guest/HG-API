@@ -42,6 +42,7 @@ class ServiceResource extends JsonResource
                     'limit' => $this->limit,
                     'description' => $this->description,
                     'items' => ItemResource::collection($this->whenLoaded('items')),
+                    'menu_url' => $this->menu_url,
                     'created_at' => $this->created_at->format('d/m/Y'),
                     'updated_at' => $this->updated_at->format('d/m/Y'),
                 ];

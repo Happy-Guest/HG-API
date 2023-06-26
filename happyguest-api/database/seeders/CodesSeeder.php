@@ -16,6 +16,7 @@ class CodesSeeder extends Seeder
     public function run()
     {
         $now = new DateTime();
+        $now2 = new DateTime();
         $codes = [
             [
                 'code' => 'A1352',
@@ -56,17 +57,17 @@ class CodesSeeder extends Seeder
             [
                 'code' => 'B13B1',
                 'rooms' => json_encode(['2', '13']),
-                'entry_date' => $now->sub(new \DateInterval('P4D'))->format('Y-m-d'),
-                'exit_date' => $now->add(new \DateInterval('P4D'))->format('Y-m-d'),
+                'entry_date' => $now2->sub(new \DateInterval('P4D'))->format('Y-m-d'),
+                'exit_date' => $now2->add(new \DateInterval('P4D'))->format('Y-m-d'),
                 'used' => true,
-                'created_at' => $now->sub(new \DateInterval('P4D')),
+                'created_at' => $now2->sub(new \DateInterval('P4D'))->format('Y-m-d H:i:s'),
                 'updated_at' => $now,
             ],
             [
                 'code' => 'C1CH2',
                 'rooms' => json_encode(['4']),
-                'entry_date' => $now->add(new \DateInterval('P1D'))->format('Y-m-d'),
-                'exit_date' => $now->add(new \DateInterval('P7D'))->format('Y-m-d H:i:s'),
+                'entry_date' => $now2->add(new \DateInterval('P5D'))->format('Y-m-d'),
+                'exit_date' => $now2->add(new \DateInterval('P7D'))->format('Y-m-d'),
                 'used' => false,
                 'created_at' => $now,
                 'updated_at' => $now,

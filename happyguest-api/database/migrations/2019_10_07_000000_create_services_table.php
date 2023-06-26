@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->integer('limit')->nullable();
             $table->string('description');
+            $table->string('menu_url')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
