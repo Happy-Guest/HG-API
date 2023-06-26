@@ -21,6 +21,8 @@ class Order extends Model
         'time',
         'status',
         'service_id',
+        'amount',
+        'comment'
     ];
 
     /**
@@ -29,7 +31,7 @@ class Order extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'time' => 'datetime:d/m/Y',
+        'time' => 'datetime:d/m/Y H:i',
         'created_at' => 'datetime:d/m/Y',
         'updated_at' => 'datetime:d/m/Y',
         'deleted_at' => 'datetime:d/m/Y',

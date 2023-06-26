@@ -15,13 +15,16 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->double('price')->nullable();
-            $table->enum('type', ['O', 'F']);
-            $table->enum('category', ['room', 'bathroom', 'drink', 'food']);
-            $table->integer('amount_stock');
+            $table->enum('type', ['O', 'F']); // O - Object, F - Food
+            $table->enum('category', ['room', 'bathroom', 'drink', 'breakfast', 'lunch', 'dinner', 'snack', 'other']);
+            $table->integer('amount_stock')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
     }
+
+    // Object: Room, Bathroom, Other
+    // Food: Drink, Breakfast, Lunch, Dinner, Snack, Other
 
     /**
      * Reverse the migrations.

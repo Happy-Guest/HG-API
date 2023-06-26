@@ -15,9 +15,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->integer('room');
-            $table->date('time');
-            $table->enum('status', ['P', 'R', 'F', 'C']);
+            $table->timestamp('time');
+            $table->enum('status', ['P', 'R', 'W', 'D', 'C']);  // P: Pending, R: Rejected, W: Working, D: Delivered, C: Canceled
             $table->unsignedBigInteger('service_id');
+            $table->double('amount')->nullable();
+            $table->string('comment')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

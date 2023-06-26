@@ -14,13 +14,13 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
-            $table->string('phone');
-            $table->enum('type', ['C', 'O', 'F', 'R']);
+            $table->string('email')->nullable();
+            $table->string('phone')->nullable();
+            $table->enum('type', ['C', 'O', 'F', 'R']); // C - Cleaning, B - Object, F - Food, R - Restaurant, O - Other
             $table->string('schedule');
             $table->integer('occupation')->nullable();
-            $table->string('location');
-            $table->integer('limit');
+            $table->string('location')->nullable();
+            $table->integer('limit')->nullable();
             $table->string('description');
             $table->timestamps();
             $table->softDeletes();

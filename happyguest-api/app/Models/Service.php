@@ -38,17 +38,17 @@ class Service extends Model
     ];
 
     /**
-     * Get the service reserve for the service.
+     * Get the reserves for the service.
      */
-    public function reserve()
+    public function reserves()
     {
         return $this->hasMany(Reserve::class);
     }
 
     /**
-     * Get the service order for the service.
+     * Get the orders for the service.
      */
-    public function order()
+    public function orders()
     {
         return $this->hasMany(Order::class);
     }
