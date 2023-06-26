@@ -42,6 +42,7 @@ class ReserveResource extends JsonResource
                     'time' => $this->time,
                     'status' => $this->status,
                     'service' => $this->service,
+                    'comment' => $this->comment,
                     'created_at' => $this->created_at->format('d/m/Y'),
                     'updated_at' => $this->updated_at->format('d/m/Y'),
                 ];

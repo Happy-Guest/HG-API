@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->enum('type', ['C', 'O', 'F', 'R']); // C - Cleaning, B - Object, F - Food, R - Restaurant, O - Other
+            $table->enum('type', ['C', 'B', 'F', 'R', 'O']); // C - Cleaning, B - Object, F - Food, R - Restaurant, O - Other
             $table->string('schedule');
             $table->integer('occupation')->nullable();
             $table->string('location')->nullable();

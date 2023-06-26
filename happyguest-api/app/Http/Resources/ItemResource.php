@@ -26,10 +26,10 @@ class ItemResource extends JsonResource
                 return [
                     'id' => $this->id,
                     'name' => $this->name,
-                    'price' => $this->price,
                     'type' => $this->type,
                     'category' => $this->category,
-                    'amount_stock' => $this->amount_stock,
+                    'stock' => $this->stock,
+                    'price' => $this->price,
                 ];
             case 'detailed':
                 return [
@@ -38,7 +38,7 @@ class ItemResource extends JsonResource
                     'price' => $this->price,
                     'type' => $this->type,
                     'category' => $this->category,
-                    'amount_stock' => $this->amount_stock,
+                    'stock' => $this->stock,
                     'created_at' => $this->created_at->format('d/m/Y'),
                     'updated_at' => $this->updated_at->format('d/m/Y'),
                 ];

@@ -12,7 +12,7 @@ class ReserveRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,6 +22,13 @@ class ReserveRequest extends FormRequest
      */
     public function rules(): array
     {
+        // Update request
+        if ($this->isMethod('patch')) {
+            return [
+                'status' => 'in:P,A,R,C', // P: Pending, A: Accepted, R: Rejected, C: Canceled
+            ];
+        }
+        // Store request
         return [
             'user_id' => 'required|numeric|exists:users,id',
             'nr_people' => 'required|numeric|min:1|max:999',
@@ -30,8 +37,9 @@ class ReserveRequest extends FormRequest
                 'dateformat:Y/m/d H:i',
                 Rule::afterOrEqual(trans('validation.now')),
             ],
-            'status' => 'required|in:P,R,C',
+            'status' => 'required|in:P,A,R,C', // P: Pending, A: Accepted, R: Rejected, C: Canceled
             'service_id' => 'required|numeric|exists:services,id',
+            'comment' => 'nullable|string|min:5|max:255',
         ];
     }
 }

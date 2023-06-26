@@ -22,16 +22,26 @@ class OrderRequest extends FormRequest
      */
     public function rules(): array
     {
+        // Update request
+        if ($this->isMethod('patch')) {
+            return [
+                'status' => 'in:P,R,W,D,C', // P: Pending, R: Rejected, W: Working, D: Delivered, C: Canceled
+            ];
+        }
+        // Store request
         return [
             'user_id' => 'required|numeric|exists:users,id',
-            'room' => 'required|numeric',
+            'room' => 'required|string|max:255',
             'time' => [
                 'required',
                 'dateformat:Y/m/d H:i',
                 Rule::afterOrEqual(trans('validation.now')),
             ],
-            'status' => 'required|in:P,R,F,C', // P: Pending, R: Ready, F: Finished, C: Canceled
+            'status' => 'required|in:P,R,W,D,C', // P: Pending, R: Rejected, W: Working, D: Delivered, C: Canceled
             'service_id' => 'required|numeric|exists:services,id',
+            'items' => 'required|array|min:1',
+            'items.*' => 'required|numeric|exists:items,id',
+            'comment' => 'nullable|string|min:5|max:255',
         ];
     }
 }

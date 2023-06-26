@@ -17,7 +17,7 @@ return new class extends Migration
             $table->double('price')->nullable();
             $table->enum('type', ['O', 'F']); // O - Object, F - Food
             $table->enum('category', ['room', 'bathroom', 'drink', 'breakfast', 'lunch', 'dinner', 'snack', 'other']);
-            $table->integer('amount_stock')->nullable();
+            $table->integer('stock')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

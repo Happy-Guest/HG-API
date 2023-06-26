@@ -26,14 +26,8 @@ class ServiceResource extends JsonResource
                 return [
                     'id' => $this->id,
                     'name' => $this->name,
-                    'email' => $this->email,
-                    'phone' => $this->phone,
                     'type' => $this->type,
                     'schedule' => $this->schedule,
-                    'occupation' => $this->occupation,
-                    'location' => $this->location,
-                    'limit' => $this->limit,
-                    'description' => $this->description,
                 ];
             case 'detailed':
                 return [
@@ -47,6 +41,7 @@ class ServiceResource extends JsonResource
                     'location' => $this->location,
                     'limit' => $this->limit,
                     'description' => $this->description,
+                    'items' => ItemResource::collection($this->whenLoaded('items')),
                     'created_at' => $this->created_at->format('d/m/Y'),
                     'updated_at' => $this->updated_at->format('d/m/Y'),
                 ];

@@ -38,10 +38,15 @@ class OrderResource extends JsonResource
                         'id' => $this->user->id,
                         'name' => $this->user->name,
                     ],
-                    'service' => $this->service,
+                    'service' => [
+                        'id' => $this->service->id,
+                        'name' => $this->service->name,
+                    ],
                     'room' => $this->room,
                     'time' => $this->time,
                     'status' => $this->status,
+                    'ammount' => $this->ammount,
+                    'comment' => $this->comment,
                     'created_at' => $this->created_at->format('d/m/Y'),
                     'updated_at' => $this->updated_at->format('d/m/Y'),
                 ];

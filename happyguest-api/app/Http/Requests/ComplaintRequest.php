@@ -22,13 +22,14 @@ class ComplaintRequest extends FormRequest
      */
     public function rules(): array
     {
+        // Update request
         if ($this->isMethod('patch')) {
             return [
                 'response' => 'nullable|string|max:255',
                 'status' => 'in:P,S,R,C', // P: Pending, S: Solving, R: Resolved, C: Canceled
             ];
         }
-
+        // Store request
         return [
             'user_id' => 'nullable|numeric|exists:users,id',
             'title' => 'required|string|min:5|max:255',

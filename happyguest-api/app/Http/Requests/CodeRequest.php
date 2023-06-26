@@ -22,6 +22,7 @@ class CodeRequest extends FormRequest
      */
     public function rules(): array
     {
+        // Update request
         if ($this->isMethod('patch')) {
             return [
                 'rooms' => 'array|min:1',
@@ -30,7 +31,7 @@ class CodeRequest extends FormRequest
                 'exit_date' => 'date_format:Y/m/d|after_or_equal:entry_date',
             ];
         }
-
+        // Create request
         return [
             'code' => [
                 Rule::unique('codes')->whereNull('deleted_at'),

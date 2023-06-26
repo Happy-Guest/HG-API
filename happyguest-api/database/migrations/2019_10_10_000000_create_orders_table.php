@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->integer('room');
+            $table->string('room');
             $table->timestamp('time');
-            $table->enum('status', ['P', 'R', 'W', 'D', 'C']);  // P: Pending, R: Rejected, W: Working, D: Delivered, C: Canceled
+            $table->enum('status', ['P', 'R', 'W', 'D', 'C']); // P: Pending, R: Rejected, W: Working, D: Delivered, C: Canceled
             $table->unsignedBigInteger('service_id');
             $table->double('amount')->nullable();
             $table->string('comment')->nullable();
