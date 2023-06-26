@@ -37,7 +37,7 @@ class ServicesSeeder extends Seeder
                 'nameEN' => 'Object Request',
                 'email' => 'pedidosObjetos@happyguest.pt',
                 'phone' => '244123457',
-                'type' => 'O',
+                'type' => 'B',
                 'schedule' => '8-23',
                 'occupation' => null,
                 'location' => null,

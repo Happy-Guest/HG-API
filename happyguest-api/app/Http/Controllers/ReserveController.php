@@ -33,7 +33,7 @@ class ReserveController extends Controller
                     break;
                 default:
                     return response()->json([
-                        'message' => __('messages.invalid_reserve'),
+                        'message' => __('messages.invalid_order'),
                     ], 400);
             }
         }

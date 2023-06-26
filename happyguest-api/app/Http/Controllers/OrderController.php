@@ -71,11 +71,10 @@ class OrderController extends Controller
      */
     public function store(OrderRequest $request)
     {
-
         $order = Order::create($request->validated());
 
         return response()->json([
-            'message' => __('messages.created2', ['attribute' => __('messages.attributes.order')]),
+            'message' => __('messages.created', ['attribute' => __('messages.attributes.order')]),
             'order' => new OrderResource($order),
         ], 201);
     }
@@ -93,7 +92,7 @@ class OrderController extends Controller
         $order->update($request->validated());
 
         return response()->json([
-            'message' => __('messages.updated2', ['attribute' => __('messages.attributes.order')]),
+            'message' => __('messages.updated', ['attribute' => __('messages.attributes.order')]),
             'order' => new OrderResource($order),
         ]);
     }
@@ -121,7 +120,7 @@ class OrderController extends Controller
         Order::findOrFail($id)->delete();
 
         return response()->json([
-            'message' => __('messages.deleted2', ['attribute' => __('messages.attributes.order')]),
+            'message' => __('messages.deleted', ['attribute' => __('messages.attributes.order')]),
         ]);
     }
 }
