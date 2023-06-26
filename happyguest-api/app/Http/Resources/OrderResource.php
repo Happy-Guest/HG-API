@@ -28,7 +28,7 @@ class OrderResource extends JsonResource
                     'user' => $this->user->name,
                     'service' => $this->service->name,
                     'romm' => $this->room,
-                    'time' => $this->time,
+                    'time' => $this->time->format('d/m/Y H:i'),
                     'status' => $this->status,
                 ];
             case 'detailed':
@@ -43,7 +43,7 @@ class OrderResource extends JsonResource
                         'name' => $this->service->name,
                     ],
                     'room' => $this->room,
-                    'time' => $this->time,
+                    'time' => $this->time->format('d/m/Y H:i'),
                     'status' => $this->status,
                     'ammount' => $this->ammount,
                     'comment' => $this->comment,

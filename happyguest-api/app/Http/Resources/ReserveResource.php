@@ -27,7 +27,7 @@ class ReserveResource extends JsonResource
                     'id' => $this->id,
                     'user' => $this->user->name,
                     'nr_people' => $this->nr_people,
-                    'time' => $this->time,
+                    'time' => $this->time->format('d/m/Y H:i'),
                     'status' => $this->status,
                     'service' => $this->service_id,
                 ];
@@ -39,7 +39,7 @@ class ReserveResource extends JsonResource
                         'name' => $this->user->name,
                     ],
                     'nr_people' => $this->nr_people,
-                    'time' => $this->time,
+                    'time' => $this->time->format('d/m/Y H:i'),
                     'status' => $this->status,
                     'service' => $this->service,
                     'comment' => $this->comment,
