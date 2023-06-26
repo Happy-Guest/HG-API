@@ -25,6 +25,7 @@ return [
     'recent_review' => 'Já fez uma avaliação na última semana!',
     'has_not_valid_code2' => 'Não tem um código válido!',
     'important_service' => 'Este serviço é importante e não pode ser eliminado!',
+    'invalid_association' => ':attribute não pode ser associado a esse serviço!',
     'attributes' => [
         'user' => 'Utilizador',
         'code' => 'Código',

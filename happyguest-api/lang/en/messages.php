@@ -25,6 +25,7 @@ return [
     'recent_review' => 'You have already made a review in the last week!',
     'has_not_valid_code2' => 'You do not have a valid code!',
     'important_service' => 'This service is important and cannot be deleted!',
+    'invalid_association' => ':attribute cannot be associated to that service!',
     'attributes' => [
         'user' => 'User',
         'code' => 'Code',

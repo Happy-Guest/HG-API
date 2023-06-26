@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Http\Resources\ItemResource;
 use App\Http\Requests\ItemRequest;
@@ -55,6 +56,22 @@ class ItemController extends Controller
 
         ItemResource::$format = 'detailed';
         return new ItemResource($item);
+    }
+
+
+    /**
+     * Display the items of the specified service.
+     *
+     * @param int $id
+     * @return ItemResource
+     */
+    public function service(int $id)
+    {
+        $service = Service::findOrFail($id);
+        $items = $service->items;
+
+        ItemResource::$format = 'detailed';
+        return ItemResource::collection($items);
     }
 
     /**
@@ -123,6 +140,68 @@ class ItemController extends Controller
 
         return response()->json([
             'message' => __('messages.deleted', ['attribute' => __('messages.attributes.item')]),
+        ]);
+    }
+
+    /**
+     * Associate the specified item to the specified service
+     *
+     * @param  int  $id
+     * @param  string  $item
+     * @return JsonResponse
+     */
+    public function associate(int $id, string $service)
+    {
+        $serviceItem = ServiceItem::where('item_id', $id)->where('service_id', $service)->first();
+
+        // Check if the item is already associated to the service
+        if ($serviceItem) {
+            return response()->json([
+                'message' => __('messages.already_associated', ['attribute' => __('messages.attributes.item')]),
+            ], 409);
+        }
+
+        // Check if the item is the same type as the service
+        $item = Item::findOrFail($id);
+        $serviceObj = Service::findOrFail($service);
+        if (($item->type != $serviceObj->type) && ($serviceObj->type == 'B' && $item->type != 'O')) {
+            return response()->json([
+                'message' => __('messages.invalid_association', ['attribute' => __('messages.attributes.item')]),
+            ], 401);
+        }
+
+        ServiceItem::create([
+            'service_id' => $service,
+            'item_id' => $id,
+        ]);
+
+        return response()->json([
+            'message' => __('messages.associated', ['attribute' => __('messages.attributes.item')]),
+        ]);
+    }
+
+    /**
+     * Disassociate the specified item from the specified service
+     *
+     * @param  int  $id
+     * @param  string  $item
+     * @return JsonResponse
+     */
+    public function disassociate(int $id, string $service)
+    {
+        $serviceItem = ServiceItem::where('item_id', $id)->where('service_id', $service)->first();
+
+        // Check if the item is not associated to the service
+        if (!$serviceItem) {
+            return response()->json([
+                'message' => __('messages.not_associated', ['attribute' => __('messages.attributes.item')]),
+            ], 409);
+        }
+
+        $serviceItem->delete();
+
+        return response()->json([
+            'message' => __('messages.disassociated', ['attribute' => __('messages.attributes.item')]),
         ]);
     }
 }

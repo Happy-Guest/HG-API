@@ -113,15 +113,20 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/', [ItemController::class, 'store'])->middleware('role:M')->name('store');
         Route::patch('/{id}', [ItemController::class, 'update'])->middleware('role:M')->name('update');
         Route::delete('/{id}', [ItemController::class, 'destroy'])->middleware('role:M')->name('destroy');
+
+        // Associate & Disassociate to Service
+        Route::post('/{id}/service/{service}/associate', [ItemController::class, 'associate'])->middleware('role:M')->name('associate');
+        Route::delete('/{id}/item/{service}/disassociate', [ItemController::class, 'disassociate'])->middleware('role:M')->name('disassociate');
     });
 
     //Services
     Route::prefix('/services')->name('services.')->group(function () {
         Route::get('/', [ServiceController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/{id}', [ServiceController::class, 'show'])->name('show');
-        Route::post('/', [ServiceController::class, 'store'])->middleware('role:M')->name('store');
+        Route::get('/{id}/items', [ItemController::class, 'service'])->name('items');
+        Route::post('/', [ServiceController::class, 'store'])->middleware('role:A')->name('store');
         Route::patch('/{id}', [ServiceController::class, 'update'])->middleware('role:M')->name('update');
-        Route::delete('/{id}', [ServiceController::class, 'destroy'])->middleware('role:M')->name('destroy');
+        Route::delete('/{id}', [ServiceController::class, 'destroy'])->middleware('role:A')->name('destroy');
     });
 
     //Orders
