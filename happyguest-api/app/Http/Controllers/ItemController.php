@@ -25,6 +25,33 @@ class ItemController extends Controller
     {
         $items = Item::query();
 
+        // Filter the items
+        if ($request->has('filter') && $request->filter != 'ALL') {
+            switch ($request->filter) {
+                case 'O': // Object
+                case 'F': // Food
+                    $items->where('type', $request->filter);
+                    break;
+                case 'room': // Room
+                case 'bathroom': // Bathroom
+                case 'drink': // Drink
+                case 'breakfast': // Breakfast
+                case 'lunch': // Lunch
+                case 'dinner': // Dinner
+                case 'snack': // Snack
+                case 'other': // Other
+                    $items->where('category', $request->filter);
+                    break;
+                case 'D': // Deleted
+                    $items->where('deleted_at', '!=', null)->withTrashed();
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_filter'),
+                    ], 400);
+            }
+        }
+
         // Order the items
         if ($request->has('order')) {
             switch ($request->order) {

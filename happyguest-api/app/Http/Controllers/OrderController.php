@@ -22,6 +22,26 @@ class OrderController extends Controller
     {
         $orders = Order::query();
 
+        // Filter the orders
+        if ($request->has('filter') && $request->filter != 'ALL') {
+            switch ($request->filter) {
+                case 'P': // Pending
+                case 'R': // Rejected
+                case 'W': // Working
+                case 'D': // Delivered
+                case 'C': // Canceled
+                    $orders->where('status', $request->filter);
+                    break;
+                case 'D': // Deleted
+                    $orders->where('deleted_at', '!=', null)->withTrashed();
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_filter'),
+                    ], 400);
+            }
+        }
+
         // Order the orders
         if ($request->has('order')) {
             switch ($request->order) {
@@ -67,14 +87,51 @@ class OrderController extends Controller
      * Display the user's orders.
      *
      * @param int $id
+     * @param Request $request
      * @return OrderResource
      */
-    public function user(int $id)
+    public function user(int $id, Request $request)
     {
-        $orders = Order::where('user_id', $id)->get();
+        $orders = Order::where('user_id', $id);
+
+        // Filter the orders
+        if ($request->has('filter') && $request->filter != 'ALL') {
+            switch ($request->filter) {
+                case 'P': // Pending
+                case 'R': // Rejected
+                case 'W': // Working
+                case 'D': // Delivered
+                case 'C': // Canceled
+                    $orders->where('status', $request->filter);
+                    break;
+                case 'D': // Deleted
+                    $orders->where('deleted_at', '!=', null)->withTrashed();
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_filter'),
+                    ], 400);
+            }
+        }
+
+        // Order the orders
+        if ($request->has('order')) {
+            switch ($request->order) {
+                case 'ASC': // Ascending
+                    $orders->orderBy('id', 'asc');
+                    break;
+                case 'DESC': // Descending
+                    $orders->orderBy('id', 'desc');
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_order'),
+                    ], 400);
+            }
+        }
 
         OrderResource::$format = 'simple';
-        return OrderResource::collection($orders);
+        return OrderResource::collection($orders)->paginate(20);
     }
 
     /**

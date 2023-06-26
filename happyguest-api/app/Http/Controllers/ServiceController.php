@@ -22,7 +22,27 @@ class ServiceController extends Controller
     {
         $services = Service::query();
 
-        // service the services
+        // Filter the services
+        if ($request->has('filter') && $request->filter != 'ALL') {
+            switch ($request->filter) {
+                case 'C': // Cleaning
+                case 'B': // Object
+                case 'F': // Food
+                case 'R': // Restaurant
+                case 'O': // Other
+                    $services->where('type', $request->filter);
+                    break;
+                case 'D': // Deleted
+                    $services->where('deleted_at', '!=', null)->withTrashed();
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_filter'),
+                    ], 400);
+            }
+        }
+
+        // Order the services
         if ($request->has('service')) {
             switch ($request->service) {
                 case 'ASC': // Ascending

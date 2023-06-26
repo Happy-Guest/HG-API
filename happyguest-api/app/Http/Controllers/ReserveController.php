@@ -22,7 +22,26 @@ class ReserveController extends Controller
     {
         $reserves = Reserve::query();
 
-        // reserve the reserves
+        // Filter the reserves
+        if ($request->has('filter') && $request->filter != 'ALL') {
+            switch ($request->filter) {
+                case 'P': // Pending
+                case 'A': // Accepted
+                case 'R': // Rejected
+                case 'C': // Cancelled
+                    $reserves->where('status', $request->filter);
+                    break;
+                case 'D': // Deleted
+                    $reserves->where('deleted_at', '!=', null)->withTrashed();
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_filter'),
+                    ], 400);
+            }
+        }
+
+        // Order the reserves
         if ($request->has('reserve')) {
             switch ($request->reserve) {
                 case 'ASC': // Ascending
@@ -67,14 +86,50 @@ class ReserveController extends Controller
      * Display the user's reserves.
      *
      * @param int $id
+     * @param Request $request
      * @return ReserveResource
      */
-    public function user(int $id)
+    public function user(int $id, Request $request)
     {
-        $reserves = Reserve::where('user_id', $id)->get();
+        $reserves = Reserve::where('user_id', $id);
+
+        // Filter the reserves
+        if ($request->has('filter') && $request->filter != 'ALL') {
+            switch ($request->filter) {
+                case 'P': // Pending
+                case 'A': // Accepted
+                case 'R': // Rejected
+                case 'C': // Cancelled
+                    $reserves->where('status', $request->filter);
+                    break;
+                case 'D': // Deleted
+                    $reserves->where('deleted_at', '!=', null)->withTrashed();
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_filter'),
+                    ], 400);
+            }
+        }
+
+        // Order the reserves
+        if ($request->has('reserve')) {
+            switch ($request->reserve) {
+                case 'ASC': // Ascending
+                    $reserves->reserveBy('id', 'asc');
+                    break;
+                case 'DESC': // Descending
+                    $reserves->reserveBy('id', 'desc');
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_order'),
+                    ], 400);
+            }
+        }
 
         ReserveResource::$format = 'simple';
-        return ReserveResource::collection($reserves);
+        return ReserveResource::collection($reserves)->paginate(20);
     }
 
     /**
