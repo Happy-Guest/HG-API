@@ -106,15 +106,6 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/{id}', [ReviewController::class, 'destroy'])->middleware('role:M')->name('destroy');
     });
 
-    //Orders
-    Route::prefix('/orders')->name('orders.')->group(function () {
-        Route::get('/', [OrderController::class, 'index'])->middleware('role:M')->name('index');
-        Route::get('/{id}', [OrderController::class, 'show'])->name('show');
-        Route::post('/', [OrderController::class, 'store'])->middleware('valid-code')->name('store');
-        Route::patch('/{id}', [OrderController::class, 'update'])->middleware('role:M')->name('update');
-        Route::delete('/{id}', [OrderController::class, 'destroy'])->middleware('role:M')->name('destroy');
-    });
-
     //Items
     Route::prefix('/items')->name('items.')->group(function () {
         Route::get('/', [ItemController::class, 'index'])->middleware('role:M')->name('index');
@@ -131,6 +122,15 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/', [ServiceController::class, 'store'])->middleware('role:M')->name('store');
         Route::patch('/{id}', [ServiceController::class, 'update'])->middleware('role:M')->name('update');
         Route::delete('/{id}', [ServiceController::class, 'destroy'])->middleware('role:M')->name('destroy');
+    });
+
+    //Orders
+    Route::prefix('/orders')->name('orders.')->group(function () {
+        Route::get('/', [OrderController::class, 'index'])->middleware('role:M')->name('index');
+        Route::get('/{id}', [OrderController::class, 'show'])->name('show');
+        Route::post('/', [OrderController::class, 'store'])->middleware('valid-code')->name('store');
+        Route::patch('/{id}', [OrderController::class, 'update'])->middleware('role:M')->name('update');
+        Route::delete('/{id}', [OrderController::class, 'destroy'])->middleware('role:M')->name('destroy');
     });
 
     //Reserves
