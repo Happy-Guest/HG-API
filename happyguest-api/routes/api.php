@@ -109,7 +109,7 @@ Route::middleware('auth:api')->group(function () {
     //Items
     Route::prefix('/items')->name('items.')->group(function () {
         Route::get('/', [ItemController::class, 'index'])->middleware('role:M')->name('index');
-        Route::get('/{id}', [ItemController::class, 'show'])->name('show');
+        Route::get('/{id}', [ItemController::class, 'show'])->middleware('role:M')->name('show');
         Route::post('/', [ItemController::class, 'store'])->middleware('role:M')->name('store');
         Route::patch('/{id}', [ItemController::class, 'update'])->middleware('role:M')->name('update');
         Route::delete('/{id}', [ItemController::class, 'destroy'])->middleware('role:M')->name('destroy');

@@ -52,13 +52,6 @@ class ServiceController extends Controller
     {
         $service = Service::findOrFail($id);
 
-        // Check if authenticated user is the same as the service's user
-        if ($service->user_id != auth()->user()->id && auth()->user()->role != 'A' && auth()->user()->role != 'M') {
-            return response()->json([
-                'message' => __('messages.unauthorized'),
-            ], 401);
-        }
-
         ServiceResource::$format = 'detailed';
         return new ServiceResource($service);
     }
@@ -71,11 +64,10 @@ class ServiceController extends Controller
      */
     public function store(ServiceRequest $request)
     {
-
         $service = Service::create($request->validated());
 
         return response()->json([
-            'message' => __('messages.created2', ['attribute' => __('messages.attributes.service')]),
+            'message' => __('messages.created', ['attribute' => __('messages.attributes.service')]),
             'service' => new ServiceResource($service),
         ], 201);
     }
@@ -93,7 +85,7 @@ class ServiceController extends Controller
         $service->update($request->validated());
 
         return response()->json([
-            'message' => __('messages.updated2', ['attribute' => __('messages.attributes.service')]),
+            'message' => __('messages.updated', ['attribute' => __('messages.attributes.service')]),
             'service' => new ServiceResource($service),
         ]);
     }
@@ -118,10 +110,17 @@ class ServiceController extends Controller
             ], 401);
         }
 
+        // Check if service is important
+        if (Service::findOrFail($id) <= 6) {
+            return response()->json([
+                'message' => __('messages.important_service'),
+            ], 400);
+        }
+
         Service::findOrFail($id)->delete();
 
         return response()->json([
-            'message' => __('messages.deleted2', ['attribute' => __('messages.attributes.service')]),
+            'message' => __('messages.deleted', ['attribute' => __('messages.attributes.service')]),
         ]);
     }
 }

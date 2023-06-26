@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\ItemResource;
 use App\Http\Requests\ItemRequest;
 use App\Http\Requests\DeleteRequest;
+use App\Models\ServiceItem;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -22,7 +23,7 @@ class ItemController extends Controller
     {
         $items = Item::query();
 
-        // Order the orders
+        // Order the items
         if ($request->has('order')) {
             switch ($request->order) {
                 case 'ASC': // Ascending
@@ -52,13 +53,6 @@ class ItemController extends Controller
     {
         $item = Item::findOrFail($id);
 
-        // Check if authenticated user is the same as the item's user
-        if ($item->user_id != auth()->user()->id && auth()->user()->role != 'A' && auth()->user()->role != 'M') {
-            return response()->json([
-                'message' => __('messages.unauthorized'),
-            ], 401);
-        }
-
         ItemResource::$format = 'detailed';
         return new ItemResource($item);
     }
@@ -71,11 +65,18 @@ class ItemController extends Controller
      */
     public function store(ItemRequest $request)
     {
-
         $item = Item::create($request->validated());
 
+        // Check if request has service_id and if it exists create the relationship
+        if ($request->has('service_id') && ($request->service_id == 2 || $request->service_id == 3)) {
+            ServiceItem::create([
+                'service_id' => $request->service_id,
+                'item_id' => $item->id,
+            ]);
+        }
+
         return response()->json([
-            'message' => __('messages.created2', ['attribute' => __('messages.attributes.item')]),
+            'message' => __('messages.created', ['attribute' => __('messages.attributes.item')]),
             'item' => new ItemResource($item),
         ], 201);
     }
@@ -93,7 +94,7 @@ class ItemController extends Controller
         $item->update($request->validated());
 
         return response()->json([
-            'message' => __('messages.updated2', ['attribute' => __('messages.attributes.item')]),
+            'message' => __('messages.updated', ['attribute' => __('messages.attributes.item')]),
             'item' => new ItemResource($item),
         ]);
     }
@@ -121,7 +122,7 @@ class ItemController extends Controller
         Item::findOrFail($id)->delete();
 
         return response()->json([
-            'message' => __('messages.deleted2', ['attribute' => __('messages.attributes.item')]),
+            'message' => __('messages.deleted', ['attribute' => __('messages.attributes.item')]),
         ]);
     }
 }

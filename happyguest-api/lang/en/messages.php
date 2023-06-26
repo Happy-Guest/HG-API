@@ -24,6 +24,7 @@ return [
     'has_not_valid_code' => 'The indicated user does not have a valid code!',
     'recent_review' => 'You have already made a review in the last week!',
     'has_not_valid_code2' => 'You do not have a valid code!',
+    'important_service' => 'This service is important and cannot be deleted!',
     'attributes' => [
         'user' => 'User',
         'code' => 'Code',
