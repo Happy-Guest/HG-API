@@ -64,6 +64,20 @@ class OrderController extends Controller
     }
 
     /**
+     * Display the user's orders.
+     *
+     * @param int $id
+     * @return OrderResource
+     */
+    public function user(int $id)
+    {
+        $orders = Order::where('user_id', $id)->get();
+
+        OrderResource::$format = 'simple';
+        return OrderResource::collection($orders);
+    }
+
+    /**
      * Store a newly created order in storage.
      *
      * @param  OrderRequest  $request
@@ -89,6 +103,14 @@ class OrderController extends Controller
     public function update(OrderRequest $request, int $id)
     {
         $order = Order::findOrFail($id);
+
+        // Check if authenticated user is the same as the order's user
+        if (Order::findOrFail($id)->user_id != auth()->user()->id && auth()->user()->role != 'A' && auth()->user()->role != 'M') {
+            return response()->json([
+                'message' => __('messages.unauthorized'),
+            ], 401);
+        }
+
         $order->update($request->validated());
 
         return response()->json([

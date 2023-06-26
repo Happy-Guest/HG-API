@@ -58,6 +58,16 @@ Route::middleware('auth:api')->group(function () {
             Route::get('/', [ReviewController::class, 'user'])->middleware('authorize')->name('index');
         });
 
+        // Orders by User
+        Route::prefix('/{id}/orders')->name('orders.')->group(function () {
+            Route::get('/', [OrderController::class, 'user'])->middleware('authorize')->name('index');
+        });
+
+        // Reserves by User
+        Route::prefix('/{id}/reserves')->name('reserves.')->group(function () {
+            Route::get('/', [ReserveController::class, 'user'])->middleware('authorize')->name('index');
+        });
+
         // Checkouts by User
         Route::prefix('/{id}/checkouts')->name('checkouts.')->group(function () {
             Route::get('/', [CheckoutController::class, 'user'])->middleware('authorize')->name('index');
@@ -133,8 +143,9 @@ Route::middleware('auth:api')->group(function () {
     Route::prefix('/orders')->name('orders.')->group(function () {
         Route::get('/', [OrderController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/{id}', [OrderController::class, 'show'])->name('show');
+        Route::get('/{id}/items', [ItemController::class, 'order'])->name('items');
         Route::post('/', [OrderController::class, 'store'])->middleware('valid-code')->name('store');
-        Route::patch('/{id}', [OrderController::class, 'update'])->middleware('role:M')->name('update');
+        Route::patch('/{id}', [OrderController::class, 'update'])->name('update');
         Route::delete('/{id}', [OrderController::class, 'destroy'])->middleware('role:M')->name('destroy');
     });
 
@@ -143,7 +154,8 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/', [ReserveController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/{id}', [ReserveController::class, 'show'])->name('show');
         Route::post('/', [ReserveController::class, 'store'])->middleware('valid-code')->name('store');
-        Route::patch('/{id}', [ReserveController::class, 'update'])->middleware('role:M')->name('update');
+        Route::patch('/{id}', [ReserveController::class, 'update'])->name('update');
+        Route::patch('/{id}', [ReserveController::class, 'update'])->name('update');
         Route::delete('/{id}', [ReserveController::class, 'destroy'])->middleware('role:M')->name('destroy');
     });
 
@@ -156,7 +168,7 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/{id}', [CheckoutController::class, 'destroy'])->middleware('role:M')->name('destroy');
     });
 
-    // Statistics
+    // Statistics (Only Managers & Admins)
     Route::prefix('/stats')->name('stats.')->group(function () {
         Route::get('/home', [StatisticController::class, 'index'])->middleware('role:M')->name('home');
         Route::get('/graph', [StatisticController::class, 'graph'])->middleware('role:M')->name('graph');

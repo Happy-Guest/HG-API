@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Item;
 use App\Models\Service;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Resources\ItemResource;
 use App\Http\Requests\ItemRequest;
@@ -58,7 +59,6 @@ class ItemController extends Controller
         return new ItemResource($item);
     }
 
-
     /**
      * Display the items of the specified service.
      *
@@ -70,6 +70,23 @@ class ItemController extends Controller
         $service = Service::findOrFail($id);
         $items = $service->serviceItems->map(function ($serviceItem) {
             return $serviceItem->item;
+        });
+
+        ItemResource::$format = 'detailed';
+        return ItemResource::collection($items);
+    }
+
+    /**
+     * Display the items of the specified order.
+     *
+     * @param int $id
+     * @return ItemResource
+     */
+    public function order(int $id)
+    {
+        $order = Order::findOrFail($id);
+        $items = $order->orderItems->map(function ($orderItem) {
+            return $orderItem->item;
         });
 
         ItemResource::$format = 'detailed';
@@ -119,37 +136,10 @@ class ItemController extends Controller
     }
 
     /**
-     * Remove the specified item from storage.
-     *
-     * @param  DeleteRequest  $request
-     * @param  int  $id
-     * @return JsonResponse
-     */
-    public function destroy(DeleteRequest $request, int $id)
-    {
-        // Check if password is correct
-        if (!Hash::check($request->password, Auth::user()->password)) {
-            return response()->json([
-                'errors' => [
-                    'password' => [
-                        __('auth.password'),
-                    ],
-                ],
-            ], 401);
-        }
-
-        Item::findOrFail($id)->delete();
-
-        return response()->json([
-            'message' => __('messages.deleted', ['attribute' => __('messages.attributes.item')]),
-        ]);
-    }
-
-    /**
      * Associate the specified item to the specified service
      *
      * @param  int  $id
-     * @param  string  $item
+     * @param  string  $service
      * @return JsonResponse
      */
     public function associate(int $id, string $service)
@@ -186,7 +176,7 @@ class ItemController extends Controller
      * Disassociate the specified item from the specified service
      *
      * @param  int  $id
-     * @param  string  $item
+     * @param  string  $service
      * @return JsonResponse
      */
     public function disassociate(int $id, string $service)
@@ -204,6 +194,33 @@ class ItemController extends Controller
 
         return response()->json([
             'message' => __('messages.disassociated', ['attribute' => __('messages.attributes.item')]),
+        ]);
+    }
+
+    /**
+     * Remove the specified item from storage.
+     *
+     * @param  DeleteRequest  $request
+     * @param  int  $id
+     * @return JsonResponse
+     */
+    public function destroy(DeleteRequest $request, int $id)
+    {
+        // Check if password is correct
+        if (!Hash::check($request->password, Auth::user()->password)) {
+            return response()->json([
+                'errors' => [
+                    'password' => [
+                        __('auth.password'),
+                    ],
+                ],
+            ], 401);
+        }
+
+        Item::findOrFail($id)->delete();
+
+        return response()->json([
+            'message' => __('messages.deleted', ['attribute' => __('messages.attributes.item')]),
         ]);
     }
 }

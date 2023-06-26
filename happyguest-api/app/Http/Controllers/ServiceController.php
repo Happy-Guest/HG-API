@@ -33,7 +33,7 @@ class ServiceController extends Controller
                     break;
                 default:
                     return response()->json([
-                        'message' => __('messages.invalid_service'),
+                        'message' => __('messages.invalid_order'),
                     ], 400);
             }
         }

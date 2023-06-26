@@ -17,7 +17,7 @@ class Order extends Model
      */
     protected $fillable = [
         'user_id',
-        'romm',
+        'room',
         'time',
         'status',
         'service_id',
@@ -56,7 +56,7 @@ class Order extends Model
     /**
      * Get the order items for the order.
      */
-    public function orederItems()
+    public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
     }

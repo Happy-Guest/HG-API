@@ -64,10 +64,24 @@ class ReserveController extends Controller
     }
 
     /**
+     * Display the user's reserves.
+     *
+     * @param int $id
+     * @return ReserveResource
+     */
+    public function user(int $id)
+    {
+        $reserves = Reserve::where('user_id', $id)->get();
+
+        ReserveResource::$format = 'simple';
+        return ReserveResource::collection($reserves);
+    }
+
+    /**
      * Store a newly created reserve in storage.
      *
-     * @param  reserveRequest  $request
-     * @return reserveResource
+     * @param  ReserveRequest  $request
+     * @return ReserveResource
      */
     public function store(ReserveRequest $request)
     {
@@ -83,13 +97,21 @@ class ReserveController extends Controller
     /**
      * Update the specified reserve in storage.
      *
-     * @param  reserveRequest  $request
+     * @param  ReserveRequest  $request
      * @param  int  $id
-     * @return reserveResource
+     * @return ReserveResource
      */
     public function update(ReserveRequest $request, int $id)
     {
         $reserve = Reserve::findOrFail($id);
+
+        // Check if authenticated user is the same as the reserve's user
+        if (Reserve::findOrFail($id)->user_id != auth()->user()->id && auth()->user()->role != 'A' && auth()->user()->role != 'M') {
+            return response()->json([
+                'message' => __('messages.unauthorized'),
+            ], 401);
+        }
+
         $reserve->update($request->validated());
 
         return response()->json([

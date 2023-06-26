@@ -27,7 +27,7 @@ class OrderResource extends JsonResource
                     'id' => $this->id,
                     'user' => $this->user->name,
                     'service' => $this->service->name,
-                    'romm' => $this->room,
+                    'room' => $this->room,
                     'time' => $this->time->format('d/m/Y H:i'),
                     'status' => $this->status,
                 ];
