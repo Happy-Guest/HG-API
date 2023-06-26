@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class ReserveRequest extends FormRequest
 {
@@ -24,7 +25,11 @@ class ReserveRequest extends FormRequest
         return [
             'user_id' => 'required|numeric|exists:users,id',
             'nr_people' => 'required|numeric|min:1|max:999',
-            'time' => 'required|dateformat:Y/m/d H:i|after_or_equal:now',
+            'time' => [
+                'required',
+                'dateformat:Y/m/d H:i',
+                Rule::afterOrEqual(trans('validation.now')),
+            ],
             'status' => 'required|in:P,R,C',
             'service_id' => 'required|numeric|exists:services,id',
         ];

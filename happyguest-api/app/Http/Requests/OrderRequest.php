@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class OrderRequest extends FormRequest
 {
@@ -24,8 +25,12 @@ class OrderRequest extends FormRequest
         return [
             'user_id' => 'required|numeric|exists:users,id',
             'room' => 'required|numeric',
-            'time' => 'required|dateformat:Y/m/d H:i|after_or_equal:now',
-            'status' => 'required|in:P,R,F,C', // P: Pending, R: Ready, F: Finished, C: Canceled 
+            'time' => [
+                'required',
+                'dateformat:Y/m/d H:i',
+                Rule::afterOrEqual(trans('validation.now')),
+            ],
+            'status' => 'required|in:P,R,F,C', // P: Pending, R: Ready, F: Finished, C: Canceled
             'service_id' => 'required|numeric|exists:services,id',
         ];
     }

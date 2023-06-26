@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CheckoutRequest extends FormRequest
 {
@@ -25,7 +26,11 @@ class CheckoutRequest extends FormRequest
             'user_id' => 'required|exists:users,id',
             'code_id' => 'required|exists:codes,id',
             'validated' => 'nullable|boolean',
-            'date' => 'required|dateformat:Y/m/d|before_or_equal:today',
+            'date' => [
+                'required',
+                'dateformat:Y/m/d',
+                Rule::beforeOrEqual(trans('validation.today')),
+            ],
         ];
     }
 }

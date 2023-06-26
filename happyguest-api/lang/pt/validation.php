@@ -243,5 +243,7 @@ return [
         'address'                 => 'morada',
         'birth_date'              => 'data de nascimento',
         'validated'               => 'validado',
+        'today'                   => 'hoje',
+        'now'                     => 'agora',
     ],
 ];

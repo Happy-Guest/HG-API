@@ -243,5 +243,7 @@ return [
         'address'                  => 'address',
         'birth_date'               => 'birth date',
         'validated'                => 'validated',
+        'today'                   => 'today',
+        'now'                     => 'now',
     ],
 ];
