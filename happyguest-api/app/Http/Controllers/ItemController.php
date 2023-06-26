@@ -68,7 +68,9 @@ class ItemController extends Controller
     public function service(int $id)
     {
         $service = Service::findOrFail($id);
-        $items = $service->items;
+        $items = $service->serviceItems->map(function ($serviceItem) {
+            return $serviceItem->item;
+        });
 
         ItemResource::$format = 'detailed';
         return ItemResource::collection($items);
