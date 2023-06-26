@@ -33,6 +33,7 @@ class ServiceResource extends JsonResource
                 return [
                     'id' => $this->id,
                     'name' => $this->name,
+                    'nameEN' => $this->nameEN,
                     'email' => $this->email,
                     'phone' => $this->phone,
                     'type' => $this->type,
@@ -41,6 +42,7 @@ class ServiceResource extends JsonResource
                     'location' => $this->location,
                     'limit' => $this->limit,
                     'description' => $this->description,
+                    'descriptionEN' => $this->descriptionEN,
                     'items' => ItemResource::collection($this->whenLoaded('items')),
                     'menu_url' => $this->menu_url,
                     'created_at' => $this->created_at->format('d/m/Y'),

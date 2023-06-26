@@ -31,12 +31,14 @@ class ServiceRequest extends FormRequest
                 'location' => 'string|max:255',
                 'limit' => 'numeric|min:0|max:999999',
                 'description' => 'string|min:5|max:255',
+                'descriptionEN' => 'string|min:5|max:255',
                 'menu_url' => 'string|max:255',
             ];
         }
         // Store request
         return [
             'name' => 'required|string|min:5|max:255',
+            'nameEN' => 'nullable|string|min:5|max:255',
             'email' => 'nullable|email|min:5|max:255',
             'phone' => 'nullable|numeric|digits_between:9, 12',
             'type' => 'required|in:C,O,F,R', // C - Cleaning, B - Object, F - Food, R - Restaurant, O - Other
@@ -45,6 +47,7 @@ class ServiceRequest extends FormRequest
             'location' => 'nullable|string|max:255',
             'limit' => 'nullable|numeric|min:0|max:999999',
             'description' => 'required|string|min:5|max:255',
+            'descriptionEN' => 'nullable|string|min:5|max:255',
             'menu_url' => 'nullable|string|max:255',
         ];
     }

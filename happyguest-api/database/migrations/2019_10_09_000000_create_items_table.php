@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('items', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('nameEN');
             $table->double('price')->nullable();
             $table->enum('type', ['O', 'F']); // O - Object, F - Food
             $table->enum('category', ['room', 'bathroom', 'drink', 'breakfast', 'lunch', 'dinner', 'snack', 'other']);

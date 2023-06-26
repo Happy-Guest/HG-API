@@ -20,6 +20,7 @@ class ItemsSeeder extends Seeder
             // Objects
             [
                 'name' => 'Almofada',
+                'nameEN' => 'Pillow',
                 'price' => null,
                 'type' => 'O',
                 'category' => 'room',
@@ -29,6 +30,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Cobertor',
+                'nameEN' => 'Blanket',
                 'price' => null,
                 'type' => 'O',
                 'category' => 'room',
@@ -38,6 +40,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Toalha',
+                'nameEN' => 'Towel',
                 'price' => null,
                 'type' => 'O',
                 'category' => 'bathroom',
@@ -47,6 +50,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Papel Higiénico',
+                'nameEN' => 'Toilet Paper',
                 'price' => null,
                 'type' => 'O',
                 'category' => 'bathroom',
@@ -56,6 +60,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Gel de Duche',
+                'nameEN' => 'Shower Gel',
                 'price' => null,
                 'type' => 'O',
                 'category' => 'bathroom',
@@ -65,6 +70,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Champô',
+                'nameEN' => 'Shampoo',
                 'price' => null,
                 'type' => 'O',
                 'category' => 'bathroom',
@@ -74,6 +80,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Adapatador de Tomada',
+                'nameEN' => 'Plug Adapter',
                 'price' => null,
                 'type' => 'O',
                 'category' => 'other',
@@ -83,6 +90,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Jornal do Dia',
+                'nameEN' => 'Daily Newspaper',
                 'price' => null,
                 'type' => 'O',
                 'category' => 'other',
@@ -93,6 +101,7 @@ class ItemsSeeder extends Seeder
             // Foods
             [
                 'name' => 'Água (33cl)',
+                'nameEN' => 'Water (33cl)',
                 'price' => 1,
                 'type' => 'F',
                 'category' => 'drink',
@@ -102,6 +111,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Coca-Cola (33cl)',
+                'nameEN' => 'Coca-Cola (33cl)',
                 'price' => 2,
                 'type' => 'F',
                 'category' => 'drink',
@@ -111,6 +121,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Garrafa de Champanhe',
+                'nameEN' => 'Bottle of Champagne',
                 'price' => 15,
                 'type' => 'F',
                 'category' => 'drink',
@@ -120,6 +131,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Café',
+                'nameEN' => 'Coffee',
                 'price' => 0.85,
                 'type' => 'F',
                 'category' => 'drink',
@@ -129,6 +141,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Tosta Mista',
+                'nameEN' => 'Toasted Sandwich',
                 'price' => 3.5,
                 'type' => 'F',
                 'category' => 'snack',
@@ -138,6 +151,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Sandes Mista',
+                'nameEN' => 'Mixed Sandwich',
                 'price' => 3,
                 'type' => 'F',
                 'category' => 'snack',
@@ -147,6 +161,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Pequeno-Almoço Continental',
+                'nameEN' => 'Continental Breakfast',
                 'price' => 6,
                 'type' => 'F',
                 'category' => 'breakfast',
@@ -156,6 +171,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Ovos Mexidos com Bacon',
+                'nameEN' => 'Scrambled Eggs with Bacon',
                 'price' => 5.5,
                 'type' => 'F',
                 'category' => 'breakfast',
@@ -165,6 +181,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Panquecas com Toppings',
+                'nameEN' => 'Pancakes with Toppings',
                 'price' => 5,
                 'type' => 'F',
                 'category' => 'breakfast',
@@ -174,6 +191,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Tigela de Aveia com Frutas',
+                'nameEN' => 'Oatmeal Bowl with Fruits',
                 'price' => 3.5,
                 'type' => 'F',
                 'category' => 'breakfast',
@@ -183,6 +201,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Sumo de Laranja Natural',
+                'nameEN' => 'Natural Orange Juice',
                 'price' => 2.5,
                 'type' => 'F',
                 'category' => 'breakfast',
@@ -192,6 +211,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Salada Caesar com Frango Grelhado',
+                'nameEN' => 'Caesar Salad with Grilled Chicken',
                 'price' => 10,
                 'type' => 'F',
                 'category' => 'lunch',
@@ -201,6 +221,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Massa Pesto com Tomates Secos',
+                'nameEN' => 'Pesto Pasta with Sundried Tomatoes',
                 'price' => 11.5,
                 'type' => 'F',
                 'category' => 'lunch',
@@ -210,6 +231,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Hambúrguer Vegetariano',
+                'nameEN' => 'Vegetarian Burger',
                 'price' => 9,
                 'type' => 'F',
                 'category' => 'lunch',
@@ -219,6 +241,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Wrap de Frango com Guacamole',
+                'nameEN' => 'Chicken Wrap with Guacamole',
                 'price' => 8.5,
                 'type' => 'F',
                 'category' => 'lunch',
@@ -228,6 +251,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Bife com Molho de Cogumelos',
+                'nameEN' => 'Steak with Mushroom Sauce',
                 'price' => 15,
                 'type' => 'F',
                 'category' => 'dinner',
@@ -237,6 +261,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Salmão Grelhado com Molho de Limão',
+                'nameEN' => 'Grilled Salmon with Lemon Sauce',
                 'price' => 15,
                 'type' => 'F',
                 'category' => 'dinner',
@@ -246,6 +271,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Risoto de Cogumelos Porcini',
+                'nameEN' => 'Porcini Mushroom Risotto',
                 'price' => 13,
                 'type' => 'F',
                 'category' => 'dinner',
@@ -255,6 +281,7 @@ class ItemsSeeder extends Seeder
             ],
             [
                 'name' => 'Frango Assado com Batatas',
+                'nameEN' => 'Roasted Chicken with Potatoes',
                 'price' => 12.5,
                 'type' => 'F',
                 'category' => 'dinner',

@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('nameEN');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
             $table->enum('type', ['C', 'B', 'F', 'R', 'O']); // C - Cleaning, B - Object, F - Food, R - Restaurant, O - Other
@@ -22,6 +23,7 @@ return new class extends Migration
             $table->string('location')->nullable();
             $table->integer('limit')->nullable();
             $table->string('description');
+            $table->string('descriptionEN');
             $table->string('menu_url')->nullable();
             $table->timestamps();
             $table->softDeletes();

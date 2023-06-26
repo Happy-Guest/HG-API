@@ -25,6 +25,7 @@ class ItemRequest extends FormRequest
         if ($this->isMethod('patch')) {
             return [
                 'name' => 'string|min:5|max:255',
+                'nameEN' => 'string|min:5|max:255',
                 'price' => 'numeric|min:0|max:999999.99',
                 'category' => 'in:room,bathroom,drink,breakfast,lunch,dinner,snack,other',
                 'stock' => 'numeric|min:0|max:999999',

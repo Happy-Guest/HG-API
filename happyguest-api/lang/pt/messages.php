@@ -32,7 +32,7 @@ return [
         'checkout' => 'Check-Out',
         'order' => 'Pedido',
         'item' => 'Item',
-        'reseve' => 'Reserva',
+        'reserve' => 'Reserva',
         'service' => 'Serviço',
     ],
 ];
