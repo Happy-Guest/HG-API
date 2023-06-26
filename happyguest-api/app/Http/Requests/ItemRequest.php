@@ -23,9 +23,9 @@ class ItemRequest extends FormRequest
     {
         return [
             'name' => 'required|string|min:5|max:255',
-            'price' => 'required|numeric|min:0|max:999999.99',
+            'price' => 'nullable|numeric|min:0|max:999999.99',
             'type' => 'required|in:O,F',
-            'category' => 'required|in:room,bathroom',
+            'category' => 'required|in:room,bathroom,drink,food',
             'amount_stock' => 'required|numeric|min:0|max:999999',
         ];
     }
