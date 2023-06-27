@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class CheckoutRequest extends FormRequest
 {
@@ -38,7 +37,7 @@ class CheckoutRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'date.before_or_equal' => __('messages.date_before_or_equal', ['date' => 'today'], $this->getLocale()),
+            'date.before_or_equal' => __('validation.before_or_equal', ['date' => 'today'], $this->getLocale()),
         ];
     }
 }

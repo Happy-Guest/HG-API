@@ -32,11 +32,7 @@ class ReserveRequest extends FormRequest
         return [
             'user_id' => 'required|numeric|exists:users,id',
             'nr_people' => 'required|numeric|min:1|max:999',
-            'time' => [
-                'required',
-                'dateformat:Y/m/d H:i',
-                Rule::afterOrEqual(trans('validation.now')),
-            ],
+            'time' => 'required|dateformat:Y/m/d H:i|after_or_equal:now',
             'status' => 'required|in:P,A,R,C', // P: Pending, A: Accepted, R: Rejected, C: Canceled
             'service_id' => 'required|numeric|exists:services,id',
             'comment' => 'nullable|string|min:5|max:255',
