@@ -29,7 +29,7 @@ class CheckoutRequest extends FormRequest
             'date' => [
                 'required',
                 'dateformat:Y/m/d',
-                Rule::beforeOrEqual(trans('validation.today')),
+                'before_or_equal:' . trans('messages.today')
             ],
         ];
     }
