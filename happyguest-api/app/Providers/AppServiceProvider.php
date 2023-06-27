@@ -24,7 +24,7 @@ class AppServiceProvider extends ServiceProvider
         $request = $this->app['request'];
 
         if ($request->hasHeader('Accept-Language')) {
-            $preferredLanguage = $request->getPreferredLanguage(['en', 'pt-pt']);
+            $preferredLanguage = $request->getPreferredLanguage(['en', 'pt']);
 
             // Set the application locale based on the user's preferred language
             App::setLocale($preferredLanguage);
