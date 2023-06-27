@@ -40,4 +40,16 @@ class ComplaintRequest extends FormRequest
             'comment' => 'required|string|min:5|max:255',
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'date.before_or_equal' => __('validation.before_or_equal', ['attribute' => __('validation.attributes.date'), 'date' => __('validation.attributes.today')]),
+        ];
+    }
 }

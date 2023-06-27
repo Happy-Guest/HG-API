@@ -41,4 +41,16 @@ class OrderRequest extends FormRequest
             'comment' => 'nullable|string|min:5|max:255',
         ];
     }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'time.after_or_equal' => __('validation.after_or_equal', ['attribute' => __('validation.attributes.time'), 'date' => __('validation.attributes.now')]),
+        ];
+    }
 }

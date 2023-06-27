@@ -37,7 +37,7 @@ class CheckoutRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'date.before_or_equal' => __('validation.before_or_equal', ['date' => 'today'], $this->getLocale()),
+            'date.before_or_equal' => __('validation.before_or_equal', ['attribute' => __('validation.attributes.date'), 'date' => __('validation.attributes.today')]),
         ];
     }
 }
