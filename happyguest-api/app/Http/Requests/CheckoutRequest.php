@@ -29,7 +29,7 @@ class CheckoutRequest extends FormRequest
             'date' => [
                 'required',
                 'dateformat:Y/m/d',
-                'before_or_equal:' . trans('messages.today')
+                'before_or_equal:' . trans('validation.today')
             ],
         ];
     }
