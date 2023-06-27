@@ -74,10 +74,7 @@ Route::middleware('auth:api')->group(function () {
         });
 
         Route::get('/', [UserController::class, 'index'])->middleware('role:M')->name('index');
-        Route::get('/blocked', [UserController::class, 'show_blocked'])->middleware('role:M')->name('blocked');
-        Route::get('/unblocked', [UserController::class, 'show_unblocked'])->middleware('role:M')->name('unblocked');
         Route::get('/{id}', [UserController::class, 'show'])->middleware('role:M')->name('show');
-        Route::get('/role/{role}', [UserController::class, 'show_role'])->middleware('role:M')->name('role');
         Route::post('/{id}', [UserController::class, 'update'])->middleware('authorize')->name('update');
         Route::patch('/{id}/block', [UserController::class, 'block'])->middleware('authorize')->name('block');
         Route::patch('/{id}/unblock', [UserController::class, 'unblock'])->middleware('authorize')->name('unblock');

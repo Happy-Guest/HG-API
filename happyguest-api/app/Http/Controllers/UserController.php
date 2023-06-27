@@ -81,40 +81,6 @@ class UserController extends Controller
     }
 
     /**
-     * Display a listing of blocked users.
-     *
-     * @return UserResource
-     */
-    public function show_blocked()
-    {
-        UserResource::$format = 'simple';
-        return UserResource::collection(User::where('blocked', true)->paginate(20));
-    }
-
-    /**
-     * Display a listing of unblocked users.
-     *
-     * @return UserResource
-     */
-    public function show_unblocked()
-    {
-        UserResource::$format = 'simple';
-        return UserResource::collection(User::where('blocked', false)->paginate(20));
-    }
-
-    /**
-     * Display a listing of users with the specified role.
-     *
-     * @param string $role
-     * @return UserResource
-     */
-    public function show_role(string $role)
-    {
-        UserResource::$format = 'simple';
-        return UserResource::collection(User::where('role', $role)->paginate(20));
-    }
-
-    /**
      * Display the specified user's codes.
      *
      * @param int $id
