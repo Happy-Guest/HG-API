@@ -26,6 +26,7 @@ return [
     'has_not_valid_code2' => 'Não tem um código válido!',
     'important_service' => 'Este serviço é importante e não pode ser eliminado!',
     'invalid_association' => ':attribute não pode ser associado a esse serviço!',
+    'item_out_of_stock' => 'O :item está fora de stock!',
     'attributes' => [
         'user' => 'Utilizador',
         'code' => 'Código',

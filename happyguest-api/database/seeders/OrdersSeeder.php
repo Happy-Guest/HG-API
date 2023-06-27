@@ -24,7 +24,7 @@ class OrdersSeeder extends Seeder
                 'time' => '2023-01-24 10:00',
                 'status' => 'D',
                 'service_id' => 1, //Pedido limpeza
-                'amount' => null,
+                'price' => null,
                 'comment' => 'Limpeza de quarto completa por favor!',
                 'created_at' => '2023-01-23 22:30',
                 'updated_at' => $now,
@@ -35,7 +35,7 @@ class OrdersSeeder extends Seeder
                 'time' => '2023-03-27 21:00',
                 'status' => 'C',
                 'service_id' => 3, //Pedido alimentação jantar
-                'amount' => 30.5,
+                'price' => 30.5,
                 'comment' => null,
                 'created_at' => '2023-03-27 21:00',
                 'updated_at' => $now,
@@ -46,7 +46,7 @@ class OrdersSeeder extends Seeder
                 'time' => '2023-03-27 21:05',
                 'status' => 'D',
                 'service_id' => 3, //Pedido alimentação jantar
-                'amount' => 31,
+                'price' => 31,
                 'comment' => null,
                 'created_at' => '2023-03-27 21:05',
                 'updated_at' => $now,
@@ -57,7 +57,7 @@ class OrdersSeeder extends Seeder
                 'time' => '2023-04-18 9:30',
                 'status' => 'D',
                 'service_id' => 2, //Pedido objetos
-                'amount' => null,
+                'price' => null,
                 'comment' => null,
                 'created_at' => '2023-04-18 9:30',
                 'updated_at' => $now,
@@ -68,7 +68,7 @@ class OrdersSeeder extends Seeder
                 'time' => '2023-04-18 10:10',
                 'status' => 'D',
                 'service_id' => 2, //Pedido alimentação pequeno almoço
-                'amount' => 8,
+                'price' => 8,
                 'comment' => 'Com pouco sal.',
                 'created_at' => '2023-04-18 10:10',
                 'updated_at' => $now,
@@ -79,7 +79,7 @@ class OrdersSeeder extends Seeder
                 'time' => '2023-04-18 18:00',
                 'status' => 'R',
                 'service_id' => 2, //Pedido alimentação jantar
-                'amount' => 30,
+                'price' => 30,
                 'comment' => null,
                 'created_at' => '2023-04-18 18:00',
                 'updated_at' => $now,
@@ -90,7 +90,7 @@ class OrdersSeeder extends Seeder
                 'time' => $now2->add(new \DateInterval('P1D'))->format('Y-m-d') . ' 10:00',
                 'status' => 'P',
                 'service_id' => 1, //Pedido limpeza
-                'amount' => null,
+                'price' => null,
                 'comment' => null,
                 'created_at' => $now2->sub(new \DateInterval('P1D'))->format('Y-m-d H:i'),
                 'updated_at' => $now,

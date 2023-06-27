@@ -21,7 +21,7 @@ class Order extends Model
         'time',
         'status',
         'service_id',
-        'amount',
+        'price',
         'comment'
     ];
 

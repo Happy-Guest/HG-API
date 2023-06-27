@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Item;
 use App\Http\Resources\OrderResource;
 use App\Http\Requests\OrderRequest;
 use App\Http\Requests\DeleteRequest;
+use App\Models\OrderItem;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -144,6 +146,44 @@ class OrderController extends Controller
     {
         $order = Order::create($request->validated());
 
+        // Create the order items
+        if ($request->has('items')) {
+            $orderItems = [];
+            foreach ($request->items as $requestItem) {
+                $orderItems[] = new OrderItem([
+                    'order_id' => $order->id,
+                    'item_id' => $requestItem['id'],
+                    'quantity' => $requestItem['quantity'],
+                ]);
+
+                // Check if the item has stock
+                $item = Item::findOrFail($requestItem['id']);
+                if ($item->stock != null) {
+                    if ($item->stock < $requestItem['quantity']) {
+                        // Rollback the order creation and the order items
+                        $order->delete();
+                        foreach ($orderItems as $orderItem) {
+                            $orderItem->delete();
+                        }
+                        return response()->json([
+                            'message' => __('messages.out_of_stock', ['attribute' => $item->name]),
+                        ], 400);
+                    }
+                }
+            }
+            // Update the stock of the items
+            foreach ($orderItems as $orderItem) {
+                $item = Item::findOrFail($orderItem->item_id);
+                if ($item->stock != null) {
+                    $item->stock -= $orderItem->quantity;
+                    $item->save();
+                }
+            }
+
+            // Save the order items
+            $order->items()->saveMany($orderItems);
+        }
+
         return response()->json([
             'message' => __('messages.created', ['attribute' => __('messages.attributes.order')]),
             'order' => new OrderResource($order),
@@ -169,6 +209,17 @@ class OrderController extends Controller
         }
 
         $order->update($request->validated());
+
+        // Update the stock of the items
+        if (($order->status == 'C' || $order->status == 'D') && $order->orderItems != null) {
+            foreach ($order->orderItems as $orderItem) {
+                $item = Item::findOrFail($orderItem->item_id);
+                if ($item->stock != null) {
+                    $item->stock += $orderItem->quantity;
+                    $item->save();
+                }
+            }
+        }
 
         return response()->json([
             'message' => __('messages.updated', ['attribute' => __('messages.attributes.order')]),

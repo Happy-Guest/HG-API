@@ -45,7 +45,7 @@ class OrderResource extends JsonResource
                     'room' => $this->room,
                     'time' => $this->time->format('d/m/Y H:i'),
                     'status' => $this->status,
-                    'ammount' => $this->ammount,
+                    'price' => $this->price,
                     'comment' => $this->comment,
                     'created_at' => $this->created_at->format('d/m/Y'),
                     'updated_at' => $this->updated_at->format('d/m/Y'),

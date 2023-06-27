@@ -18,7 +18,7 @@ return new class extends Migration
             $table->timestamp('time');
             $table->enum('status', ['P', 'R', 'W', 'D', 'C']); // P: Pending, R: Rejected, W: Working, D: Delivered, C: Canceled
             $table->unsignedBigInteger('service_id');
-            $table->double('amount')->nullable();
+            $table->double('price')->nullable();
             $table->string('comment')->nullable();
             $table->timestamps();
             $table->softDeletes();
