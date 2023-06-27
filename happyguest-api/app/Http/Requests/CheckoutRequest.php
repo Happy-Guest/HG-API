@@ -26,11 +26,19 @@ class CheckoutRequest extends FormRequest
             'user_id' => 'required|exists:users,id',
             'code_id' => 'required|exists:codes,id',
             'validated' => 'nullable|boolean',
-            'date' => [
-                'required',
-                'dateformat:Y/m/d',
-                'before_or_equal:' . trans('validation.today')
-            ],
+            'date' => 'required|dateformat:Y/m/d|before_or_equal:today',
+        ];
+    }
+
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'date.before_or_equal' => __('messages.date_before_or_equal', ['date' => 'today'], $this->getLocale()),
         ];
     }
 }
