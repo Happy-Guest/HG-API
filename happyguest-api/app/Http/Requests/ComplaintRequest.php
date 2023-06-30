@@ -32,7 +32,7 @@ class ComplaintRequest extends FormRequest
         return [
             'user_id' => 'nullable|numeric|exists:users,id',
             'title' => 'required|string|min:5|max:255',
-            'date' => 'required|dateformat:Y/m/d|before_or_equal:today',
+            'date' => 'required|dateformat:Y/m/d|before_or_equal:today|after_or_equal:2023/01/01',
             'local' => 'required|string|min:5|max:255',
             'status' => 'required|in:P,S,R,C', // P: Pending, S: Solving, R: Resolved, C: Canceled
             'files' => 'nullable|array|max:10',

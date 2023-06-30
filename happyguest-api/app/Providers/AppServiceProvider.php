@@ -19,9 +19,9 @@ class AppServiceProvider extends ServiceProvider
     /**
      * Bootstrap any application services.
      */
-    public function boot(): void
+    public function boot()
     {
-        $request = $this->app['request'];
+        $request = $this->app->request;
 
         if ($request->hasHeader('Accept-Language')) {
             $preferredLanguage = $request->getPreferredLanguage(['en', 'pt']);
