@@ -24,15 +24,15 @@ class ServiceRequest extends FormRequest
         // Update request
         if ($this->isMethod('patch')) {
             return [
-                'email' => 'email|min:5|max:255',
-                'phone' => 'numeric|digits_between:9, 12',
+                'email' => 'nullable|email|min:5|max:255',
+                'phone' => 'nullable|numeric|digits_between:9, 12',
                 'schedule' => 'string|max:255',
-                'occupation' => 'numeric|min:0|max:999999',
-                'location' => 'string|max:255',
-                'limit' => 'numeric|min:0|max:999999',
+                'occupation' => 'nullable|numeric|min:0|max:999999',
+                'location' => 'nullable|string|max:255',
+                'limit' => 'nullable|numeric|min:0|max:999999',
                 'description' => 'string|min:5|max:255',
                 'descriptionEN' => 'string|min:5|max:255',
-                'menu_url' => 'string|max:255',
+                'menu_url' => 'nullable|string|max:255',
             ];
         }
         // Store request
