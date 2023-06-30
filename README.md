@@ -12,6 +12,7 @@ entre a App Mobile e o Dashboard Web de uma unidade hoteleira.
     * php artisan migrate
     * php artisan db:seed
     * php artisan passport:install
+    * php artisan lang:publish
     * php artisan storage:link
 2. URL:
     * API Local -> http://127.0.0.1:8000/
