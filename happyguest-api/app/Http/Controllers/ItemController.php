@@ -100,7 +100,7 @@ class ItemController extends Controller
         });
 
         ItemResource::$format = 'detailed';
-        return ItemResource::collection($items)->paginate(20);
+        return ItemResource::collection($items->paginate(20));
     }
 
     /**
@@ -117,7 +117,7 @@ class ItemController extends Controller
         });
 
         ItemResource::$format = 'detailed';
-        return ItemResource::collection($items)->paginate(20);
+        return ItemResource::collection($items->paginate(20));
     }
 
     /**
