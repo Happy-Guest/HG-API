@@ -10,6 +10,7 @@ use App\Http\Resources\ItemResource;
 use App\Http\Requests\ItemRequest;
 use App\Http\Requests\DeleteRequest;
 use App\Models\ServiceItem;
+use App\Models\OrderItem;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -95,9 +96,8 @@ class ItemController extends Controller
     public function service(int $id)
     {
         $service = Service::findOrFail($id);
-        $items = $service->serviceItems->map(function ($serviceItem) {
-            return $serviceItem->item;
-        });
+        $serviceItems = ServiceItem::where('service_id', $service->id)->get();
+        $items = Item::whereIn('id', $serviceItems->pluck('item_id'));
 
         ItemResource::$format = 'detailed';
         return ItemResource::collection($items->paginate(20));
@@ -112,9 +112,8 @@ class ItemController extends Controller
     public function order(int $id)
     {
         $order = Order::findOrFail($id);
-        $items = $order->orderItems->map(function ($orderItem) {
-            return $orderItem->item;
-        });
+        $orderItems = OrderItem::where('order_id', $order->id)->get();
+        $items = Item::whereIn('id', $orderItems->pluck('item_id'));
 
         ItemResource::$format = 'detailed';
         return ItemResource::collection($items->paginate(20));
