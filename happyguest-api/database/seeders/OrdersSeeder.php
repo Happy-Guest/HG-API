@@ -22,7 +22,7 @@ class OrdersSeeder extends Seeder
                 'user_id' => 5,
                 'room' => '10',
                 'time' => '2023-01-24 10:00',
-                'status' => 'D',
+                'status' => 'DL',
                 'service_id' => 1, //Pedido limpeza
                 'price' => null,
                 'comment' => 'Limpeza de quarto completa por favor!',
@@ -44,7 +44,7 @@ class OrdersSeeder extends Seeder
                 'user_id' => 7,
                 'room' => '22',
                 'time' => '2023-03-27 21:05',
-                'status' => 'D',
+                'status' => 'DL',
                 'service_id' => 3, //Pedido alimentação jantar
                 'price' => 31,
                 'comment' => null,
@@ -55,7 +55,7 @@ class OrdersSeeder extends Seeder
                 'user_id' => 9,
                 'room' => '4',
                 'time' => '2023-04-18 9:30',
-                'status' => 'D',
+                'status' => 'DL',
                 'service_id' => 2, //Pedido objetos
                 'price' => null,
                 'comment' => null,
@@ -66,7 +66,7 @@ class OrdersSeeder extends Seeder
                 'user_id' => 9,
                 'room' => '4',
                 'time' => '2023-04-18 10:10',
-                'status' => 'D',
+                'status' => 'DL',
                 'service_id' => 2, //Pedido alimentação pequeno almoço
                 'price' => 8,
                 'comment' => 'Com pouco sal.',

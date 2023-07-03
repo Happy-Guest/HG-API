@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('room');
             $table->timestamp('time');
-            $table->enum('status', ['P', 'R', 'W', 'D', 'C']); // P: Pending, R: Rejected, W: Working, D: Delivered, C: Canceled
+            $table->enum('status', ['P', 'R', 'W', 'DL', 'C']); // P: Pending, R: Rejected, W: Working, DL: Delivered, C: Canceled
             $table->unsignedBigInteger('service_id');
             $table->double('price')->nullable();
             $table->string('comment')->nullable();

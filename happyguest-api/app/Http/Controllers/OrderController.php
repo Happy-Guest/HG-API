@@ -30,8 +30,8 @@ class OrderController extends Controller
                 case 'P': // Pending
                 case 'R': // Rejected
                 case 'W': // Working
-                case 'D': // Delivered
                 case 'C': // Canceled
+                case 'DL': // Delivered
                     $orders->where('status', $request->filter);
                     break;
                 case 'D': // Deleted
@@ -102,7 +102,7 @@ class OrderController extends Controller
                 case 'P': // Pending
                 case 'R': // Rejected
                 case 'W': // Working
-                case 'D': // Delivered
+                case 'DL': // Delivered
                 case 'C': // Canceled
                     $orders->where('status', $request->filter);
                     break;
