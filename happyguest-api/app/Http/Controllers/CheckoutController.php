@@ -133,7 +133,7 @@ class CheckoutController extends Controller
         if (Checkout::where('code_id', $request->code_id)->exists()) {
             return response()->json([
                 'message' => __('messages.checked_out'),
-            ], 400);
+            ], 401);
         }
 
         $checkout = Checkout::create($request->validated());

@@ -91,13 +91,54 @@ class ItemController extends Controller
      * Display the items of the specified service.
      *
      * @param int $id
+     * @param Request $request
      * @return ItemResource
      */
-    public function service(int $id)
+    public function service(int $id, Request $request)
     {
         $service = Service::findOrFail($id);
         $serviceItems = ServiceItem::where('service_id', $service->id)->get();
         $items = Item::whereIn('id', $serviceItems->pluck('item_id'));
+
+        // Filter the items
+        if ($request->has('filter') && $request->filter != 'ALL') {
+            switch ($request->filter) {
+                case 'O': // Object
+                case 'F': // Food
+                    $items->where('type', $request->filter);
+                    break;
+                case 'room': // Room
+                case 'bathroom': // Bathroom
+                case 'drink': // Drink
+                case 'breakfast': // Breakfast
+                case 'lunch': // Lunch
+                case 'dinner': // Dinner
+                case 'snack': // Snack
+                case 'other': // Other
+                    $items->where('category', $request->filter);
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_filter'),
+                    ], 400);
+            }
+        }
+
+        // Order the items
+        if ($request->has('order')) {
+            switch ($request->order) {
+                case 'ASC': // Ascending
+                    $items->orderBy('id', 'asc');
+                    break;
+                case 'DESC': // Descending
+                    $items->orderBy('id', 'desc');
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_order'),
+                    ], 400);
+            }
+        }
 
         ItemResource::$format = 'detailed';
         return ItemResource::collection($items->paginate(20));
@@ -107,13 +148,54 @@ class ItemController extends Controller
      * Display the items of the specified order.
      *
      * @param int $id
+     * @param Request $request
      * @return ItemResource
      */
-    public function order(int $id)
+    public function order(int $id, Request $request)
     {
         $order = Order::findOrFail($id);
         $orderItems = OrderItem::where('order_id', $order->id)->get();
         $items = Item::whereIn('id', $orderItems->pluck('item_id'));
+
+        // Filter the items
+        if ($request->has('filter') && $request->filter != 'ALL') {
+            switch ($request->filter) {
+                case 'O': // Object
+                case 'F': // Food
+                    $items->where('type', $request->filter);
+                    break;
+                case 'room': // Room
+                case 'bathroom': // Bathroom
+                case 'drink': // Drink
+                case 'breakfast': // Breakfast
+                case 'lunch': // Lunch
+                case 'dinner': // Dinner
+                case 'snack': // Snack
+                case 'other': // Other
+                    $items->where('category', $request->filter);
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_filter'),
+                    ], 400);
+            }
+        }
+
+        // Order the items
+        if ($request->has('order')) {
+            switch ($request->order) {
+                case 'ASC': // Ascending
+                    $items->orderBy('id', 'asc');
+                    break;
+                case 'DESC': // Descending
+                    $items->orderBy('id', 'desc');
+                    break;
+                default:
+                    return response()->json([
+                        'message' => __('messages.invalid_order'),
+                    ], 400);
+            }
+        }
 
         ItemResource::$format = 'detailed';
         return ItemResource::collection($items->paginate(20));
