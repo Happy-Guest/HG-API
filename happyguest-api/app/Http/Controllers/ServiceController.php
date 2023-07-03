@@ -86,6 +86,15 @@ class ServiceController extends Controller
     {
         $service = Service::create($request->validated());
 
+        // Check if user has uploaded a menu
+        if ($request->hasFile('menu')) {
+            $file = $request->file('menu');
+            $file_name = $service->id . '.pdf';
+            $file->move(storage_path('app/public/services'), $file_name);
+            $service->menu_url = $file_name;
+            $service->update();
+        }
+
         return response()->json([
             'message' => __('messages.created', ['attribute' => __('messages.attributes.service')]),
             'service' => new ServiceResource($service),
@@ -103,6 +112,15 @@ class ServiceController extends Controller
     {
         $service = Service::findOrFail($id);
         $service->update($request->validated());
+
+        // Check if user has uploaded a menu
+        if ($request->hasFile('menu')) {
+            $file = $request->file('menu');
+            $file_name = $service->id . '.pdf';
+            $file->move(storage_path('app/public/services'), $file_name);
+            $service->menu_url = $file_name;
+            $service->update();
+        }
 
         return response()->json([
             'message' => __('messages.updated', ['attribute' => __('messages.attributes.service')]),

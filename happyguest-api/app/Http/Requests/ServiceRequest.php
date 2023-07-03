@@ -32,7 +32,7 @@ class ServiceRequest extends FormRequest
                 'limit' => 'nullable|numeric|min:0|max:999999',
                 'description' => 'string|min:5|max:255',
                 'descriptionEN' => 'string|min:5|max:255',
-                'menu_url' => 'nullable|string|max:255',
+                'menu' => 'nullable|file|mimes:pdf|max:10240',
             ];
         }
         // Store request
@@ -48,7 +48,7 @@ class ServiceRequest extends FormRequest
             'limit' => 'nullable|numeric|min:0|max:999999',
             'description' => 'required|string|min:5|max:255',
             'descriptionEN' => 'nullable|string|min:5|max:255',
-            'menu_url' => 'nullable|string|max:255',
+            'menu' => 'nullable|file|mimes:pdf|max:10240',
         ];
     }
 }
