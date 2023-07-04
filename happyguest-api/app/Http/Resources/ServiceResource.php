@@ -52,6 +52,7 @@ class ServiceResource extends JsonResource
                             'category' => $serviceItem->item->category,
                             'stock' => $serviceItem->item->stock,
                             'price' => $serviceItem->item->price,
+                            'active' => $serviceItem->item->active,
                         ];
                     }),
                     'menu_url' => $this->menu_url,

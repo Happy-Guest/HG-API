@@ -275,6 +275,10 @@ class ItemController extends Controller
             'item_id' => $id,
         ]);
 
+        // Put the item active
+        $item->active = true;
+        $item->save();
+
         return response()->json([
             'message' => __('messages.associated', ['attribute' => __('messages.attributes.item')]),
         ]);
@@ -299,6 +303,11 @@ class ItemController extends Controller
         }
 
         $serviceItem->delete();
+
+        // Put the item not active
+        $item = Item::findOrFail($id);
+        $item->active = false;
+        $item->save();
 
         return response()->json([
             'message' => __('messages.disassociated', ['attribute' => __('messages.attributes.item')]),

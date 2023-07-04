@@ -19,6 +19,7 @@ return new class extends Migration
             $table->enum('type', ['O', 'F']); // O - Object, F - Food
             $table->enum('category', ['room', 'bathroom', 'drink', 'breakfast', 'lunch', 'dinner', 'snack', 'other']);
             $table->integer('stock')->nullable();
+            $table->boolean('active')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

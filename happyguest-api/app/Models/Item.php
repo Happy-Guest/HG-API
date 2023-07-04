@@ -25,6 +25,7 @@ class Item extends Model
         'type',
         'category',
         'stock',
+        'active',
     ];
 
     /**
