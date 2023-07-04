@@ -38,7 +38,7 @@ class ServiceRequest extends FormRequest
         // Store request
         return [
             'name' => 'required|string|min:5|max:255',
-            'nameEN' => 'nullable|string|min:5|max:255',
+            'nameEN' => 'required|string|min:5|max:255',
             'email' => 'nullable|email|min:5|max:255',
             'phone' => 'nullable|numeric|digits_between:9, 12',
             'type' => 'required|in:C,O,F,R', // C - Cleaning, B - Object, F - Food, R - Restaurant, O - Other
@@ -47,7 +47,7 @@ class ServiceRequest extends FormRequest
             'location' => 'nullable|string|max:255',
             'limit' => 'nullable|numeric|min:0|max:999999',
             'description' => 'required|string|min:5|max:255',
-            'descriptionEN' => 'nullable|string|min:5|max:255',
+            'descriptionEN' => 'required|string|min:5|max:255',
             'menu' => 'nullable|file|mimes:pdf|max:10240',
         ];
     }
