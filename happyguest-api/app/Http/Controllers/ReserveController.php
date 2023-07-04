@@ -30,6 +30,11 @@ class ReserveController extends Controller
                         $query->where('type', 'R');
                     });
                     break;
+                case 'O': // Others
+                    $reserves->whereHas('service', function ($query) {
+                        $query->where('type', 'O');
+                    });
+                    break;
                 case 'P': // Pending
                 case 'A': // Accepted
                 case 'R': // Rejected
@@ -104,6 +109,11 @@ class ReserveController extends Controller
                 case 'OR': // Restaurant
                     $reserves->whereHas('service', function ($query) {
                         $query->where('type', 'R');
+                    });
+                    break;
+                case 'O': // Others
+                    $reserves->whereHas('service', function ($query) {
+                        $query->where('type', 'O');
                     });
                     break;
                 case 'P': // Pending

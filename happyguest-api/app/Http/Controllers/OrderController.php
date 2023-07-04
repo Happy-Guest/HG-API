@@ -42,6 +42,11 @@ class OrderController extends Controller
                         $query->where('type', 'F');
                     });
                     break;
+                case 'O': // Others
+                    $orders->whereHas('service', function ($query) {
+                        $query->where('type', 'O');
+                    });
+                    break;
                 case 'P': // Pending
                 case 'R': // Rejected
                 case 'W': // Working
@@ -129,6 +134,11 @@ class OrderController extends Controller
                         $query->where('type', 'F');
                     });
                     break;
+                case 'O': // Others
+                    $orders->whereHas('service', function ($query) {
+                        $query->where('type', 'O');
+                    });
+                    break;
                 case 'P': // Pending
                 case 'R': // Rejected
                 case 'W': // Working
@@ -201,7 +211,7 @@ class OrderController extends Controller
                     }
                 }
             }
-            
+
             // Update the stock of the items
             foreach ($orderItems as $orderItem) {
                 $item = Item::findOrFail($orderItem->item_id);
