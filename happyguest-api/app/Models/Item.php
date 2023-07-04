@@ -4,11 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
 class Item extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, CascadeSoftDeletes;
+
+    protected $cascadeDeletes = ['orderItems', 'serviceItems'];
 
     /**
      * The attributes that are mass assignable.
@@ -46,8 +49,8 @@ class Item extends Model
     /**
      * Get the reserve items for the item.
      */
-    public function reserveItems()
+    public function serviceItems()
     {
-        return $this->hasMany(ReserveItem::class);
+        return $this->hasMany(ServiceItem::class);
     }
 }
