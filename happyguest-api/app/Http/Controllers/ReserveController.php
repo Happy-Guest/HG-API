@@ -25,6 +25,11 @@ class ReserveController extends Controller
         // Filter the reserves
         if ($request->has('filter') && $request->filter != 'ALL') {
             switch ($request->filter) {
+                case 'OR': // Restaurant
+                    $reserves->whereHas('service', function ($query) {
+                        $query->where('type', 'R');
+                    });
+                    break;
                 case 'P': // Pending
                 case 'A': // Accepted
                 case 'R': // Rejected
@@ -96,6 +101,11 @@ class ReserveController extends Controller
         // Filter the reserves
         if ($request->has('filter') && $request->filter != 'ALL') {
             switch ($request->filter) {
+                case 'OR': // Restaurant
+                    $reserves->whereHas('service', function ($query) {
+                        $query->where('type', 'R');
+                    });
+                    break;
                 case 'P': // Pending
                 case 'A': // Accepted
                 case 'R': // Rejected

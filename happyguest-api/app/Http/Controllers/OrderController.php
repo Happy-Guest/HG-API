@@ -27,6 +27,21 @@ class OrderController extends Controller
         // Filter the orders
         if ($request->has('filter') && $request->filter != 'ALL') {
             switch ($request->filter) {
+                case 'OC': // Cleaning
+                    $orders->whereHas('service', function ($query) {
+                        $query->where('type', 'C');
+                    });
+                    break;
+                case 'OB': // Objects
+                    $orders->whereHas('service', function ($query) {
+                        $query->where('type', 'B');
+                    });
+                    break;
+                case 'OF': // Foods
+                    $orders->whereHas('service', function ($query) {
+                        $query->where('type', 'F');
+                    });
+                    break;
                 case 'P': // Pending
                 case 'R': // Rejected
                 case 'W': // Working
@@ -99,6 +114,21 @@ class OrderController extends Controller
         // Filter the orders
         if ($request->has('filter') && $request->filter != 'ALL') {
             switch ($request->filter) {
+                case 'OC': // Cleaning
+                    $orders->whereHas('service', function ($query) {
+                        $query->where('type', 'C');
+                    });
+                    break;
+                case 'OB': // Objects
+                    $orders->whereHas('service', function ($query) {
+                        $query->where('type', 'B');
+                    });
+                    break;
+                case 'OF': // Foods
+                    $orders->whereHas('service', function ($query) {
+                        $query->where('type', 'F');
+                    });
+                    break;
                 case 'P': // Pending
                 case 'R': // Rejected
                 case 'W': // Working
