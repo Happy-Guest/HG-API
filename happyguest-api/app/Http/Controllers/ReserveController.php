@@ -52,13 +52,13 @@ class ReserveController extends Controller
         }
 
         // Order the reserves
-        if ($request->has('reserve')) {
-            switch ($request->reserve) {
+        if ($request->has('order')) {
+            switch ($request->order) {
                 case 'ASC': // Ascending
-                    $reserves->reserveBy('id', 'asc');
+                    $reserves->orderBy('id', 'asc');
                     break;
                 case 'DESC': // Descending
-                    $reserves->reserveBy('id', 'desc');
+                    $reserves->orderBy('id', 'desc');
                     break;
                 default:
                     return response()->json([
@@ -133,13 +133,13 @@ class ReserveController extends Controller
         }
 
         // Order the reserves
-        if ($request->has('reserve')) {
-            switch ($request->reserve) {
+        if ($request->has('order')) {
+            switch ($request->order) {
                 case 'ASC': // Ascending
-                    $reserves->reserveBy('id', 'asc');
+                    $reserves->orderBy('id', 'asc');
                     break;
                 case 'DESC': // Descending
-                    $reserves->reserveBy('id', 'desc');
+                    $reserves->orderBy('id', 'desc');
                     break;
                 default:
                     return response()->json([
