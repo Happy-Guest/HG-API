@@ -26,10 +26,14 @@ class ReserveResource extends JsonResource
                 return [
                     'id' => $this->id,
                     'user' => $this->user->name,
+                    'service' => [
+                        'id' => $this->service->id,
+                        'name' => $this->service->name,
+                        'type' => $this->service->type,
+                    ],
                     'nr_people' => $this->nr_people,
                     'time' => $this->time->format('d/m/Y H:i'),
                     'status' => $this->status,
-                    'service' => $this->service_id,
                 ];
             case 'detailed':
                 return [
@@ -41,7 +45,11 @@ class ReserveResource extends JsonResource
                     'nr_people' => $this->nr_people,
                     'time' => $this->time->format('d/m/Y H:i'),
                     'status' => $this->status,
-                    'service' => $this->service,
+                    'service' => [
+                        'id' => $this->service->id,
+                        'name' => $this->service->name,
+                        'type' => $this->service->type,
+                    ],
                     'comment' => $this->comment,
                     'created_at' => $this->created_at->format('d/m/Y'),
                     'updated_at' => $this->updated_at->format('d/m/Y'),

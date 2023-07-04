@@ -26,7 +26,11 @@ class OrderResource extends JsonResource
                 return [
                     'id' => $this->id,
                     'user' => $this->user->name,
-                    'service' => $this->service->name,
+                    'service' => [
+                        'id' => $this->service->id,
+                        'name' => $this->service->name,
+                        'type' => $this->service->type,
+                    ],
                     'room' => $this->room,
                     'time' => $this->time->format('d/m/Y H:i'),
                     'status' => $this->status,
@@ -41,6 +45,7 @@ class OrderResource extends JsonResource
                     'service' => [
                         'id' => $this->service->id,
                         'name' => $this->service->name,
+                        'type' => $this->service->type,
                     ],
                     'room' => $this->room,
                     'time' => $this->time->format('d/m/Y H:i'),
