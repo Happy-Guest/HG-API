@@ -123,7 +123,7 @@ Route::middleware('auth:api')->group(function () {
 
         // Associate & Disassociate to Service
         Route::post('/{id}/service/{service}/associate', [ItemController::class, 'associate'])->middleware('role:M')->name('associate');
-        Route::delete('/{id}/item/{service}/disassociate', [ItemController::class, 'disassociate'])->middleware('role:M')->name('disassociate');
+        Route::delete('/{id}/service/{service}/disassociate', [ItemController::class, 'disassociate'])->middleware('role:M')->name('disassociate');
     });
 
     //Services
