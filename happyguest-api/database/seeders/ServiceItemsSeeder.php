@@ -43,10 +43,6 @@ class ServiceItemsSeeder extends Seeder
             ],
             [
                 'service_id' => 2,
-                'item_id' => 7,
-            ],
-            [
-                'service_id' => 2,
                 'item_id' => 8,
             ],
             [
@@ -68,10 +64,6 @@ class ServiceItemsSeeder extends Seeder
             [
                 'service_id' => 3,
                 'item_id' => 13,
-            ],
-            [
-                'service_id' => 3,
-                'item_id' => 14,
             ],
             [
                 'service_id' => 3,
