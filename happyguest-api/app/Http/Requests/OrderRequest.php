@@ -35,7 +35,7 @@ class OrderRequest extends FormRequest
             'time' => 'required|dateformat:Y/m/d H:i|after_or_equal:now',
             'status' => 'required|in:P,R,W,DL,C', // P: Pending, R: Rejected, W: Working, DL: Delivered, C: Canceled
             'service_id' => 'required|numeric|exists:services,id',
-            'items' => 'required|array|min:1',
+            'items' => 'nullable|array|min:1',
             'items.*' => 'required|numeric|exists:items,id',
             'price' => 'required|numeric|min:0|max:999999.99',
             'comment' => 'nullable|string|min:5|max:255',

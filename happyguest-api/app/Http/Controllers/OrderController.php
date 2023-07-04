@@ -201,6 +201,7 @@ class OrderController extends Controller
                     }
                 }
             }
+            
             // Update the stock of the items
             foreach ($orderItems as $orderItem) {
                 $item = Item::findOrFail($orderItem->item_id);
