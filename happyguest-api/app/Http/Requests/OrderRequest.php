@@ -26,6 +26,7 @@ class OrderRequest extends FormRequest
         if ($this->isMethod('patch')) {
             return [
                 'status' => 'in:P,R,W,DL,C', // P: Pending, R: Rejected, W: Working, DL: Delivered, C: Canceled
+                'comment' => 'nullable|string|min:5|max:255',
             ];
         }
         // Store request

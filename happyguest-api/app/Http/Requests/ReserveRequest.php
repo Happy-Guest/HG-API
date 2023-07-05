@@ -26,6 +26,7 @@ class ReserveRequest extends FormRequest
         if ($this->isMethod('patch')) {
             return [
                 'status' => 'in:P,A,R,C', // P: Pending, A: Accepted, R: Rejected, C: Canceled
+                'comment' => 'nullable|string|min:5|max:255',
             ];
         }
         // Store request
