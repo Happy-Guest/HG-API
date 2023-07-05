@@ -8,6 +8,7 @@ use App\Models\Order;
 use Illuminate\Http\Request;
 use App\Http\Resources\ItemResource;
 use App\Http\Requests\ItemRequest;
+use App\Http\Requests\ItemsRequest;
 use App\Http\Requests\DeleteRequest;
 use App\Models\ServiceItem;
 use App\Models\OrderItem;
@@ -248,40 +249,63 @@ class ItemController extends Controller
      *
      * @param  int  $id
      * @param  string  $service
+     * @param  Request  $request
      * @return JsonResponse
      */
-    public function associate(int $id, string $service)
+    public function associate(int $id, string $service, ItemsRequest $request)
     {
-        $serviceItem = ServiceItem::where('item_id', $id)->where('service_id', $service)->first();
-
-        // Check if the item is already associated to the service
-        if ($serviceItem) {
-            return response()->json([
-                'message' => __('messages.already_associated', ['attribute' => __('messages.attributes.item')]),
-            ], 409);
+        $items = [];
+        if ($request->has('items')) {
+            $items = $request->items;
+        } else {
+            $items[] = $id;
         }
 
-        // Check if the item is the same type as the service
-        $item = Item::findOrFail($id);
-        $serviceObj = Service::findOrFail($service);
-        if (($item->type != $serviceObj->type) && ($serviceObj->type == 'B' && $item->type != 'O')) {
-            return response()->json([
-                'message' => __('messages.invalid_association', ['attribute' => __('messages.attributes.item')]),
-            ], 401);
+        $serviceItems = [];
+        foreach ($items as $item) {
+            $serviceItem = ServiceItem::where('item_id', $item)->where('service_id', $service)->first();
+
+            // Check if the item is already associated to the service
+            if ($serviceItem) {
+                foreach ($serviceItems as $serviceItem) {
+                    $serviceItem->delete();
+                }
+                return response()->json([
+                    'message' => __('messages.already_associated', ['attribute' => $item]),
+                ], 409);
+            }
+
+            // Check if the item is the same type as the service
+            $item = Item::findOrFail($id);
+            $serviceObj = Service::findOrFail($service);
+            if (($item->type != $serviceObj->type) && ($serviceObj->type == 'B' && $item->type != 'O')) {
+                foreach ($serviceItems as $serviceItem) {
+                    $serviceItem->delete();
+                }
+                return response()->json([
+                    'message' => __('messages.invalid_association', ['attribute' => $item]),
+                ], 401);
+            }
+
+            $serviceItems[] = ServiceItem::create([
+                'service_id' => $service,
+                'item_id' => $item->id,
+            ]);
+
+            // Put the item active
+            $item->active = true;
+            $item->save();
         }
 
-        ServiceItem::create([
-            'service_id' => $service,
-            'item_id' => $id,
-        ]);
-
-        // Put the item active
-        $item->active = true;
-        $item->save();
-
-        return response()->json([
-            'message' => __('messages.associated', ['attribute' => __('messages.attributes.item')]),
-        ]);
+        if (count($items) > 1) {
+            return response()->json([
+                'message' => __('messages.associated', ['attribute' => __('messages.attributes.items')]),
+            ]);
+        } else {
+            return response()->json([
+                'message' => __('messages.associated', ['attribute' => __('messages.attributes.item')]),
+            ]);
+        }
     }
 
     /**

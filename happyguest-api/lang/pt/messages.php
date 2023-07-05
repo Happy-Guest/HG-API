@@ -35,6 +35,7 @@ return [
         'checkout' => 'Check-Out',
         'order' => 'Pedido',
         'item' => 'Item',
+        'items' => 'Itens',
         'reserve' => 'Reserva',
         'service' => 'Serviço',
     ],
