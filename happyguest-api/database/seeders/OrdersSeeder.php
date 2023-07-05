@@ -67,7 +67,7 @@ class OrdersSeeder extends Seeder
                 'room' => '4',
                 'time' => '2023-04-18 10:10',
                 'status' => 'DL',
-                'service_id' => 2, //Pedido alimentação pequeno almoço
+                'service_id' => 3, //Pedido alimentação pequeno almoço
                 'price' => 8,
                 'comment' => 'Com pouco sal.',
                 'created_at' => '2023-04-18 10:10',
@@ -78,7 +78,7 @@ class OrdersSeeder extends Seeder
                 'room' => '4',
                 'time' => '2023-04-18 18:00',
                 'status' => 'R',
-                'service_id' => 2, //Pedido alimentação jantar
+                'service_id' => 3, //Pedido alimentação jantar
                 'price' => 30,
                 'comment' => null,
                 'created_at' => '2023-04-18 18:00',
