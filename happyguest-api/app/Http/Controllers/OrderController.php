@@ -220,6 +220,11 @@ class OrderController extends Controller
                     $item->save();
                 }
             }
+
+            // Save the order items
+            foreach ($orderItems as $orderItem) {
+                $orderItem->save();
+            }
         }
 
         return response()->json([
