@@ -255,7 +255,7 @@ class ItemController extends Controller
     public function associate(int $id, string $service, ItemsRequest $request)
     {
         $items = [];
-        if ($request->has('items')) {
+        if ($request->has('items') && $id == 0) {
             $items = $request->items;
         } else {
             $items[] = $id;
@@ -276,7 +276,7 @@ class ItemController extends Controller
             }
 
             // Check if the item is the same type as the service
-            $item = Item::findOrFail($id);
+            $item = Item::findOrFail($item);
             $serviceObj = Service::findOrFail($service);
             if (($item->type != $serviceObj->type) && ($serviceObj->type == 'B' && $item->type != 'O')) {
                 foreach ($serviceItems as $serviceItem) {
