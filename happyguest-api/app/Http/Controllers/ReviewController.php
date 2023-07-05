@@ -147,6 +147,15 @@ class ReviewController extends Controller
      */
     public function store(ReviewRequest $request)
     {
+        $user = User::findOrFail($request->user_id);
+
+        // Check if user is client
+        if ($user->role != 'C') {
+            return response()->json([
+                'message' => __('messages.invalid_user'),
+            ], 400);
+        }
+
         // Check if user has a recent review
         if (auth()->user()->role != 'A' && auth()->user()->last_review != null && auth()->user()->last_review > now()->subWeek()) {
             return response()->json([
@@ -157,7 +166,6 @@ class ReviewController extends Controller
         $review = Review::create($request->validated());
 
         // Update user's last review
-        $user = User::findOrFail(auth()->user()->id);
         $user->last_review = now();
         $user->save();
 
