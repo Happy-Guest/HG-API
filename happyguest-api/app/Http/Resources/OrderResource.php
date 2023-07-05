@@ -54,9 +54,7 @@ class OrderResource extends JsonResource
                             'nameEN' => $orderItem->item->nameEN,
                             'type' => $orderItem->item->type,
                             'category' => $orderItem->item->category,
-                            'stock' => $orderItem->item->stock,
-                            'price' => $orderItem->item->price,
-                            'active' => $orderItem->item->active,
+                            'quantity' => $orderItem->quantity,
                         ];
                     }),
                     'room' => $this->room,
