@@ -47,6 +47,18 @@ class OrderResource extends JsonResource
                         'name' => $this->service->name,
                         'type' => $this->service->type,
                     ],
+                    'items' => $this->orderItems->map(function ($orderItem) {
+                        return [
+                            'id' => $orderItem->item->id,
+                            'name' => $orderItem->item->name,
+                            'nameEN' => $orderItem->item->nameEN,
+                            'type' => $orderItem->item->type,
+                            'category' => $orderItem->item->category,
+                            'stock' => $orderItem->item->stock,
+                            'price' => $orderItem->item->price,
+                            'active' => $orderItem->item->active,
+                        ];
+                    }),
                     'room' => $this->room,
                     'time' => $this->time->format('d/m/Y H:i'),
                     'status' => $this->status,
