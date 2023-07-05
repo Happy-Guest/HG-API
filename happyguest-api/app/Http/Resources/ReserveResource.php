@@ -25,7 +25,7 @@ class ReserveResource extends JsonResource
             case 'simple':
                 return [
                     'id' => $this->id,
-                    'user' => $this->user->name,
+                    'user' => $this->user->name ?? $this->user_name,
                     'service' => [
                         'id' => $this->service->id,
                         'name' => $this->service->name,
@@ -39,8 +39,8 @@ class ReserveResource extends JsonResource
                 return [
                     'id' => $this->id,
                     'user' => [
-                        'id' => $this->user->id,
-                        'name' => $this->user->name,
+                        'id' => $this->user->id ?? null,
+                        'name' => $this->user->name ?? $this->user_name,
                     ],
                     'nr_people' => $this->nr_people,
                     'time' => $this->time->format('d/m/Y H:i'),

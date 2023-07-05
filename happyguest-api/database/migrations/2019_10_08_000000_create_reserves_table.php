@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('reserves', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('user_name')->nullable();
             $table->integer('nr_people');
             $table->timestamp('time');
             $table->enum('status', ['P', 'A', 'R', 'C'])->default('P'); // P: Pending, A: Accepted, R: Rejected, C: Canceled

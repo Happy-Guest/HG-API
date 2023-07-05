@@ -31,7 +31,8 @@ class ReserveRequest extends FormRequest
         }
         // Store request
         return [
-            'user_id' => 'required|numeric|exists:users,id',
+            'user_id' => 'nullable|numeric|exists:users,id',
+            'user_name' => 'nullable|string|min:3|max:255',
             'nr_people' => 'required|numeric|min:1|max:999',
             'time' => 'required|dateformat:Y/m/d H:i|after_or_equal:now',
             'status' => 'required|in:P,A,R,C', // P: Pending, A: Accepted, R: Rejected, C: Canceled

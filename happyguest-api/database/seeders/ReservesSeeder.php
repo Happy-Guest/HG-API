@@ -19,6 +19,7 @@ class ReservesSeeder extends Seeder
         $reserves = [
             [
                 'user_id' => 7,
+                'user_name' => null,
                 'nr_people' => 2,
                 'time' => '2023-03-28 20:00',
                 'status' => 'A',
@@ -27,7 +28,18 @@ class ReservesSeeder extends Seeder
                 'updated_at' => $now,
             ],
             [
+                'user_id' => null,
+                'user_name' => 'Joana Andrade',
+                'nr_people' => 2,
+                'time' => '2023-04-02 13:00',
+                'status' => 'A',
+                'service_id' => 4,
+                'created_at' => '2023-04-02 11:25',
+                'updated_at' => $now,
+            ],
+            [
                 'user_id' => 9,
+                'user_name' => null,
                 'nr_people' => 2,
                 'time' => '2023-04-19 12:30',
                 'status' => 'C',
@@ -36,7 +48,18 @@ class ReservesSeeder extends Seeder
                 'updated_at' => $now,
             ],
             [
+                'user_id' => null,
+                'user_name' => 'João Pinto',
+                'nr_people' => 1,
+                'time' => '2023-06-23 20:30',
+                'status' => 'A',
+                'service_id' => 4,
+                'created_at' => '2023-06-23 16:55',
+                'updated_at' => $now,
+            ],
+            [
                 'user_id' => 11,
+                'user_name' => null,
                 'nr_people' => 1,
                 'time' => $now->format('Y-m-d') . ' 19:30',
                 'status' => 'P',

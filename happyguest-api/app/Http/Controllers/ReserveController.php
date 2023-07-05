@@ -160,7 +160,6 @@ class ReserveController extends Controller
      */
     public function store(ReserveRequest $request)
     {
-
         $reserve = Reserve::create($request->validated());
 
         return response()->json([
