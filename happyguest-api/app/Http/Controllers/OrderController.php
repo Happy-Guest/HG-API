@@ -220,9 +220,6 @@ class OrderController extends Controller
                     $item->save();
                 }
             }
-
-            // Save the order items
-            $order->items()->saveMany($orderItems);
         }
 
         return response()->json([
