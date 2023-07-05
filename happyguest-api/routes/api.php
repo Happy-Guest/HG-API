@@ -132,7 +132,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/{id}', [ServiceController::class, 'show'])->name('show');
         Route::get('/{id}/items', [ItemController::class, 'service'])->name('items');
         Route::post('/', [ServiceController::class, 'store'])->middleware('role:A')->name('store');
-        Route::patch('/{id}', [ServiceController::class, 'update'])->middleware('role:M')->name('update');
+        Route::post('/{id}', [ServiceController::class, 'update'])->middleware('role:M')->name('update');
         Route::delete('/{id}', [ServiceController::class, 'destroy'])->middleware('role:A')->name('destroy');
     });
 

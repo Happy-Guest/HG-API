@@ -21,6 +21,7 @@ class ReviewRequest extends FormRequest
      */
     public function rules(): array
     {
+        // Store request
         return [
             'user_id' => 'nullable|exists:users,id',
             'stars' => 'required|numeric|min:1|max:5',

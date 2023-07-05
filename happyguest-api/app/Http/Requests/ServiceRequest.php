@@ -21,27 +21,13 @@ class ServiceRequest extends FormRequest
      */
     public function rules(): array
     {
-        // Update request
-        if ($this->isMethod('patch')) {
-            return [
-                'email' => 'nullable|email|min:5|max:255',
-                'phone' => 'nullable|numeric|digits_between:9, 12',
-                'schedule' => 'string|max:255',
-                'occupation' => 'nullable|numeric|min:0|max:999999',
-                'location' => 'nullable|string|max:255',
-                'limit' => 'nullable|numeric|min:0|max:999999',
-                'description' => 'string|min:5|max:255',
-                'descriptionEN' => 'string|min:5|max:255',
-                'menu' => 'nullable|file|mimes:pdf|max:10240',
-            ];
-        }
-        // Store request
+        // Store & Update request
         return [
             'name' => 'required|string|min:5|max:255',
             'nameEN' => 'required|string|min:5|max:255',
             'email' => 'nullable|email|min:5|max:255',
             'phone' => 'nullable|numeric|digits_between:9, 12',
-            'type' => 'required|in:C,O,F,R', // C - Cleaning, B - Object, F - Food, R - Restaurant, O - Other
+            'type' => 'required|in:C,B,F,R,O', // C - Cleaning, B - Object, F - Food, R - Restaurant, O - Other
             'schedule' => 'required|string|max:255',
             'occupation' => 'nullable|numeric|min:0|max:999999',
             'location' => 'nullable|string|max:255',

@@ -89,9 +89,9 @@ class ServiceController extends Controller
         // Check if user has uploaded a menu
         if ($request->hasFile('menu')) {
             $file = $request->file('menu');
-            $file_name = $service->id . '.pdf';
-            $file->move(storage_path('app/public/services'), $file_name);
-            $service->menu_url = $file_name;
+            $filename = $file->getClientOriginalName();
+            $file->move(storage_path('app/public/services'), $filename);
+            $service->menu_url = $filename;
             $service->update();
         }
 
@@ -111,16 +111,21 @@ class ServiceController extends Controller
     public function update(ServiceRequest $request, int $id)
     {
         $service = Service::findOrFail($id);
-        $service->update($request->validated());
 
         // Check if user has uploaded a menu
         if ($request->hasFile('menu')) {
+            // Delete old menu
+            if ($service->menu_url != null) {
+                unlink(storage_path('app/public/services/' . $service->menu_url));
+            }
             $file = $request->file('menu');
-            $file_name = $service->id . '.pdf';
-            $file->move(storage_path('app/public/services'), $file_name);
-            $service->menu_url = $file_name;
+            $filename = $file->getClientOriginalName();
+            $file->move(storage_path('app/public/services'), $filename);
+            $service->menu_url = $filename;
             $service->update();
         }
+
+        $service->update($request->validated());
 
         return response()->json([
             'message' => __('messages.updated', ['attribute' => __('messages.attributes.service')]),

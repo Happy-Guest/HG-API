@@ -22,6 +22,7 @@ class UserRequest extends FormRequest
      */
     public function rules(): array
     {
+        // Store & Update request
         return [
             'name' => 'string|min:3|max:255',
             'email' => [

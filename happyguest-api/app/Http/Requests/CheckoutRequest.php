@@ -21,6 +21,7 @@ class CheckoutRequest extends FormRequest
      */
     public function rules(): array
     {
+        // Store request
         return [
             'user_id' => 'required|exists:users,id',
             'code_id' => 'required|exists:codes,id',
