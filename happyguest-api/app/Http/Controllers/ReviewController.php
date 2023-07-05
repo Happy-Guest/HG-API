@@ -147,27 +147,33 @@ class ReviewController extends Controller
      */
     public function store(ReviewRequest $request)
     {
-        $user = User::findOrFail($request->user_id);
+        // Check is request has user_id
+        if ($request->has('user_id')) {
+            $user = User::findOrFail($request->user_id);
 
-        // Check if user is client
-        if ($user->role != 'C') {
-            return response()->json([
-                'message' => __('messages.invalid_user'),
-            ], 400);
-        }
+            // Check if user is client
+            if ($user->role != 'C') {
+                return response()->json([
+                    'message' => __('messages.invalid_user'),
+                ], 400);
+            }
 
-        // Check if user has a recent review
-        if (auth()->user()->role != 'A' && auth()->user()->last_review != null && auth()->user()->last_review > now()->subWeek()) {
-            return response()->json([
-                'message' => __('messages.recent_review'),
-            ], 429);
+            // Check if user has a recent review
+            if (auth()->user()->role != 'A' && auth()->user()->last_review != null && auth()->user()->last_review > now()->subWeek()) {
+                return response()->json([
+                    'message' => __('messages.recent_review'),
+                ], 429);
+            }
         }
 
         $review = Review::create($request->validated());
 
         // Update user's last review
-        $user->last_review = now();
-        $user->save();
+        if (!$request->has('user_id') && auth()->user()->role != 'A') {
+            $user = User::findOrFail(auth()->user()->id);
+            $user->last_review = now();
+            $user->save();
+        }
 
         return response()->json([
             'message' => __('messages.created2', ['attribute' => __('messages.attributes.review')]),
