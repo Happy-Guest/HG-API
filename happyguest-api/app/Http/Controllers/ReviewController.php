@@ -148,7 +148,7 @@ class ReviewController extends Controller
     public function store(ReviewRequest $request)
     {
         // Check is request has user_id
-        if ($request->has('user_id')) {
+        if ($request->has('user_id') && $request->user_id != null) {
             $user = User::findOrFail($request->user_id);
 
             // Check if user is client
