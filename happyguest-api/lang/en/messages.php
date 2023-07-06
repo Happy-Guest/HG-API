@@ -41,5 +41,6 @@ return [
         'items' => 'Items',
         'reserve' => 'Reserve',
         'service' => 'Service',
+        'hotel' => 'Hotel',
     ],
 ];
