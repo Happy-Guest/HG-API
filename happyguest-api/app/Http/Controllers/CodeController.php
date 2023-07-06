@@ -177,6 +177,13 @@ class CodeController extends Controller
             ], 409);
         }
 
+        // Check if the code is not yet valid
+        if (Code::findOrFail($codeId)->entry_date > date('Y-m-d')) {
+            return response()->json([
+                'message' => __('messages.not_yet_valid', ['attribute' => __('messages.attributes.code')]),
+            ], 409);
+        }
+
         $user = User::findOrFail($id);
 
         // Check if user is not a client
