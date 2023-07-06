@@ -20,6 +20,7 @@ return [
     'invalid_filter' => 'The indicated filter does not exist!',
     'invalid_order' => 'The indicated order does not exist!',
     'checked_out' => 'A check-out has already been made for this code!',
+    'waiting_check_out' => 'This code has a pending check-out request!',
     'invalid_user' => 'The indicated user is not a client!',
     'has_valid_code' => 'The indicated user has a valid code!',
     'has_not_valid_code' => 'The indicated user does not have a valid code!',

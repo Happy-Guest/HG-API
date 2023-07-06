@@ -30,6 +30,7 @@ class CodeResource extends JsonResource
                     'used' => $this->used,
                     'entry_date' => $this->entry_date->format('d/m/Y'),
                     'exit_date' => $this->exit_date->format('d/m/Y'),
+                    'checked_out' => $this->checkout ? $this->checkout->validated : null,
                 ];
             case 'detailed':
                 return [
@@ -39,6 +40,7 @@ class CodeResource extends JsonResource
                     'used' => $this->used,
                     'entry_date' => $this->entry_date->format('d/m/Y'),
                     'exit_date' => $this->exit_date->format('d/m/Y'),
+                    'checked_out' => $this->checkout ? $this->checkout->validated : null,
                     'created_at' => $this->created_at->format('d/m/Y H:i'),
                     'updated_at' => $this->updated_at->format('d/m/Y H:i'),
                 ];

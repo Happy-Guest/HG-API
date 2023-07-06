@@ -31,9 +31,23 @@ class CodeController extends Controller
                 case 'V': // Valid
                     $codes->where('exit_date', '>', date('Y-m-d H:i:s'))
                         ->where('entry_date', '<', date('Y-m-d H:i:s'));
+                    $codes->whereDoesntHave('checkout');
                     break;
                 case 'E': // Expired
                     $codes->where('exit_date', '<', date('Y-m-d H:i:s'));
+                    break;
+                case 'C': // Checked out
+                    $codes->whereHas('checkout', function ($query) {
+                        $query->where('validated', true);
+                    });
+                    break;
+                case 'IC': // In checked out
+                    $codes->whereHas('checkout', function ($query) {
+                        $query->where('validated', false);
+                    });
+                    break;
+                case 'NC': // Not checked out
+                    $codes->whereDoesntHave('checkout');
                     break;
                 case 'U': // Used
                     $codes->where('used', true);
@@ -102,6 +116,20 @@ class CodeController extends Controller
                         $query->where('exit_date', '>', date('Y-m-d H:i:s'))
                             ->where('entry_date', '<', date('Y-m-d H:i:s'));
                     });
+                    $userCodes->whereDoesntHave('code.checkout');
+                    break;
+                case 'C': // Checked out
+                    $userCodes->whereHas('code.checkout', function ($query) {
+                        $query->where('validated', true);
+                    });
+                    break;
+                case 'IC': // In checked out
+                    $userCodes->whereHas('code.checkout', function ($query) {
+                        $query->where('validated', false);
+                    });
+                    break;
+                case 'NC': // Not checked out
+                    $userCodes->whereDoesntHave('code.checkout');
                     break;
                 case 'E': // Expired
                     $userCodes->whereHas('code', function ($query) {

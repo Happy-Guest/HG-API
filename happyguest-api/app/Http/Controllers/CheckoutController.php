@@ -131,8 +131,14 @@ class CheckoutController extends Controller
 
         // Check if the code has already been checked out
         if (Checkout::where('code_id', $request->code_id)->exists()) {
+            if (Checkout::where('code_id', $request->code_id)->first()->validated) {
+                return response()->json([
+                    'message' => __('messages.checked_out'),
+                ], 400);
+            }
+
             return response()->json([
-                'message' => __('messages.checked_out'),
+                'message' => __('messages.waiting_check_out'),
             ], 401);
         }
 
