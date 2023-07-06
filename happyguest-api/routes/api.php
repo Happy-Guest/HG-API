@@ -12,6 +12,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ReserveController;
+use App\Http\Controllers\HotelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -163,6 +164,12 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/', [CheckoutController::class, 'store'])->middleware('valid-code')->name('store');
         Route::patch('/{id}/validate', [CheckoutController::class, 'updateValidate'])->middleware('role:M')->name('updateValidate');
         Route::delete('/{id}', [CheckoutController::class, 'destroy'])->middleware('role:M')->name('destroy');
+    });
+
+    // Hotel
+    Route::prefix('/hotel')->name('hotel.')->group(function () {
+        Route::get('/', [HotelController::class, 'index'])->middleware('role:M')->name('index');
+        Route::patch('/', [HotelController::class, 'update'])->middleware('role:M')->name('update');
     });
 
     // Statistics (Only Managers & Admins)
