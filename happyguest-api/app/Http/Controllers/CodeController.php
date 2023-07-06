@@ -29,7 +29,8 @@ class CodeController extends Controller
         if ($request->has('filter') && $request->filter != 'ALL') {
             switch ($request->filter) {
                 case 'V': // Valid
-                    $codes->where('exit_date', '>', date('Y-m-d H:i:s'))->where('entry_date', '<', date('Y-m-d H:i:s'));
+                    $codes->where('exit_date', '>', date('Y-m-d H:i:s'))
+                        ->where('entry_date', '<', date('Y-m-d H:i:s'));
                     break;
                 case 'E': // Expired
                     $codes->where('exit_date', '<', date('Y-m-d H:i:s'));
