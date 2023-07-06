@@ -29,6 +29,7 @@ return [
     'important_service' => 'This service is important and cannot be deleted!',
     'invalid_association' => ':attribute cannot be associated to that service!',
     'item_out_of_stock' => 'The :item is out of stock!',
+    'service_limit_reached' => 'We have reached the limit of orders for the selected time. Please try again at another time!',
     'attributes' => [
         'user' => 'User',
         'code' => 'Code',

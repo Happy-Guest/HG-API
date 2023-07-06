@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Item;
+use App\Models\Service;
 use App\Http\Resources\OrderResource;
 use App\Http\Requests\OrderRequest;
 use App\Http\Requests\DeleteRequest;
@@ -184,6 +185,21 @@ class OrderController extends Controller
      */
     public function store(OrderRequest $request)
     {
+        $service = Service::findOrFail($request->service_id);
+
+        // Check if limit of reserves per hour is reached
+        if ($service->limit) {
+            $orders = Order::where('service_id', $request->service_id)
+                ->where('time', '>=', date('Y/m/d H:i', strtotime($request->time) - 3600))
+                ->count();
+
+            if ($orders >= $service->limit) {
+                return response()->json([
+                    'message' => __('messages.service_limit_reached'),
+                ], 400);
+            }
+        }
+
         $order = Order::create($request->validated());
 
         // Create the order items

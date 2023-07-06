@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reserve;
+use App\Models\Service;
 use App\Http\Resources\ReserveResource;
 use App\Http\Requests\ReserveRequest;
 use App\Http\Requests\DeleteRequest;
@@ -160,6 +161,21 @@ class ReserveController extends Controller
      */
     public function store(ReserveRequest $request)
     {
+        $service = Service::findOrFail($request->service_id);
+
+        // Check if limit of reserves per hour is reached
+        if ($service->limit) {
+            $reserves = Reserve::where('service_id', $request->service_id)
+                ->where('time', '>=', date('Y/m/d H:i', strtotime($request->time) - 3600))
+                ->count();
+
+            if ($reserves >= $service->limit) {
+                return response()->json([
+                    'message' => __('messages.service_limit_reached'),
+                ], 400);
+            }
+        }
+
         $reserve = Reserve::create($request->validated());
 
         return response()->json([
