@@ -36,8 +36,6 @@ class HotelController extends Controller
 
         $hotel->update($request->validated());
 
-
-
         return response()->json([
             'message' => __('messages.updated', ['attribute' => __('messages.attributes.hotel')]),
             'hotel' => new HotelResource($hotel),

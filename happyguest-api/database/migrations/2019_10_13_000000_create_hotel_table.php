@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('phone');
             $table->string('email');
             $table->string('address');
-            $table->string('website');
-            $table->integer('capacity');
-            $table->string('policies');
-            $table->string('access');
+            $table->string('website')->nullable();
+            $table->integer('capacity')->nullable();
+            $table->string('policies')->nullable();
+            $table->string('access')->nullable();
             $table->timestamps();
         });
     }
