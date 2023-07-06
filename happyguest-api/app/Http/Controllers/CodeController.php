@@ -276,7 +276,7 @@ class CodeController extends Controller
         $hasValidCode = false;
         if ($userCodes) {
             foreach ($userCodes as $userCode) {
-                if (Code::findOrFail($userCode->code_id)->exit_date > date('Y-m-d')) {
+                if ($userCode->code->entry_date <= date('Y-m-d') && $userCode->code->exit_date >= date('Y-m-d' && !$userCode->code->checkout)) {
                     $hasValidCode = true;
                     break;
                 }
