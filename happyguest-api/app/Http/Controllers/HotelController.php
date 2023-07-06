@@ -24,15 +24,9 @@ class HotelController extends Controller
      * @param  HotelRequest  $request
      * @return HotelResource
      */
-    public function update(HotelRequest $request,)
+    public function update(HotelRequest $request)
     {
         $hotel = Hotel::findOrFail(1);
-
-        if (auth()->user()->role != 'A' && auth()->user()->role != 'M') {
-            return response()->json([
-                'message' => __('messages.unauthorized'),
-            ], 401);
-        }
 
         $hotel->update($request->validated());
 

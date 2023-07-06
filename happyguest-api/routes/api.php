@@ -168,7 +168,7 @@ Route::middleware('auth:api')->group(function () {
 
     // Hotel
     Route::prefix('/hotel')->name('hotel.')->group(function () {
-        Route::get('/', [HotelController::class, 'index'])->middleware('role:M')->name('index');
+        Route::get('/', [HotelController::class, 'index'])->name('index');
         Route::patch('/', [HotelController::class, 'update'])->middleware('role:M')->name('update');
     });
 
