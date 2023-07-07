@@ -166,9 +166,11 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/{id}', [CheckoutController::class, 'destroy'])->middleware('role:M')->name('destroy');
     });
 
-    // Hotel
-    Route::prefix('/hotel')->name('hotel.')->group(function () {
+    // Hotels
+    Route::prefix('/hotels')->name('hotels.')->group(function () {
         Route::get('/', [HotelController::class, 'index'])->name('index');
+        Route::get('/{id}', [HotelController::class, 'show'])->name('show');
+        Route::post('/', [HotelController::class, 'store'])->middleware('role:A')->name('store');
         Route::patch('/', [HotelController::class, 'update'])->middleware('role:M')->name('update');
     });
 
