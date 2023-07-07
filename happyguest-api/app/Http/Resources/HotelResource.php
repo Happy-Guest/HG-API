@@ -24,6 +24,7 @@ class HotelResource extends JsonResource
             'capacity' => $this->capacity,
             'policies' => $this->policies,
             'access' => $this->access,
+            'comodities' => $this->comodities,
             'created_at' => $this->created_at->format('d/m/Y'),
             'updated_at' => $this->updated_at->format('d/m/Y'),
         ];

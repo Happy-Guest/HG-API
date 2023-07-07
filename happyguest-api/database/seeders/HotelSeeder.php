@@ -23,8 +23,9 @@ class HotelSeeder extends Seeder
             'address' => 'Rua do Hotel 1, 2400-000 Leiria',
             'website' => 'www.hotelLeiria.pt',
             'capacity' => 115,
-            'policies' => 'Não é permitido fumar, Animais de estimação não são permitidos, Check-in a partir das 15:00, Check-out até às 12:00',
-            'access' => 'Acesso a pessoas com mobilidade reduzida, Elevador, Estacionamento, Internet, Ar condicionado, Bar, Restaurante, Ginásio, Piscina, SPA, Sauna, Jacuzzi, Sala de eventos, Serviço de quartos, Serviço de limpeza, Serviço de bagagem',
+            'policies' => 'Não é permitido fumar, Não são permitidos animais de estimação, Check-in a partir das 15:00, Check-out até às 12:00',
+            'access' => 'Acesso a pessoas com mobilidade reduzida, Elevador, Estacionamento, WC adaptado, Entrada de rua particular',
+            'comodities' => 'Ar condicionado, TV, Telefone, Internet, Secador de cabelo, Cofre, Mini-bar, Serviço de quartos, Serviço de limpeza, Serviço de bagagem, Bar, Restaurante, Ginásio, Piscina, SPA, Sauna, Jacuzzi, Sala de eventos',
             'created_at' => '2023-01-01 00:00',
             'updated_at' => $now,
         ];

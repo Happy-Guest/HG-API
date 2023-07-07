@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('capacity')->nullable();
             $table->string('policies')->nullable();
             $table->string('access')->nullable();
+            $table->string('comodities')->nullable();
             $table->timestamps();
         });
     }

@@ -30,6 +30,7 @@ class HotelRequest extends FormRequest
             'capacity' => 'nullable|numeric|min:1|max:999',
             'policies' => 'nullable|string|min:5|max:255',
             'access' => 'nullable|string|min:5|max:255',
+            'comodities' => 'nullable|string|min:5|max:255',
         ];
     }
 }

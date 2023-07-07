@@ -29,7 +29,8 @@ class Hotel extends Model
         'website',
         'capacity',
         'policies',
-        'access'
+        'access',
+        'comodities',
     ];
 
     /**
