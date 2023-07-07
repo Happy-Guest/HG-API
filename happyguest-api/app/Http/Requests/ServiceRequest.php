@@ -28,7 +28,7 @@ class ServiceRequest extends FormRequest
             'email' => 'nullable|email|min:5|max:255',
             'phone' => 'nullable|numeric|digits_between:9, 12',
             'type' => 'required|in:C,B,F,R,O', // C - Cleaning, B - Object, F - Food, R - Restaurant, O - Other
-            'schedule' => 'required|string|max:255',
+            'schedule' => 'required|string|max:255|regex:regex:/^(\d{1,2}:\d{2})(?:-(?:(?!.*-\1)(\d{1,2}:\d{2})))*$/', // Only accept time format 00:00-00:00 or 00:00 (in pairs)
             'occupation' => 'nullable|numeric|min:0|max:999999',
             'location' => 'nullable|string|max:255',
             'limit' => 'nullable|numeric|min:0|max:999999',
