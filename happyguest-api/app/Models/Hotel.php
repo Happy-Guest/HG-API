@@ -23,14 +23,18 @@ class Hotel extends Model
      */
     protected $fillable = [
         'description',
+        'descriptionEN',
         'phone',
         'email',
         'address',
         'website',
         'capacity',
         'policies',
+        'policiesEN',
         'access',
+        'accessEN',
         'comodities',
+        'comoditiesEN',
     ];
 
     /**

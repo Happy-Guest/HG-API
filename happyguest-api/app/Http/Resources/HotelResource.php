@@ -17,14 +17,18 @@ class HotelResource extends JsonResource
         return [
             'id' => $this->id,
             'description' => $this->description,
+            'descriptionEN' => $this->descriptionEN,
             'phone' => $this->phone,
             'email' => $this->email,
             'address' => $this->address,
             'website' => $this->website,
             'capacity' => $this->capacity,
             'policies' => $this->policies,
+            'policiesEN' => $this->policiesEN,
             'access' => $this->access,
+            'accessEN' => $this->accessEN,
             'comodities' => $this->comodities,
+            'comoditiesEN' => $this->comoditiesEN,
             'created_at' => $this->created_at->format('d/m/Y'),
             'updated_at' => $this->updated_at->format('d/m/Y'),
         ];

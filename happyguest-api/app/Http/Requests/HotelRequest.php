@@ -23,14 +23,18 @@ class HotelRequest extends FormRequest
     {
         return [
             'description' => 'required|string|min:5|max:255',
+            'descriptionEN' => 'required|string|min:5|max:255',
             'phone' => 'required|numeric|digits_between:9, 12',
             'email' => 'required|email|min:5|max:255',
             'address' => 'required|string|min:5|max:255',
             'website' => 'nullable|string|min:5|max:255',
             'capacity' => 'nullable|numeric|min:1|max:999',
             'policies' => 'nullable|string|min:5|max:255',
+            'policiesEN' => 'nullable|string|min:5|max:255',
             'access' => 'nullable|string|min:5|max:255',
+            'accessEN' => 'nullable|string|min:5|max:255',
             'comodities' => 'nullable|string|min:5|max:255',
+            'comoditiesEN' => 'nullable|string|min:5|max:255',
         ];
     }
 }
