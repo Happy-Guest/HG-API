@@ -6,7 +6,7 @@ use DateTime;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class HotelsSeeder extends Seeder
+class HotelSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -30,6 +30,6 @@ class HotelsSeeder extends Seeder
             'updated_at' => $now,
         ];
 
-        DB::table('hotels')->insert($hotel);
+        DB::table('hotel')->insert($hotel);
     }
 }
