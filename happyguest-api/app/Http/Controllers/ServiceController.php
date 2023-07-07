@@ -110,6 +110,24 @@ class ServiceController extends Controller
      */
     public function update(ServiceRequest $request, int $id)
     {
+        // Schedule format: 00:00-00:00-00:00-00:00 or 00:00-00:00 (in pairs)
+        // Separate schedule and check the parts are bigger than the previous one
+        $schedule = explode('-', $request->schedule);
+        for ($i = 0; $i < count($schedule) - 1; $i++) {
+            $currentPart = strtotime($schedule[$i]);
+            $nextPart = strtotime($schedule[$i + 1]);
+
+            if ($currentPart >= $nextPart) {
+                return response()->json([
+                    'errors' => [
+                        'schedule' => [
+                            __('messages.schedule_format'),
+                        ],
+                    ],
+                ], 422);
+            }
+        }
+
         $service = Service::findOrFail($id);
 
         // Check if user has uploaded a menu

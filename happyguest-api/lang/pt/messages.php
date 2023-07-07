@@ -29,6 +29,7 @@ return [
     'important_service' => 'Este serviço é importante e não pode ser eliminado!',
     'invalid_association' => ':attribute não pode ser associado a esse serviço!',
     'item_out_of_stock' => 'O :item está fora de stock!',
+    'schedule_format' => 'O formato do horário é inválido!',
     'service_limit_reached' => 'Atingimos o limite de pedidos para a hora selecionada. Por favor, tente novamente em outro horário!',
     'attributes' => [
         'user' => 'Utilizador',
