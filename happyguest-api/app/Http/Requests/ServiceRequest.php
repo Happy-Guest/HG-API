@@ -35,6 +35,7 @@ class ServiceRequest extends FormRequest
             'description' => 'required|string|min:5|max:255',
             'descriptionEN' => 'required|string|min:5|max:255',
             'menu' => 'nullable|file|mimes:pdf|max:10240',
+            'active' => 'boolean',
         ];
     }
 }

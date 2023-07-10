@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('description');
             $table->string('descriptionEN');
             $table->string('menu_url')->nullable();
+            $table->boolean('active')->default(true);
             $table->timestamps();
             $table->softDeletes();
         });

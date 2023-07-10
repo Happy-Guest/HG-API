@@ -30,6 +30,7 @@ class Service extends Model
         'description',
         'descriptionEN',
         'menu_url',
+        'active',
     ];
 
     /**

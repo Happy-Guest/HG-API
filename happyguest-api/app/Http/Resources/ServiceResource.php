@@ -28,6 +28,7 @@ class ServiceResource extends JsonResource
                     'name' => $this->name,
                     'type' => $this->type,
                     'schedule' => $this->schedule,
+                    'active' => $this->active,
                 ];
             case 'detailed':
                 return [
@@ -56,6 +57,7 @@ class ServiceResource extends JsonResource
                         ];
                     }),
                     'menu_url' => $this->menu_url,
+                    'active' => $this->active,
                     'created_at' => $this->created_at->format('d/m/Y'),
                     'updated_at' => $this->updated_at->format('d/m/Y'),
                 ];
