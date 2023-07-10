@@ -35,7 +35,7 @@ class ReserveRequest extends FormRequest
             'user_name' => 'nullable|string|min:3|max:255',
             'nr_people' => 'required|numeric|min:1|max:999',
             'time' => 'required|dateformat:Y/m/d H:i|after_or_equal:now',
-            'status' => 'required|in:P,A,R,C', // P: Pending, A: Accepted, R: Rejected, C: Canceled
+            'status' => 'nullable|in:P,A,R,C', // P: Pending, A: Accepted, R: Rejected, C: Canceled
             'service_id' => 'required|numeric|exists:services,id',
             'comment' => 'nullable|string|min:5|max:255',
         ];
