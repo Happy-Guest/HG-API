@@ -29,12 +29,12 @@ class CodeController extends Controller
         if ($request->has('filter') && $request->filter != 'ALL') {
             switch ($request->filter) {
                 case 'V': // Valid
-                    $codes->where('exit_date', '>', date('Y-m-d H:i:s'))
-                        ->where('entry_date', '<', date('Y-m-d H:i:s'));
+                    $codes->where('exit_date', '>=', date('Y-m-d'))
+                        ->where('entry_date', '<=', date('Y-m-d'));
                     $codes->whereDoesntHave('checkout');
                     break;
                 case 'E': // Expired
-                    $codes->where('exit_date', '<', date('Y-m-d H:i:s'));
+                    $codes->where('exit_date', '<', date('Y-m-d'));
                     break;
                 case 'C': // Checked out
                     $codes->whereHas('checkout', function ($query) {
@@ -113,8 +113,8 @@ class CodeController extends Controller
             switch ($request->filter) {
                 case 'V': // Valid
                     $userCodes->whereHas('code', function ($query) {
-                        $query->where('exit_date', '>', date('Y-m-d H:i:s'))
-                            ->where('entry_date', '<', date('Y-m-d H:i:s'));
+                        $query->where('exit_date', '>=', date('Y-m-d'))
+                            ->where('entry_date', '<=', date('Y-m-d'));
                     });
                     $userCodes->whereDoesntHave('code.checkout');
                     break;
@@ -133,7 +133,7 @@ class CodeController extends Controller
                     break;
                 case 'E': // Expired
                     $userCodes->whereHas('code', function ($query) {
-                        $query->where('exit_date', '<', date('Y-m-d H:i:s'));
+                        $query->where('exit_date', '<', date('Y-m-d'));
                     });
                     break;
                 case 'U': // Used
