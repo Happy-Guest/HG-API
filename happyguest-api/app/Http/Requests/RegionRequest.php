@@ -24,9 +24,9 @@ class RegionRequest extends FormRequest
         return [
             'description' => 'required|string|min:5|max:255',
             'descriptionEN' => 'required|string|min:5|max:255',
-            'proximities' => 'nullable|array|min:1',
-            'activities' => 'nullable|array|min:1',
-            'websites' => 'nullable|array|min:1',
+            'proximities' => 'nullable|array',
+            'activities' => 'nullable|array',
+            'websites' => 'nullable|array',
         ];
     }
 }
