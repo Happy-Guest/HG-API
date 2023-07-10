@@ -203,7 +203,7 @@ class OrderController extends Controller
         $order = Order::create($request->validated());
 
         // Create the order items
-        if ($request->has('items')) {
+        if ($request->has('items') && $request->items != null) {
             $orderItems = [];
             foreach ($request->items as $requestItem) {
                 $orderItems[] = new OrderItem([

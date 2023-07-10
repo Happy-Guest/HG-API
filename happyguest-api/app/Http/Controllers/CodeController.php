@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DeleteRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class CodeController extends Controller
 {
@@ -198,15 +199,18 @@ class CodeController extends Controller
             ], 409);
         }
 
+        $entryDate = Carbon::parse($code->entry_date)->setTimezone('Europe/lisbon')->toDateString();
+        $exitDate = Carbon::parse($code->exit_date)->setTimezone('Europe/lisbon')->toDateString();
+
         // Check if the code is still valid
-        if ($code->exit_date < date('Y-m-d')) {
+        if ($exitDate < date('Y-m-d')) {
             return response()->json([
                 'message' => __('messages.expired', ['attribute' => __('messages.attributes.code')]),
             ], 409);
         }
 
         // Check if the code is not yet valid
-        if ($code->entry_date > date('Y-m-d')) {
+        if ($entryDate > date('Y-m-d')) {
             return response()->json([
                 'message' => __('messages.not_yet_valid', ['attribute' => __('messages.attributes.code')]),
             ], 409);
@@ -283,7 +287,9 @@ class CodeController extends Controller
         $hasValidCode = false;
         if ($userCodes) {
             foreach ($userCodes as $userCode) {
-                if ($userCode->code->entry_date <= date('Y-m-d') && $userCode->code->exit_date >= date('Y-m-d')) {
+                $entryDate = Carbon::parse($userCode->code->entry_date)->setTimezone('Europe/lisbon')->toDateString();
+                $exitDate = Carbon::parse($userCode->code->exit_date)->setTimezone('Europe/lisbon')->toDateString();
+                if ($entryDate <= date('Y-m-d') && $exitDate >= date('Y-m-d')) {
                     // Check if code has a checkout
                     if (!$userCode->code->checkout) {
                         $hasValidCode = true;
