@@ -38,7 +38,7 @@ class OrderRequest extends FormRequest
             'service_id' => 'required|numeric|exists:services,id',
             'items' => 'nullable|array|min:1',
             'items.*.id' => 'required|numeric|exists:items,id',
-            'price' => 'required|numeric|min:0|max:999999.99',
+            'price' => 'nullable|numeric|min:0|max:999999.99',
             'comment' => 'nullable|string|min:5|max:255',
         ];
     }
