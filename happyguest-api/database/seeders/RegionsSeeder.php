@@ -21,28 +21,88 @@ class regionsSeeder extends Seeder
             'descriptionEN' => 'Leiria is strategically located, roughly halfway between Lisbon and Porto. Integrated in the Central region, the “city of Lis” is the gateway to a vast and rich territory, which includes beach, nature, heritage and culture',
             'proximities' => json_encode(
                 [
-                    ['Leiria Shopping', 'O maior centro comercial da região', 'The largest shopping center in the region', '650m', 'https://goo.gl/maps/izC4nED89TkENn3y9'],
-                    ['Hôma Leiria', 'Loja de decoração', 'Decoration store', '1.1km', 'https://goo.gl/maps/43mzr7sFgYRfEsob9'],
-                    ['Parque Verde', 'Parque amplo para passear', 'Large park for strolling', '1.2km', 'https://goo.gl/maps/JKNGiSJ1P24MEEVM9'],
-                    ['McDonald - D. Dinis', 'Restaurante de fast food', 'Fast food restaurant', '1.3km', 'https://goo.gl/maps/xGSSHFtuX1cMWfte7'],
-                    ['Pingo Doce - D. Dinis', 'Supermercado', 'Supermarket', '1.3km', 'https://goo.gl/maps/BoQTdxGd2TdSy3CQ9'],
-                    ['Jardim Luís de Camões', 'Jardim', 'Garden', '2.5km', 'https://goo.gl/maps/QeeK1t4PeQpVoRAq6'],
-                    ['Cinema City Leiria', 'Cinema', 'Cinema', '2.8km', 'https://goo.gl/maps/pJ5ehrBGcqCqHWfz6'],
-                    ['Castelo de Leiria', 'Castelo medieval', 'Medieval castle', '2.8km', 'https://goo.gl/maps/hqhvLmGtKWMvWveWA'],
-                    ['Estádio Dr. Magalhães Pessoa', 'Estádio de futebol', 'Football stadium', '3km', 'https://goo.gl/maps/5csPcTgnJfeJxyaM6'],
-                    ['Hospital Santo André - Hospital Distrital de Leiria', 'Hospital', 'Hospital', '4.5km', 'https://goo.gl/maps/7esaqYUi1uthvyfY9']
+                    [
+                        'name' => 'Leiria Shopping',
+                        'description' => 'O maior centro comercial da região',
+                        'description_en' => 'The largest shopping center in the region',
+                        'distance' => '650m',
+                        'map_link' => 'https://goo.gl/maps/izC4nED89TkENn3y9'
+                    ],
+                    [
+                        'name' => 'Hôma Leiria',
+                        'description' => 'Loja de decoração',
+                        'description_en' => 'Decoration store',
+                        'distance' => '1.1km',
+                        'map_link' => 'https://goo.gl/maps/43mzr7sFgYRfEsob9'
+                    ],
+                    [
+                        'name' => 'Parque Verde',
+                        'description' => 'Parque amplo para passear',
+                        'description_en' => 'Large park for strolling',
+                        'distance' => '1.2km',
+                        'map_link' => 'https://goo.gl/maps/JKNGiSJ1P24MEEVM9'
+                    ],
+                    [
+                        'name' => 'McDonald - D. Dinis',
+                        'description' => 'Restaurante de fast food',
+                        'description_en' => 'Fast food restaurant',
+                        'distance' => '1.3km',
+                        'map_link' => 'https://goo.gl/maps/xGSSHFtuX1cMWfte7'
+                    ],
+                    [
+                        'name' => 'Pingo Doce - D. Dinis',
+                        'description' => 'Supermercado',
+                        'description_en' => 'Supermarket',
+                        'distance' => '1.3km',
+                        'map_link' => 'https://goo.gl/maps/BoQTdxGd2TdSy3CQ9'
+                    ],
+                    [
+                        'name' => 'Jardim Luís de Camões',
+                        'description' => 'Jardim',
+                        'description_en' => 'Garden',
+                        'distance' => '2.5km',
+                        'map_link' => 'https://goo.gl/maps/QeeK1t4PeQpVoRAq6'
+                    ],
+                    [
+                        'name' => 'Cinema City Leiria',
+                        'description' => 'Cinema',
+                        'description_en' => 'Cinema',
+                        'distance' => '2.8km',
+                        'map_link' => 'https://goo.gl/maps/pJ5ehrBGcqCqHWfz6'
+                    ],
+                    [
+                        'name' => 'Castelo de Leiria',
+                        'description' => 'Castelo medieval',
+                        'description_en' => 'Medieval castle',
+                        'distance' => '2.8km',
+                        'map_link' => 'https://goo.gl/maps/hqhvLmGtKWMvWveWA'
+                    ],
+                    [
+                        'name' => 'Estádio Dr. Magalhães Pessoa',
+                        'description' => 'Estádio de futebol',
+                        'description_en' => 'Football stadium',
+                        'distance' => '3km',
+                        'map_link' => 'https://goo.gl/maps/5csPcTgnJfeJxyaM6'
+                    ],
+                    [
+                        'name' => 'Hospital Santo André - Hospital Distrital de Leiria',
+                        'description' => 'Hospital',
+                        'description_en' => 'Hospital',
+                        'distance' => '4.5km',
+                        'map_link' => 'https://goo.gl/maps/7esaqYUi1uthvyfY9'
+                    ]
                 ]
             ), //name, description, descriptionEN, distance, time on foot
             'activities' => json_encode(
                 [
-                    ['Rota Leiria Histórica', 'Percurso pedestre por zona históricas de leiria - 4km', 'Pedestrian route through historical areas of leiria - 4km', 'https://www.visiteleiria.pt/percursos-pedestres/rota-leiria-historica/'],
-                    ['Visita castelo Leiria', 'Visita ao castelo de Leiria', 'Visit to Leiria castle', 'https://www.visiteleiria.pt/en/pontos-de-interesse/heritage/leiria-castle/'],
-                    ['Escape Room Leiria', 'Jogo interativo com puzzels e mistério', 'Interactive game with puzzles and mystery', 'https://www.escaperoomleiria.pt/'],
-                    ['Laserquest', 'Jogo de laser tag', 'Laser tag game', 'https://www.laserquest.pt/'],
+                    ['name' => 'Rota Leiria Histórica', 'description' => 'Percurso pedestre por zona históricas de leiria - 4km', 'description_en' => 'Pedestrian route through historical areas of leiria - 4km', 'link' => 'https://www.visiteleiria.pt/percursos-pedestres/rota-leiria-historica/'],
+                    ['name' => 'Visita castelo Leiria', 'description' => 'Visita ao castelo de Leiria', 'description_en' => 'Visit to Leiria castle', 'link' => 'https://www.visiteleiria.pt/en/pontos-de-interesse/heritage/leiria-castle/'],
+                    ['name' => 'Escape Room Leiria', 'description' => 'Jogo interativo com puzzels e mistério', 'description_en' => 'Interactive game with puzzles and mystery', 'link' => 'https://www.escaperoomleiria.pt/'],
+                    ['name' => 'Laserquest', 'description' => 'Jogo de laser tag', 'description_en' => 'Laser tag game', 'link' => 'https://www.laserquest.pt/'],
                 ]
             ),
             'websites' => json_encode(
-                [['Visite Leiria', 'https://www.visiteleiria.pt/'], ['Agenda Cultural', 'https://www.viralagenda.com/pt/leiria']]
+                [['name' => 'Visite Leiria', 'link' => 'https://www.visiteleiria.pt/'], ['name' => 'Agenda Cultural', 'link' => 'https://www.viralagenda.com/pt/leiria']]
             ),
             'created_at' => '2023-01-01 00:00',
             'updated_at' => $now,
