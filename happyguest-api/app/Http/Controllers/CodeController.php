@@ -187,9 +187,9 @@ class CodeController extends Controller
      */
     public function associate(int $id, string $code)
     {
-        $codeId = Code::where('code', $code)->firstOrFail()->id;
+        $code = Code::where('code', $code)->firstOrFail();
 
-        $userCode = UserCode::where('user_id', $id)->where('code_id', $codeId)->first();
+        $userCode = UserCode::where('user_id', $id)->where('code_id', $code->id)->first();
 
         // Check if code is already associated to the user
         if ($userCode) {
@@ -199,21 +199,21 @@ class CodeController extends Controller
         }
 
         // Check if the code is still valid
-        if (Code::findOrFail($codeId)->exit_date < date('Y-m-d')) {
+        if ($code->exit_date < date('Y-m-d')) {
             return response()->json([
                 'message' => __('messages.expired', ['attribute' => __('messages.attributes.code')]),
             ], 409);
         }
 
         // Check if the code is not yet valid
-        if (Code::findOrFail($codeId)->entry_date > date('Y-m-d')) {
+        if ($code->entry_date > date('Y-m-d')) {
             return response()->json([
                 'message' => __('messages.not_yet_valid', ['attribute' => __('messages.attributes.code')]),
             ], 409);
         }
 
         // Check if the code is in checkout
-        if (Code::findOrFail($codeId)->checkout) {
+        if ($code->checkout) {
             return response()->json([
                 'message' => __('messages.in_checkout', ['attribute' => __('messages.attributes.code')]),
             ], 409);
@@ -230,10 +230,10 @@ class CodeController extends Controller
 
         UserCode::create([
             'user_id' => $id,
-            'code_id' => $codeId,
+            'code_id' => $code->id,
         ]);
 
-        Code::findOrFail($codeId)->update([
+        Code::findOrFail($code->id)->update([
             'used' => true,
         ]);
 
