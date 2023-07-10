@@ -13,6 +13,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\ReserveController;
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\RegionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -172,6 +173,14 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/{id}', [HotelController::class, 'show'])->name('show');
         Route::post('/', [HotelController::class, 'store'])->middleware('role:A')->name('store');
         Route::patch('/{id}', [HotelController::class, 'update'])->middleware('role:M')->name('update');
+    });
+
+    // Regions
+    Route::prefix('/regions')->name('regions.')->group(function () {
+        Route::get('/', [RegionController::class, 'index'])->name('index');
+        Route::get('/{id}', [RegionController::class, 'show'])->name('show');
+        Route::post('/', [RegionController::class, 'store'])->middleware('role:A')->name('store');
+        Route::patch('/{id}', [RegionController::class, 'update'])->middleware('role:M')->name('update');
     });
 
     // Statistics (Only Managers & Admins)

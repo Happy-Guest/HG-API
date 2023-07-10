@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Region;
 use Illuminate\Support\Facades\File;
 use Illuminate\Database\Seeder;
 
@@ -14,6 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             HotelsSeeder::class,
+            RegionsSeeder::class,
             UsersSeeder::class,
             CodesSeeder::class,
             UserCodesSeeder::class,

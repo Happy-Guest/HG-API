@@ -44,5 +44,6 @@ return [
         'reserve' => 'Reserva',
         'service' => 'Serviço',
         'hotel' => 'Hotel',
+        'region' => 'Região',
     ],
 ];
