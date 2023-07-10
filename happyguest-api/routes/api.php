@@ -171,7 +171,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/', [HotelController::class, 'index'])->name('index');
         Route::get('/{id}', [HotelController::class, 'show'])->name('show');
         Route::post('/', [HotelController::class, 'store'])->middleware('role:A')->name('store');
-        Route::patch('/', [HotelController::class, 'update'])->middleware('role:M')->name('update');
+        Route::patch('/{id}', [HotelController::class, 'update'])->middleware('role:M')->name('update');
     });
 
     // Statistics (Only Managers & Admins)

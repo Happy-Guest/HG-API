@@ -49,11 +49,12 @@ class HotelController extends Controller
      * Update the information hotel in storage.
      *
      * @param  HotelRequest  $request
+     * @param  int  $id
      * @return HotelResource
      */
-    public function update(HotelRequest $request)
+    public function update(HotelRequest $request, int $id)
     {
-        $hotel = Hotel::findOrFail(1);
+        $hotel = Hotel::findOrFail($id);
 
         $hotel->update($request->validated());
 

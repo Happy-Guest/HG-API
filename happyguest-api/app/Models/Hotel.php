@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Hotel extends Model
 {
     use HasFactory;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -26,8 +26,8 @@ class Hotel extends Model
         'policiesEN',
         'access',
         'accessEN',
-        'comodities',
-        'comoditiesEN',
+        'commodities',
+        'commoditiesEN',
     ];
 
     /**

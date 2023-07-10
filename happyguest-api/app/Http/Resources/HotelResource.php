@@ -27,8 +27,8 @@ class HotelResource extends JsonResource
             'policiesEN' => $this->policiesEN,
             'access' => $this->access,
             'accessEN' => $this->accessEN,
-            'comodities' => $this->comodities,
-            'comoditiesEN' => $this->comoditiesEN,
+            'commodities' => $this->commodities,
+            'commoditiesEN' => $this->commoditiesEN,
             'created_at' => $this->created_at->format('d/m/Y'),
             'updated_at' => $this->updated_at->format('d/m/Y'),
         ];

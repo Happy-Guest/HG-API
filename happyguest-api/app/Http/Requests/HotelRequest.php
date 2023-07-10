@@ -33,8 +33,8 @@ class HotelRequest extends FormRequest
             'policiesEN' => 'nullable|string|min:5|max:255',
             'access' => 'nullable|string|min:5|max:255',
             'accessEN' => 'nullable|string|min:5|max:255',
-            'comodities' => 'nullable|string|min:5|max:255',
-            'comoditiesEN' => 'nullable|string|min:5|max:255',
+            'commodities' => 'nullable|string|min:5|max:255',
+            'commoditiesEN' => 'nullable|string|min:5|max:255',
         ];
     }
 }

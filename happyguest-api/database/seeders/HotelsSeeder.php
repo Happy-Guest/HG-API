@@ -28,8 +28,8 @@ class HotelsSeeder extends Seeder
             'policiesEN' => 'No smoking allowed, No pets allowed, Check-in from 15:00, Check-out until 12:00',
             'access' => 'Acesso a pessoas com mobilidade reduzida, Elevador, Estacionamento, WC adaptado, Entrada de rua particular',
             'accessEN' => 'Accessible to people with reduced mobility, Elevator, Parking, Adapted restroom, Private street entrance',
-            'comodities' => 'Ar condicionado, TV, Telefone, Internet, Secador de cabelo, Cofre, Mini-bar, Serviço de quartos, Serviço de limpeza, Serviço de bagagem, Bar, Restaurante, Ginásio, Piscina, SPA, Sauna, Jacuzzi, Sala de eventos',
-            'comoditiesEN' => 'Air conditioning, TV, Telephone, Internet, Hairdryer, Safe, Mini-bar, Room service, Cleaning service, Luggage service, Bar, Restaurant, Gym, Pool, SPA, Sauna, Jacuzzi, Event room',
+            'commodities' => 'Ar condicionado, TV, Telefone, Internet, Secador de cabelo, Cofre, Mini-bar, Serviço de quartos, Serviço de limpeza, Serviço de bagagem, Bar, Restaurante, Ginásio, Piscina, SPA, Sauna, Jacuzzi, Sala de eventos',
+            'commoditiesEN' => 'Air conditioning, TV, Telephone, Internet, Hairdryer, Safe, Mini-bar, Room service, Cleaning service, Luggage service, Bar, Restaurant, Gym, Pool, SPA, Sauna, Jacuzzi, Event room',
             'created_at' => '2023-01-01 00:00',
             'updated_at' => $now,
         ];
