@@ -212,6 +212,13 @@ class CodeController extends Controller
             ], 409);
         }
 
+        // Check if the code is in checkout
+        if (Code::findOrFail($codeId)->checkout) {
+            return response()->json([
+                'message' => __('messages.in_checkout', ['attribute' => __('messages.attributes.code')]),
+            ], 409);
+        }
+
         $user = User::findOrFail($id);
 
         // Check if user is not a client
