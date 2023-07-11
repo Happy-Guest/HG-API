@@ -87,7 +87,7 @@ class ItemsSeeder extends Seeder
             [
                 'name' => 'Adapatador de Tomada',
                 'nameEN' => 'Plug Adapter',
-                'price' => null,
+                'price' => 2,
                 'type' => 'O',
                 'category' => 'other',
                 'stock' => 10,
@@ -98,7 +98,7 @@ class ItemsSeeder extends Seeder
             [
                 'name' => 'Jornal do Dia',
                 'nameEN' => 'Daily Newspaper',
-                'price' => null,
+                'price' => 1,
                 'type' => 'O',
                 'category' => 'other',
                 'stock' => 20,
