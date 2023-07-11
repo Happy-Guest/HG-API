@@ -29,7 +29,7 @@ class OrderResource extends JsonResource
                     'service' => [
                         'id' => $this->service->id,
                         'name' => $this->service->name,
-                        'nameEM' => $this->service->nameEN,
+                        'nameEN' => $this->service->nameEN,
                         'type' => $this->service->type,
                     ],
                     'room' => $this->room,
