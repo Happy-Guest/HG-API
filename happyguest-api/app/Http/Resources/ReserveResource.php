@@ -48,6 +48,7 @@ class ReserveResource extends JsonResource
                     'status' => $this->status,
                     'service' => [
                         'id' => $this->service->id,
+                        'name' => $this->service->name,
                         'nameEN' => $this->service->nameEN,
                         'type' => $this->service->type,
                     ],
