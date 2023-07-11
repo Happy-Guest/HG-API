@@ -112,7 +112,7 @@ class OrderController extends Controller
      *
      * @param int $id
      * @param Request $request
-     * @return OrderResource
+     * @return OrderCollection
      */
     public function user(int $id, Request $request)
     {
@@ -175,7 +175,7 @@ class OrderController extends Controller
         }
 
         OrderResource::$format = 'simple';
-        return OrderResource::collection($orders)->paginate(20);
+        return OrderResource::collection($orders->paginate(20));
     }
 
     /**
