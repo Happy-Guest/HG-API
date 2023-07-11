@@ -246,7 +246,7 @@ class OrderController extends Controller
 
         // Check for order time
         if ($order->time === null) {
-            $order->time = Carbon::parse($order->created_at)->format('Y/m/d');
+            $order->time = Carbon::parse($order->created_at)->format('Y/m/d H:i');
             $order->save();
         }
 
