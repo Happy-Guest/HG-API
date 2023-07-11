@@ -33,7 +33,7 @@ class OrderRequest extends FormRequest
         return [
             'user_id' => 'required|numeric|exists:users,id',
             'room' => 'required|string|max:255',
-            'time' => 'required|dateformat:Y/m/d H:i|after_or_equal:now',
+            'time' => 'nullable|dateformat:Y/m/d H:i|after_or_equal:now',
             'status' => 'nullable|in:P,R,W,DL,C', // P: Pending, R: Rejected, W: Working, DL: Delivered, C: Canceled
             'service_id' => 'required|numeric|exists:services,id',
             'items' => 'nullable|array|min:1',

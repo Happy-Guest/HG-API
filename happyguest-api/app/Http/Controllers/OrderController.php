@@ -12,6 +12,7 @@ use App\Http\Requests\DeleteRequest;
 use App\Models\OrderItem;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -241,6 +242,12 @@ class OrderController extends Controller
             foreach ($orderItems as $orderItem) {
                 $orderItem->save();
             }
+        }
+
+        // Check for order time
+        if ($order->time === null) {
+            $order->time = Carbon::parse($order->created_at)->format('Y/m/d');
+            $order->save();
         }
 
         return response()->json([
