@@ -41,6 +41,7 @@ class ItemController extends Controller
                 case 'lunch': // Lunch
                 case 'dinner': // Dinner
                 case 'snack': // Snack
+                case 'dessert': // Dessert
                 case 'other': // Other
                     $items->where('category', $request->filter);
                     break;
@@ -115,6 +116,7 @@ class ItemController extends Controller
                 case 'lunch': // Lunch
                 case 'dinner': // Dinner
                 case 'snack': // Snack
+                case 'dessert': // Dessert
                 case 'other': // Other
                     $items->where('category', $request->filter);
                     break;
@@ -172,6 +174,7 @@ class ItemController extends Controller
                 case 'lunch': // Lunch
                 case 'dinner': // Dinner
                 case 'snack': // Snack
+                case 'dessert': // Dessert
                 case 'other': // Other
                     $items->where('category', $request->filter);
                     break;

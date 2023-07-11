@@ -116,6 +116,14 @@ class ServiceItemsSeeder extends Seeder
             [
                 'service_id' => 3,
                 'item_id' => 27,
+            ],
+            [
+                'service_id' => 3,
+                'item_id' => 28,
+            ],
+            [
+                'service_id' => 3,
+                'item_id' => 29,
             ]
         ];
 

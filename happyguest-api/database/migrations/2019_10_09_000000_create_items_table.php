@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('nameEN');
             $table->double('price')->nullable();
             $table->enum('type', ['O', 'F']); // O - Object, F - Food
-            $table->enum('category', ['room', 'bathroom', 'drink', 'breakfast', 'lunch', 'dinner', 'snack', 'other'])->default('other');
+            $table->enum('category', ['room', 'bathroom', 'drink', 'breakfast', 'lunch', 'dinner', 'snack', 'dessert', 'other'])->default('other');
             $table->integer('stock')->nullable();
             $table->boolean('active')->default(false);
             $table->timestamps();
@@ -26,7 +26,7 @@ return new class extends Migration
     }
 
     // Object: Room, Bathroom, Other
-    // Food: Drink, Breakfast, Lunch, Dinner, Snack, Other
+    // Food: Drink, Breakfast, Lunch, Dinner, Snack, Dessert, Other
 
     /**
      * Reverse the migrations.
