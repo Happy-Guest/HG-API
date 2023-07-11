@@ -29,6 +29,7 @@ class ReserveResource extends JsonResource
                     'service' => [
                         'id' => $this->service->id,
                         'name' => $this->service->name,
+                        'nameEN' => $this->service->nameEN,
                         'type' => $this->service->type,
                     ],
                     'nr_people' => $this->nr_people,
@@ -47,7 +48,7 @@ class ReserveResource extends JsonResource
                     'status' => $this->status,
                     'service' => [
                         'id' => $this->service->id,
-                        'name' => $this->service->name,
+                        'nameEN' => $this->service->nameEN,
                         'type' => $this->service->type,
                     ],
                     'comment' => $this->comment,
