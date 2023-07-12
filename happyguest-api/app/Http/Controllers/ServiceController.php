@@ -116,16 +116,8 @@ class ServiceController extends Controller
         for ($i = 0; $i < count($schedule) - 1; $i++) {
             $currentPart = strtotime($schedule[$i]);
             $nextPart = strtotime($schedule[$i + 1]);
-            $currentHour = date('G', $currentPart);
-            $nextHour = date('G', $nextPart);
-            if ($currentHour == 0) {
-                $currentHour = 24; // Treat 00:00 as 24:00
-            }
-            if ($nextHour == 0) {
-                $nextHour = 24; // Treat 00:00 as 24:00
-            }
 
-            if ($currentHour >= $nextHour) {
+            if ($currentPart >= $nextPart) {
                 return response()->json([
                     'errors' => [
                         'schedule' => [
