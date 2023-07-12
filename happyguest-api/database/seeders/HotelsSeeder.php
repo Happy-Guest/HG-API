@@ -24,12 +24,74 @@ class HotelsSeeder extends Seeder
             'address' => 'Rua do Hotel 1, 2400-000 Leiria',
             'website' => 'www.hotelLeiria.pt',
             'capacity' => 115,
-            'policies' => 'Não é permitido fumar, Não são permitidos animais de estimação, Check-in a partir das 15:00, Check-out até às 12:00',
-            'policiesEN' => 'No smoking allowed, No pets allowed, Check-in from 15:00, Check-out until 12:00',
-            'access' => 'Acesso a pessoas com mobilidade reduzida, Elevador, Estacionamento, WC adaptado, Entrada de rua particular',
-            'accessEN' => 'Accessible to people with reduced mobility, Elevator, Parking, Adapted restroom, Private street entrance',
-            'commodities' => 'Ar condicionado, TV, Telefone, Internet, Secador de cabelo, Cofre, Mini-bar, Serviço de quartos, Serviço de limpeza, Serviço de bagagem, Bar, Restaurante, Ginásio, Piscina, SPA, Sauna, Jacuzzi, Sala de eventos',
-            'commoditiesEN' => 'Air conditioning, TV, Telephone, Internet, Hairdryer, Safe, Mini-bar, Room service, Cleaning service, Luggage service, Bar, Restaurant, Gym, Pool, SPA, Sauna, Jacuzzi, Event room',
+            'policies' => json_encode(
+                [[
+                    'policy' => 'Não é permitido fumar',
+                    'policyEN' => 'No smoking allowed'
+                ], [
+                    'policy' => 'Não são permitidos animais de estimação',
+                    'policyEN' => 'No pets allowed'
+                ], [
+                    'policy' => 'Check-in a partir das 15:00',
+                    'policyEN' => 'Check-in from 15:00'
+                ], [
+                    'policy' => 'Check-out até às 12:00',
+                    'policyEN' => 'Check-out until 12:00'
+                ]]
+            ),
+            'accesses' => json_encode(
+                [
+                    [
+                        'access' => 'Acesso a pessoas com mobilidade reduzida',
+                        'accessEN' => 'Access for people with reduced mobility'
+                    ],
+                    [
+                        'access' => 'Elevador, Estacionamento',
+                        'accessEN' => 'Elevator, Parking'
+                    ],
+                    [
+                        'access' => 'WC adaptado',
+                        'accessEN' => 'Adapted restroom'
+                    ],
+                    [
+                        'access' => ' Entrada de rua particular',
+                        'accessEN' => 'Private street entrance'
+                    ]
+                ]
+            ),
+            'commodities' => json_encode(
+                [
+                    [
+                        'commodity' => 'Ar condicionado',
+                        'commodityEN' => 'Air conditioning'
+                    ],
+                    [
+                        'commodity' => 'TV, Telefone',
+                        'commodityEN' => 'TV, Telephone'
+                    ], [
+                        'commodity' => 'Telefone',
+                        'commodityEN' => 'Telephone'
+                    ], [
+                        'commodity' => 'Internet',
+                        'commodityEN' => 'Internet'
+                    ], [
+                        'commodity' => 'Secador de cabelo',
+                        'commodityEN' => 'Hairdryer'
+                    ], [
+                        'commodity' => 'Cofre',
+                        'commodityEN' => 'Safe'
+                    ], [
+                        'commodity' => 'Mini-bar',
+                        'commodityEN' => 'Mini-bar'
+                    ], [
+                        'commodity' => 'Serviço de quartos',
+                        'commodityEN' => 'Room service'
+                    ], [
+                        'commodity' => 'Serviço de limpeza',
+                        'commodityEN' => 'Cleaning service'
+                    ]
+                ]
+            ),
             'created_at' => '2023-01-01 00:00',
             'updated_at' => $now,
         ];

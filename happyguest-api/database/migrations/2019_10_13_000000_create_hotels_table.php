@@ -20,12 +20,9 @@ return new class extends Migration
             $table->string('address');
             $table->string('website')->nullable();
             $table->integer('capacity')->nullable();
-            $table->string('policies')->nullable();
-            $table->string('policiesEN')->nullable();
-            $table->string('access')->nullable();
-            $table->string('accessEN')->nullable();
-            $table->string('commodities')->nullable();
-            $table->string('commoditiesEN')->nullable();
+            $table->json('policies')->nullable();
+            $table->json('accesses')->nullable();
+            $table->json('commodities')->nullable();
             $table->timestamps();
         });
     }

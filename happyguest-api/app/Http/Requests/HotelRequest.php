@@ -29,12 +29,9 @@ class HotelRequest extends FormRequest
             'address' => 'required|string|min:5|max:255',
             'website' => 'nullable|string|min:5|max:255',
             'capacity' => 'nullable|numeric|min:1|max:999',
-            'policies' => 'nullable|string|min:5|max:255',
-            'policiesEN' => 'nullable|string|min:5|max:255',
-            'access' => 'nullable|string|min:5|max:255',
-            'accessEN' => 'nullable|string|min:5|max:255',
-            'commodities' => 'nullable|string|min:5|max:255',
-            'commoditiesEN' => 'nullable|string|min:5|max:255',
+            'policies' => 'nullable|array',
+            'accesses' => 'nullable|array',
+            'commodities' => 'nullable|array',
         ];
     }
 }
