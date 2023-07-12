@@ -16,6 +16,7 @@ return [
     'expired' => 'O :attribute já está expirado!',
     'not_yet_valid' => 'O :attribute ainda não está válido!',
     'in_checkout' => 'O :attribute está em check-out!',
+    'checked_out' => 'Já foi efetuado o check-out para este :attribute!',
     'not_associated' => 'O :attribute não está associado!',
     'only_clients' => 'Apenas clientes podem ser associados a códigos!',
     'invalid_filter' => 'O filtro indicado não existe!',

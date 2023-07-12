@@ -216,8 +216,15 @@ class CodeController extends Controller
             ], 409);
         }
 
-        // Check if the code is in checkout
-        if ($code->checkout) {
+        // Check if the code is in checkout and validated
+        if ($code->checkout && $code->checkout->validated) {
+            return response()->json([
+                'message' => __('messages.checked_out', ['attribute' => __('messages.attributes.code')]),
+            ], 409);
+        }
+
+        // Check if the code is in checkout and not validated
+        if ($code->checkout && !$code->checkout->validated) {
             return response()->json([
                 'message' => __('messages.in_checkout', ['attribute' => __('messages.attributes.code')]),
             ], 409);
