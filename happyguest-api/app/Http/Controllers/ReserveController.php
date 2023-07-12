@@ -150,7 +150,7 @@ class ReserveController extends Controller
         }
 
         ReserveResource::$format = 'simple';
-        return ReserveResource::collection($reserves)->paginate(20);
+        return ReserveResource::collection($reserves->paginate(20));
     }
 
     /**
