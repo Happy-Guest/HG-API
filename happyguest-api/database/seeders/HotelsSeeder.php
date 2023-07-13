@@ -66,8 +66,8 @@ class HotelsSeeder extends Seeder
                         'nameEN' => 'Air conditioning'
                     ],
                     [
-                        'name' => 'TV, Telefone',
-                        'nameEN' => 'TV, Telephone'
+                        'name' => 'TV',
+                        'nameEN' => 'TV'
                     ], [
                         'name' => 'Telefone',
                         'nameEN' => 'Telephone'
