@@ -46,8 +46,8 @@ class HotelsSeeder extends Seeder
                         'nameEN' => 'Access for people with reduced mobility'
                     ],
                     [
-                        'name' => 'Elevador, Estacionamento',
-                        'nameEN' => 'Elevator, Parking'
+                        'name' => 'Elevador',
+                        'nameEN' => 'Elevator'
                     ],
                     [
                         'name' => 'WC adaptado',
