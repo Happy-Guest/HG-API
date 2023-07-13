@@ -26,69 +26,69 @@ class HotelsSeeder extends Seeder
             'capacity' => 115,
             'policies' => json_encode(
                 [[
-                    'policy' => 'Não é permitido fumar',
-                    'policyEN' => 'No smoking allowed'
+                    'name' => 'Não é permitido fumar',
+                    'nameEN' => 'No smoking allowed'
                 ], [
-                    'policy' => 'Não são permitidos animais de estimação',
-                    'policyEN' => 'No pets allowed'
+                    'name' => 'Não são permitidos animais de estimação',
+                    'nameEN' => 'No pets allowed'
                 ], [
-                    'policy' => 'Check-in a partir das 15:00',
-                    'policyEN' => 'Check-in from 15:00'
+                    'name' => 'Check-in a partir das 15:00',
+                    'nameEN' => 'Check-in from 15:00'
                 ], [
-                    'policy' => 'Check-out até às 12:00',
-                    'policyEN' => 'Check-out until 12:00'
+                    'name' => 'Check-out até às 12:00',
+                    'nameEN' => 'Check-out until 12:00'
                 ]]
             ),
             'accesses' => json_encode(
                 [
                     [
-                        'access' => 'Acesso a pessoas com mobilidade reduzida',
-                        'accessEN' => 'Access for people with reduced mobility'
+                        'name' => 'Acesso a pessoas com mobilidade reduzida',
+                        'nameEN' => 'Access for people with reduced mobility'
                     ],
                     [
-                        'access' => 'Elevador, Estacionamento',
-                        'accessEN' => 'Elevator, Parking'
+                        'name' => 'Elevador, Estacionamento',
+                        'nameEN' => 'Elevator, Parking'
                     ],
                     [
-                        'access' => 'WC adaptado',
-                        'accessEN' => 'Adapted restroom'
+                        'name' => 'WC adaptado',
+                        'nameEN' => 'Adapted restroom'
                     ],
                     [
-                        'access' => ' Entrada de rua particular',
-                        'accessEN' => 'Private street entrance'
+                        'name' => ' Entrada de rua particular',
+                        'nameEN' => 'Private street entrance'
                     ]
                 ]
             ),
             'commodities' => json_encode(
                 [
                     [
-                        'commodity' => 'Ar condicionado',
-                        'commodityEN' => 'Air conditioning'
+                        'name' => 'Ar condicionado',
+                        'nameEN' => 'Air conditioning'
                     ],
                     [
-                        'commodity' => 'TV, Telefone',
-                        'commodityEN' => 'TV, Telephone'
+                        'name' => 'TV, Telefone',
+                        'nameEN' => 'TV, Telephone'
                     ], [
-                        'commodity' => 'Telefone',
-                        'commodityEN' => 'Telephone'
+                        'name' => 'Telefone',
+                        'nameEN' => 'Telephone'
                     ], [
-                        'commodity' => 'Internet',
-                        'commodityEN' => 'Internet'
+                        'name' => 'Internet',
+                        'nameEN' => 'Internet'
                     ], [
-                        'commodity' => 'Secador de cabelo',
-                        'commodityEN' => 'Hairdryer'
+                        'name' => 'Secador de cabelo',
+                        'nameEN' => 'Hairdryer'
                     ], [
-                        'commodity' => 'Cofre',
-                        'commodityEN' => 'Safe'
+                        'name' => 'Cofre',
+                        'nameEN' => 'Safe'
                     ], [
-                        'commodity' => 'Mini-bar',
-                        'commodityEN' => 'Mini-bar'
+                        'name' => 'Mini-bar',
+                        'nameEN' => 'Mini-bar'
                     ], [
-                        'commodity' => 'Serviço de quartos',
-                        'commodityEN' => 'Room service'
+                        'name' => 'Serviço de quartos',
+                        'nameEN' => 'Room service'
                     ], [
-                        'commodity' => 'Serviço de limpeza',
-                        'commodityEN' => 'Cleaning service'
+                        'name' => 'Serviço de limpeza',
+                        'nameEN' => 'Cleaning service'
                     ]
                 ]
             ),
