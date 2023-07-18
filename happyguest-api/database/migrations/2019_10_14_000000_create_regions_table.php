@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('description');
             $table->string('descriptionEN');
-            $table->json('proximities')->nullable();
+            $table->json('proximity')->nullable();
             $table->json('activities')->nullable();
             $table->json('websites')->nullable();
             $table->timestamps();

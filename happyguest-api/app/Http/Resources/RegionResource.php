@@ -18,7 +18,7 @@ class RegionResource extends JsonResource
             'id' => $this->id,
             'description' => $this->description,
             'descriptionEN' => $this->descriptionEN,
-            'proximities' => $this->proximities,
+            'proximity' => $this->proximity,
             'activities' => $this->activities,
             'websites' => $this->websites,
             'created_at' => $this->created_at->format('d/m/Y'),

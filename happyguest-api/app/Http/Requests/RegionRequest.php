@@ -24,7 +24,7 @@ class RegionRequest extends FormRequest
         return [
             'description' => 'required|string|min:5|max:255',
             'descriptionEN' => 'required|string|min:5|max:255',
-            'proximities' => 'nullable|array',
+            'proximity' => 'nullable|array',
             'activities' => 'nullable|array',
             'websites' => 'nullable|array',
         ];

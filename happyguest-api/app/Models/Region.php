@@ -18,7 +18,7 @@ class Region extends Model
     protected $fillable = [
         'description',
         'descriptionEN',
-        'proximities', //nome, descrição, descriçãoEN, distancia, tempo a pé
+        'proximity', //nome, descrição, descriçãoEN, distancia, tempo a pé
         'activities',
         'websites',
     ];

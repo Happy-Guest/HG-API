@@ -19,7 +19,7 @@ class regionsSeeder extends Seeder
         $region = [
             'description' => 'Leiria está estrategicamente localizada, a sensivelmente meio caminho de Lisboa e do Porto. Integrada na região Centro, a “cidade do Lis” é a porta de entrada para um território vasto e rico, que inclui praia, natureza, património e cultura',
             'descriptionEN' => 'Leiria is strategically located, roughly halfway between Lisbon and Porto. Integrated in the Central region, the “city of Lis” is the gateway to a vast and rich territory, which includes beach, nature, heritage and culture',
-            'proximities' => json_encode(
+            'proximity' => json_encode(
                 [
                     [
                         'name' => 'Leiria Shopping',
@@ -92,7 +92,7 @@ class regionsSeeder extends Seeder
                         'link' => 'https://goo.gl/maps/7esaqYUi1uthvyfY9'
                     ]
                 ]
-            ), //name, description, descriptionEN, distance, time on foot
+            ),
             'activities' => json_encode(
                 [
                     ['name' => 'Rota Leiria Histórica', 'description' => 'Percurso pedestre por zona históricas de leiria', 'description_en' => 'Pedestrian route through historical areas of leiria', 'distance' => '4km', 'link' => 'https://www.visiteleiria.pt/percursos-pedestres/rota-leiria-historica/'],
