@@ -20,7 +20,7 @@ class HotelsSeeder extends Seeder
             'description' => 'Bem-vindo ao Hotel de Leiria, um refúgio paradisíaco que mescla luxo, conforto e beleza em harmonia perfeita. Aqui, suas experiências são transformadas em memórias inesquecíveis.',
             'descriptionEN' => 'Welcome to the Leiria Hotel, a paradisiacal retreat that blends luxury, comfort, and beauty in perfect harmony. Here, your experiences are transformed into unforgettable memories.',
             'phone' => '244801801',
-            'email' => 'hotelLeiria@happyguest.pt',
+            'email' => 'hotel@happyguest.pt',
             'address' => 'Rua do Hotel 1, 2400-000 Leiria',
             'website' => 'www.hotelLeiria.pt',
             'capacity' => 115,

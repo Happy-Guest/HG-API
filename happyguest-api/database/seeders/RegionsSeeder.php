@@ -29,13 +29,6 @@ class regionsSeeder extends Seeder
                         'link' => 'https://goo.gl/maps/izC4nED89TkENn3y9'
                     ],
                     [
-                        'name' => 'Hôma Leiria',
-                        'description' => 'Loja de decoração',
-                        'description_en' => 'Decoration store',
-                        'distance' => '1.1km',
-                        'link' => 'https://goo.gl/maps/43mzr7sFgYRfEsob9'
-                    ],
-                    [
                         'name' => 'Parque Verde',
                         'description' => 'Parque amplo para passear',
                         'description_en' => 'Large park for strolling',
@@ -51,43 +44,43 @@ class regionsSeeder extends Seeder
                     ],
                     [
                         'name' => 'Pingo Doce - D. Dinis',
-                        'description' => 'Supermercado',
-                        'description_en' => 'Supermarket',
+                        'description' => 'Supermercado Grande Superfície',
+                        'description_en' => 'Large Supermarket',
                         'distance' => '1.3km',
                         'link' => 'https://goo.gl/maps/BoQTdxGd2TdSy3CQ9'
                     ],
                     [
                         'name' => 'Jardim Luís de Camões',
-                        'description' => 'Jardim',
-                        'description_en' => 'Garden',
+                        'description' => 'Jardim com parque infantil',
+                        'description_en' => 'Garden with playground',
                         'distance' => '2.5km',
                         'link' => 'https://goo.gl/maps/QeeK1t4PeQpVoRAq6'
                     ],
                     [
                         'name' => 'Cinema City Leiria',
-                        'description' => 'Cinema',
-                        'description_en' => 'Cinema',
+                        'description' => 'Cinema com várias salas e restaurantes',
+                        'description_en' => 'Cinema with several rooms and restaurants',
                         'distance' => '2.8km',
                         'link' => 'https://goo.gl/maps/pJ5ehrBGcqCqHWfz6'
                     ],
                     [
                         'name' => 'Castelo de Leiria',
-                        'description' => 'Castelo medieval',
-                        'description_en' => 'Medieval castle',
+                        'description' => 'Castelo medieval com vista para a cidade',
+                        'description_en' => 'Medieval castle overlooking the city',
                         'distance' => '2.8km',
                         'link' => 'https://goo.gl/maps/hqhvLmGtKWMvWveWA'
                     ],
                     [
                         'name' => 'Estádio Dr. Magalhães Pessoa',
-                        'description' => 'Estádio de futebol',
-                        'description_en' => 'Football stadium',
+                        'description' => 'Estádio de futebol do União de Leiria',
+                        'description_en' => 'Football stadium of União de Leiria',
                         'distance' => '3km',
                         'link' => 'https://goo.gl/maps/5csPcTgnJfeJxyaM6'
                     ],
                     [
-                        'name' => 'Hospital Santo André - Hospital Distrital de Leiria',
-                        'description' => 'Hospital',
-                        'description_en' => 'Hospital',
+                        'name' => 'Hospital Santo André',
+                        'description' => 'Hospital Público de Leiria',
+                        'description_en' => 'Public Hospital of Leiria',
                         'distance' => '4.5km',
                         'link' => 'https://goo.gl/maps/7esaqYUi1uthvyfY9'
                     ]
