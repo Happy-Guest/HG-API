@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('user_name')->nullable();
             $table->integer('nr_people');
             $table->timestamp('time');
-            $table->enum('status', ['P', 'A', 'R', 'C'])->default('P'); // P: Pending, A: Accepted, R: Rejected, C: Canceled
+            $table->enum('status', ['P', 'A', 'R', 'F', 'C'])->default('P'); // P: Pending, A: Accepted, R: Rejected, F: Finished, C: Canceled
             $table->unsignedBigInteger('service_id');
             $table->string('comment')->nullable();
             $table->timestamps();

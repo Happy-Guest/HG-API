@@ -39,6 +39,7 @@ class ReserveController extends Controller
                 case 'P': // Pending
                 case 'A': // Accepted
                 case 'R': // Rejected
+                case 'F': // Finished
                 case 'C': // Cancelled
                     $reserves->where('status', $request->filter);
                     break;
@@ -120,6 +121,7 @@ class ReserveController extends Controller
                 case 'P': // Pending
                 case 'A': // Accepted
                 case 'R': // Rejected
+                case 'F': // Finished
                 case 'C': // Cancelled
                     $reserves->where('status', $request->filter);
                     break;
