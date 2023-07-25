@@ -74,7 +74,7 @@ class ServicesSeeder extends Seeder
                 'schedule' => '11:00-15:00-19:00-23:00',
                 'occupation' => 150,
                 'location' => 'Restaurante Principal',
-                'limit' => null,
+                'limit' => 20,
                 'description' => 'Serviço de reserva de mesas no nosso restaurante. Insira o nª de pessoas e escolha um horário disponível.',
                 'descriptionEN' => 'Table reservation service in our restaurant. Enter the number of people and choose an available time.',
                 'active' => true,
