@@ -89,7 +89,7 @@ class regionsSeeder extends Seeder
             'activities' => json_encode(
                 [
                     ['name' => 'Rota Leiria Histórica', 'description' => 'Percurso pedestre por zona históricas de leiria', 'description_en' => 'Pedestrian route through historical areas of leiria', 'distance' => '4km', 'link' => 'https://www.visiteleiria.pt/percursos-pedestres/rota-leiria-historica/'],
-                    ['name' => 'Visita castelo Leiria', 'description' => 'Visita ao castelo de Leiria', 'description_en' => 'Visit to Leiria castle', 'distance' => '4km', 'link' => 'https://www.visiteleiria.pt/en/pontos-de-interesse/heritage/leiria-castle/'],
+                    ['name' => 'Visita Castelo Leiria', 'description' => 'Visita ao Castelo de Leiria', 'description_en' => 'Visit to Leiria Castle', 'distance' => '4km', 'link' => 'https://www.visiteleiria.pt/en/pontos-de-interesse/heritage/leiria-castle/'],
                     ['name' => 'Escape Room Leiria', 'description' => 'Jogo interativo com puzzels e mistério', 'description_en' => 'Interactive game with puzzles and mystery', 'distance' => '4km', 'link' => 'https://www.escaperoomleiria.pt/'],
                     ['name' => 'Laserquest', 'description' => 'Jogo de laser tag', 'description_en' => 'Laser tag game', 'distance' => '4km', 'link' => 'https://www.laserquest.pt/'],
                 ]
