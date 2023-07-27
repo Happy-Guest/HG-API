@@ -10,7 +10,8 @@ storage/*.key
 node_modules
 public/build
 public/hot
-public/storage
+public/storage/app/*
+!public/storage/app/services/*
 
 # Files
 
