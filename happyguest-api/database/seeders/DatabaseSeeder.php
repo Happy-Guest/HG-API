@@ -42,10 +42,16 @@ class DatabaseSeeder extends Seeder
             }
         }
 
+        // Create parent folder if it doesn't exist
+        if (!is_dir(storage_path('app/public'))) {
+            mkdir(storage_path('app/public'));
+        }
+
         // Create services folder
         if (!is_dir(storage_path('app/public/services'))) {
             mkdir(storage_path('app/public/services'));
         }
+
 
         // Populate services folder from storage
         $services = scandir(storage_path('app/services'));
