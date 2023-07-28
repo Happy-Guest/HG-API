@@ -34,7 +34,7 @@ class RegisterRequest extends FormRequest
             'password' => 'required|string|confirmed|min:5|max:255',
             'phone' => 'nullable|numeric|digits_between:9, 12',
             'address' => 'nullable|string|max:255',
-            'birth_date' => 'nullable|dateformat:Y/m/d',
+            'birth_date' => 'nullable|date_format:Y/m/d|before:today|after:1900/01/01',
             'role' => 'nullable|in:C,M,A', // C: Client, M: Manager, A: Admin
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ];
