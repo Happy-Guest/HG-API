@@ -52,7 +52,6 @@ class DatabaseSeeder extends Seeder
             mkdir(storage_path('app/public/services'));
         }
 
-
         // Populate services folder from storage
         $services = scandir(storage_path('app/services'));
         foreach ($services as $service) {
