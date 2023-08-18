@@ -183,14 +183,13 @@ class ReviewController extends Controller
         ];
 
         $admins = User::where('role', 'A')->get();
-        $managers = User::where('role', 'M')->get();
-
         foreach ($admins as $admin) {
             if ($admin->fcm_token) {
                 FCMService::send($admin->fcm_token, $notification);
             }
         }
 
+        $managers = User::where('role','M')->get();
         foreach ($managers as $manager) {
             if ($manager->fcm_token) {
                 FCMService::send($admin->fcm_token, $notification);
