@@ -118,10 +118,10 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/{id}', [ReviewController::class, 'destroy'])->middleware('role:M')->name('destroy');
     });
 
-    //Items
+    // Items
     Route::prefix('/items')->name('items.')->group(function () {
-        Route::get('/', [ItemController::class, 'index'])->middleware('role:M')->name('index');
-        Route::get('/{id}', [ItemController::class, 'show'])->middleware('role:M')->name('show');
+        Route::get('/', [ItemController::class, 'index'])->middleware('role:E')->name('index');
+        Route::get('/{id}', [ItemController::class, 'show'])->middleware('role:E')->name('show');
         Route::post('/', [ItemController::class, 'store'])->middleware('role:M')->name('store');
         Route::patch('/{id}', [ItemController::class, 'update'])->middleware('role:M')->name('update');
         Route::delete('/{id}', [ItemController::class, 'destroy'])->middleware('role:M')->name('destroy');
@@ -131,9 +131,9 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/{id}/service/{service}/disassociate', [ItemController::class, 'disassociate'])->middleware('role:M')->name('disassociate');
     });
 
-    //Services
+    // Services
     Route::prefix('/services')->name('services.')->group(function () {
-        Route::get('/', [ServiceController::class, 'index'])->middleware('role:M')->name('index');
+        Route::get('/', [ServiceController::class, 'index'])->middleware('role:E')->name('index');
         Route::get('/{id}', [ServiceController::class, 'show'])->name('show');
         Route::get('/{id}/items', [ItemController::class, 'service'])->name('items');
         Route::post('/', [ServiceController::class, 'store'])->middleware('role:A')->name('store');
@@ -141,9 +141,9 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/{id}', [ServiceController::class, 'destroy'])->middleware('role:A')->name('destroy');
     });
 
-    //Orders
+    // Orders
     Route::prefix('/orders')->name('orders.')->group(function () {
-        Route::get('/', [OrderController::class, 'index'])->middleware('role:M')->name('index');
+        Route::get('/', [OrderController::class, 'index'])->middleware('role:E')->name('index');
         Route::get('/{id}', [OrderController::class, 'show'])->name('show');
         Route::get('/{id}/items', [ItemController::class, 'order'])->name('items');
         Route::post('/', [OrderController::class, 'store'])->middleware('valid-code')->name('store');
@@ -151,12 +151,11 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/{id}', [OrderController::class, 'destroy'])->middleware('role:M')->name('destroy');
     });
 
-    //Reserves
+    // Reserves
     Route::prefix('/reserves')->name('reserves.')->group(function () {
-        Route::get('/', [ReserveController::class, 'index'])->middleware('role:M')->name('index');
+        Route::get('/', [ReserveController::class, 'index'])->middleware('role:E')->name('index');
         Route::get('/{id}', [ReserveController::class, 'show'])->name('show');
         Route::post('/', [ReserveController::class, 'store'])->middleware('valid-code')->name('store');
-        Route::patch('/{id}', [ReserveController::class, 'update'])->name('update');
         Route::patch('/{id}', [ReserveController::class, 'update'])->name('update');
         Route::delete('/{id}', [ReserveController::class, 'destroy'])->middleware('role:M')->name('destroy');
     });
@@ -188,7 +187,7 @@ Route::middleware('auth:api')->group(function () {
 
     // Statistics (Only Managers & Admins)
     Route::prefix('/stats')->name('stats.')->group(function () {
-        Route::get('/home', [StatisticController::class, 'index'])->middleware('role:M')->name('home');
-        Route::get('/graph', [StatisticController::class, 'graph'])->middleware('role:M')->name('graph');
+        Route::get('/home', [StatisticController::class, 'index'])->middleware('role:E')->name('home');
+        Route::get('/graph', [StatisticController::class, 'graph'])->middleware('role:E')->name('graph');
     });
 });

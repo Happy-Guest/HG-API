@@ -99,7 +99,7 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
 
         // Check if authenticated user is the same as the order's user
-        if ($order->user_id != auth()->user()->id && auth()->user()->role != 'A' && auth()->user()->role != 'M') {
+        if ($order->user_id != auth()->user()->id && auth()->user()->role != 'A' && auth()->user()->role != 'M' && auth()->user()->role != 'E') {
             return response()->json([
                 'message' => __('messages.unauthorized'),
             ], 401);
@@ -290,7 +290,7 @@ class OrderController extends Controller
         $order = Order::findOrFail($id);
 
         // Check if authenticated user is the same as the order's user
-        if (Order::findOrFail($id)->user_id != auth()->user()->id && auth()->user()->role != 'A' && auth()->user()->role != 'M') {
+        if (Order::findOrFail($id)->user_id != auth()->user()->id && auth()->user()->role != 'A' && auth()->user()->role != 'M' && auth()->user()->role != 'E') {
             return response()->json([
                 'message' => __('messages.unauthorized'),
             ], 401);
@@ -315,7 +315,7 @@ class OrderController extends Controller
                 'title' => __('messages.response_order', ['time' => $order->time->format('d/m/Y H:i')]),
                 'body' => __('messages.response_order', ['time' => $order->time->format('d/m/Y H:i')]),
             ];
-            
+
             FCMService::send($order->user->fcm_token, $notification);
         }
 

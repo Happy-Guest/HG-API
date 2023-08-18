@@ -86,7 +86,7 @@ class ReserveController extends Controller
         $reserve = Reserve::findOrFail($id);
 
         // Check if authenticated user is the same as the reserve's user
-        if ($reserve->user_id != auth()->user()->id && auth()->user()->role != 'A' && auth()->user()->role != 'M') {
+        if ($reserve->user_id != auth()->user()->id && auth()->user()->role != 'A' && auth()->user()->role != 'M' && auth()->user()->role != 'E') {
             return response()->json([
                 'message' => __('messages.unauthorized'),
             ], 401);
@@ -220,7 +220,7 @@ class ReserveController extends Controller
         $reserve = Reserve::findOrFail($id);
 
         // Check if authenticated user is the same as the reserve's user
-        if (Reserve::findOrFail($id)->user_id != auth()->user()->id && auth()->user()->role != 'A' && auth()->user()->role != 'M') {
+        if (Reserve::findOrFail($id)->user_id != auth()->user()->id && auth()->user()->role != 'A' && auth()->user()->role != 'M' && auth()->user()->role != 'E') {
             return response()->json([
                 'message' => __('messages.unauthorized'),
             ], 401);
