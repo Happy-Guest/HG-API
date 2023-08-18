@@ -218,6 +218,7 @@ class ComplaintController extends Controller
         $admins = User::where('role', 'A')->get();
         foreach ($admins as $admin) {
             if ($admin->fcm_token) {
+                return 
                 FCMService::send($admin->fcm_token, $notification);
             }
         }
