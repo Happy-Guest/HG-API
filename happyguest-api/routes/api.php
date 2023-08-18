@@ -79,7 +79,7 @@ Route::middleware('auth:api')->group(function () {
         Route::post('/token', [UserController::class, 'token'])->name('token');
 
         Route::get('/', [UserController::class, 'index'])->middleware('role:M')->name('index');
-        Route::get('/{id}', [UserController::class, 'show'])->middleware('role:M')->name('show');
+        Route::get('/{id}', [UserController::class, 'show'])->middleware('role:E')->name('show');
         Route::post('/{id}', [UserController::class, 'update'])->middleware('authorize')->name('update');
         Route::patch('/{id}/block', [UserController::class, 'block'])->middleware('authorize')->name('block');
         Route::patch('/{id}/unblock', [UserController::class, 'unblock'])->middleware('authorize')->name('unblock');
@@ -123,7 +123,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/', [ItemController::class, 'index'])->middleware('role:E')->name('index');
         Route::get('/{id}', [ItemController::class, 'show'])->middleware('role:E')->name('show');
         Route::post('/', [ItemController::class, 'store'])->middleware('role:M')->name('store');
-        Route::patch('/{id}', [ItemController::class, 'update'])->middleware('role:M')->name('update');
+        Route::patch('/{id}', [ItemController::class, 'update'])->middleware('role:E')->name('update');
         Route::delete('/{id}', [ItemController::class, 'destroy'])->middleware('role:M')->name('destroy');
 
         // Associate & Disassociate to Service

@@ -17,7 +17,7 @@ class ValidCode
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user()->role == 'A' || $request->user()->role == 'M') {
+        if ($request->user()->role == 'A' || $request->user()->role == 'M' || $request->user()->role == 'E') {
             return $next($request);
         }
 
