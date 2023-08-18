@@ -13,6 +13,8 @@ use App\Models\OrderItem;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use App\Models\User;
+use App\Services\FCMService;
 
 class OrderController extends Controller
 {
@@ -250,6 +252,26 @@ class OrderController extends Controller
             $order->save();
         }
 
+        // Send notification to admins and managers
+        $notification = [
+            'title' => __('messages.new_order', ['id' => $order->id, 'time' => $order->time->format('d/m/Y H:i')]),
+            'body' => __('messages.new_order', ['id' => $order->id, 'time' => $order->time->format('d/m/Y H:i')]),
+        ];
+
+        $admins = User::where('role', 'A')->get();
+        foreach ($admins as $admin) {
+            if ($admin->fcm_token) {
+                FCMService::send($admin->fcm_token, $notification);
+            }
+        }
+
+        $managers = User::where('role', 'M')->get();
+        foreach ($managers as $manager) {
+            if ($manager->fcm_token) {
+                FCMService::send($manager->fcm_token, $notification);
+            }
+        }
+
         return response()->json([
             'message' => __('messages.created', ['attribute' => __('messages.attributes.order')]),
             'order' => new OrderResource($order),
@@ -285,6 +307,16 @@ class OrderController extends Controller
                     $item->save();
                 }
             }
+        }
+
+        // Send notification to user
+        if ($order->user->fcm_token) {
+            $notification = [
+                'title' => __('messages.response_order', ['time' => $order->time->format('d/m/Y H:i')]),
+                'body' => __('messages.response_order', ['time' => $order->time->format('d/m/Y H:i')]),
+            ];
+            
+            FCMService::send($order->user->fcm_token, $notification);
         }
 
         return response()->json([

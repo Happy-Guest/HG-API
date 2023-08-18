@@ -10,6 +10,8 @@ use App\Http\Requests\ReserveRequest;
 use App\Http\Requests\DeleteRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Services\FCMService;
 
 class ReserveController extends Controller
 {
@@ -180,6 +182,26 @@ class ReserveController extends Controller
 
         $reserve = Reserve::create($request->validated());
 
+        // Send notification to admins and managers
+        $notification = [
+            'title' => __('messages.new_reservation', ['id' => $reserve->id, 'time' => $reserve->time->format('d/m/Y H:i')]),
+            'body' => __('messages.new_reservation', ['id' => $reserve->id, 'time' => $reserve->time->format('d/m/Y H:i')]),
+        ];
+
+        $admins = User::where('role', 'A')->get();
+        foreach ($admins as $admin) {
+            if ($admin->fcm_token) {
+                FCMService::send($admin->fcm_token, $notification);
+            }
+        }
+
+        $managers = User::where('role', 'M')->get();
+        foreach ($managers as $manager) {
+            if ($manager->fcm_token) {
+                FCMService::send($manager->fcm_token, $notification);
+            }
+        }
+
         return response()->json([
             'message' => __('messages.created2', ['attribute' => __('messages.attributes.reserve')]),
             'reserve' => new ReserveResource($reserve),
@@ -205,6 +227,16 @@ class ReserveController extends Controller
         }
 
         $reserve->update($request->validated());
+
+        // Send notification to user
+        if ($reserve->user->fcm_token) {
+            $notification = [
+                'title' => __('messages.response_reservation', ['time' => $reserve->time->format('d/m/Y H:i')]),
+                'body' => __('messages.response_reservation', ['time' => $reserve->time->format('d/m/Y H:i')]),
+            ];
+
+            FCMService::send($reserve->user->fcm_token, $notification);
+        }
 
         return response()->json([
             'message' => __('messages.updated2', ['attribute' => __('messages.attributes.reserve')]),
