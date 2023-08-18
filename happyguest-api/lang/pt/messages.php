@@ -34,10 +34,13 @@ return [
     'schedule_format' => 'O formato do horário é inválido!',
     'service_limit_reached' => 'Atingimos o limite de pedidos para a hora selecionada. Por favor, tente novamente em outro horário!',
     'new_complaint' => 'Nova reclamação recebida! ID::id',
+    'response_complaint' => 'A sua reclamação recebeu uma atualização! Data da reclamação: :date',
     'new_review' => 'Nova avaliação recebida! ID::id',
     'new_checkout' => 'Novo check-out recebido! ID::id',
     'new_order' => 'Novo pedido recebido! ID::id',
+    'response_order' => 'O seu pedido recebeu uma atualização!',
     'new_reservation' => 'Nova reserva recebida! ID::id',
+    'response_reservation' => 'A sua reserva recebeu uma atualização!',
     'attributes' => [
         'user' => 'Utilizador',
         'code' => 'Código',

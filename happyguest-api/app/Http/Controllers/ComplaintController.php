@@ -247,6 +247,16 @@ class ComplaintController extends Controller
         $complaint = Complaint::findOrFail($id);
         $complaint->update($request->validated());
 
+        // Send notification to user
+        $notification = [
+            'title' => __('messages.response_complaint', ['date' => $complaint->created_at]),
+            'body' => __('messages.response_complaint', ['date' => $complaint->created_at]),
+        ];
+
+        if ($complaint->user->fcm_token) {
+            FCMService::send($complaint->user->fcm_token, $notification);
+        }
+
         return response()->json([
             'message' => __('messages.updated2', ['attribute' => __('messages.attributes.complaint')]),
             'complaint' => new ComplaintResource($complaint),

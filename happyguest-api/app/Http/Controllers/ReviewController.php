@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DeleteRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Services\FCMService;
 
 class ReviewController extends Controller
 {
@@ -173,6 +174,27 @@ class ReviewController extends Controller
             $user = User::findOrFail(auth()->user()->id);
             $user->last_review = now();
             $user->save();
+        }
+
+        // Send notification to admins and managers
+        $notification = [
+            'title' => __('messages.new_review', ['id' => $review->id]),
+            'body' => __('messages.new_review', ['id' => $review->id]),
+        ];
+
+        $admins = User::where('role', 'A')->get();
+        $managers = User::where('role', 'M')->get();
+
+        foreach ($admins as $admin) {
+            if ($admin->fcm_token) {
+                FCMService::send($admin->fcm_token, $notification);
+            }
+        }
+
+        foreach ($managers as $manager) {
+            if ($manager->fcm_token) {
+                FCMService::send($admin->fcm_token, $notification);
+            }
         }
 
         return response()->json([
