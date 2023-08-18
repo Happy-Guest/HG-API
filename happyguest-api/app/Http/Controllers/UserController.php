@@ -184,9 +184,9 @@ class UserController extends Controller
      * @param int $id
      * @return JsonResponse
      */
-    public function token(int $id, Request $request)
+    public function token(Request $request)
     {
-        $user = User::findOrFail($id);
+        $user = User::findOrFail($request->user()->id);
         $user->update(['fcm_token' => $request->token]);
 
         return response()->json([

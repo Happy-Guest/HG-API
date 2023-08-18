@@ -83,7 +83,7 @@ Route::middleware('auth:api')->group(function () {
         Route::delete('/{id}', [UserController::class, 'destroy'])->middleware('authorize')->name('destroy');
 
         // Notifications
-        Route::post('/{id}/token', [UserController::class, 'token'])->middleware('authorize')->name('token');
+        Route::post('/token', [UserController::class, 'token'])->middleware('authorize')->name('token');
     });
 
     // Codes (Only Managers & Admins)
