@@ -181,12 +181,12 @@ class UserController extends Controller
     /**
      * Update the specified user in storage. (FCM Token)
      *
-     * @param int $id
+     * @param Request $request
      * @return JsonResponse
      */
     public function token(Request $request)
     {
-        $user = User::findOrFail($request->user()->id);
+        $user = User::findOrFail(Auth::user()->id);
         $user->update(['fcm_token' => $request->token]);
 
         return response()->json([
