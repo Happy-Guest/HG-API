@@ -12,6 +12,7 @@ use App\Http\Requests\DeleteRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use App\Services\FCMService;
 
 class ComplaintController extends Controller
 {
@@ -205,6 +206,26 @@ class ComplaintController extends Controller
                     'complaint_id' => $complaint->id,
                     'filename' => $filename,
                 ]);
+            }
+        }
+
+        // Send notification to admins and managers
+        $notification = [
+            'title' => __('messages.new_complaint', ['id' => $complaint->id]),
+            'body' => __('messages.new_complaint', ['id' => $complaint->id]),
+        ];
+
+        $admins = User::where('role', 'A')->get();
+        foreach ($admins as $admin) {
+            if ($admin->fcm_token) {
+                FCMService::send($admin->fcm_token, $notification);
+            }
+        }
+
+        $managers = User::where('role', 'M')->get();
+        foreach ($managers as $manager) {
+            if ($manager->fcm_token) {
+                FCMService::send($manager->fcm_token, $notification);
             }
         }
 

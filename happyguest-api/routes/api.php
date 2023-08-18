@@ -81,6 +81,9 @@ Route::middleware('auth:api')->group(function () {
         Route::patch('/{id}/block', [UserController::class, 'block'])->middleware('authorize')->name('block');
         Route::patch('/{id}/unblock', [UserController::class, 'unblock'])->middleware('authorize')->name('unblock');
         Route::delete('/{id}', [UserController::class, 'destroy'])->middleware('authorize')->name('destroy');
+
+        // Notifications
+        Route::post('/{id}/token', [UserController::class, 'token'])->middleware('authorize')->name('token');
     });
 
     // Codes (Only Managers & Admins)

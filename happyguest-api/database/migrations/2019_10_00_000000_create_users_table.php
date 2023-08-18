@@ -24,6 +24,7 @@ return new class extends Migration
             $table->boolean('blocked')->default(false);
             $table->string('photo_url')->nullable();
             $table->date('last_review')->nullable();
+            $table->string('fcm_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

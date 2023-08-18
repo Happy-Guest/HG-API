@@ -32,6 +32,7 @@ class User extends Authenticatable
         'blocked',
         'photo_url',
         'last_review',
+        'fcm_token'
     ];
 
     /**
