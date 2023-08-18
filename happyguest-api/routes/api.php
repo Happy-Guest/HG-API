@@ -75,15 +75,15 @@ Route::middleware('auth:api')->group(function () {
             Route::get('/', [CheckoutController::class, 'user'])->middleware('authorize')->name('index');
         });
 
+        // Notifications
+        Route::post('/token', [UserController::class, 'token'])->name('token');
+
         Route::get('/', [UserController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/{id}', [UserController::class, 'show'])->middleware('role:M')->name('show');
         Route::post('/{id}', [UserController::class, 'update'])->middleware('authorize')->name('update');
         Route::patch('/{id}/block', [UserController::class, 'block'])->middleware('authorize')->name('block');
         Route::patch('/{id}/unblock', [UserController::class, 'unblock'])->middleware('authorize')->name('unblock');
         Route::delete('/{id}', [UserController::class, 'destroy'])->middleware('authorize')->name('destroy');
-
-        // Notifications
-        Route::post('/token', [UserController::class, 'token'])->name('token');
     });
 
     // Codes (Only Managers & Admins)
