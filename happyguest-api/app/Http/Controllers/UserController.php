@@ -28,6 +28,7 @@ class UserController extends Controller
         if ($request->has('filter') && $request->filter != 'ALL') {
             switch ($request->filter) {
                 case 'C': // Client
+                case 'E': // Employee
                 case 'M': // Manager
                 case 'A': // Admin
                     $users->where('role', $request->filter);

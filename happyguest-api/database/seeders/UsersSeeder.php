@@ -174,6 +174,35 @@ class UsersSeeder extends Seeder
                 'created_at' => $now->sub(new \DateInterval('P3D'))->format('Y-m-d H:i:s'),
                 'updated_at' => $now,
             ],
+            // Employees
+            [
+                'name' => 'Maria Fernandes',
+                'email' => 'mfernandes@hotmail.com',
+                'phone' => '914836492',
+                'password' => bcrypt('123456789'),
+                'address' => 'Rua Principal nº360, Leiria',
+                'birth_date' => '1998-03-12',
+                'role' => 'E',
+                'blocked' => false,
+                'photo_url' => null,
+                'last_review' => null,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
+            [
+                'name' => 'Miguel Gonçalves',
+                'email' => 'mgoncalves@gmail.com',
+                'phone' => '934738291',
+                'password' => bcrypt('123456789'),
+                'address' => null,
+                'birth_date' => '1997-05-23',
+                'role' => 'E',
+                'blocked' => false,
+                'photo_url' => null,
+                'last_review' => null,
+                'created_at' => $now,
+                'updated_at' => $now,
+            ],
         ];
 
         DB::table('users')->insert($users);
