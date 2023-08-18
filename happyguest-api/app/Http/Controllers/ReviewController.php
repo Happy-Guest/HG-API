@@ -170,7 +170,7 @@ class ReviewController extends Controller
         $review = Review::create($request->validated());
 
         // Update user's last review
-        if (!$request->has('user_id') && auth()->user()->role != 'A') {
+        if ($request->has('user_id') && auth()->user()->role != 'A') {
             $user = User::findOrFail(auth()->user()->id);
             $user->last_review = now();
             $user->save();
