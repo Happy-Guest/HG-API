@@ -6,7 +6,7 @@ use DateTime;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class regionsSeeder extends Seeder
+class RegionsSeeder extends Seeder
 {
     /**
      * Run the database seeds.
