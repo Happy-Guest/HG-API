@@ -182,7 +182,7 @@ class ReserveController extends Controller
 
         $reserve = Reserve::create($request->validated());
 
-        // Send notification to admins and managers
+        // Send notification to admins, managers and employees
         $notification = [
             'title' => __('messages.new_reservation', ['id' => $reserve->id, 'time' => $reserve->time->format('d/m/Y H:i')]),
             'body' => __('messages.new_reservation', ['id' => $reserve->id, 'time' => $reserve->time->format('d/m/Y H:i')]),
@@ -199,6 +199,13 @@ class ReserveController extends Controller
         foreach ($managers as $manager) {
             if ($manager->fcm_token) {
                 FCMService::send($manager->fcm_token, $notification);
+            }
+        }
+
+        $employees = User::where('role', 'E')->get();
+        foreach ($employees as $employee) {
+            if ($employee->fcm_token) {
+                FCMService::send($employee->fcm_token, $notification);
             }
         }
 

@@ -252,7 +252,7 @@ class OrderController extends Controller
             $order->save();
         }
 
-        // Send notification to admins and managers
+        // Send notification to admins, managers and employees
         $notification = [
             'title' => __('messages.new_order', ['id' => $order->id, 'time' => $order->time->format('d/m/Y H:i')]),
             'body' => __('messages.new_order', ['id' => $order->id, 'time' => $order->time->format('d/m/Y H:i')]),
@@ -269,6 +269,13 @@ class OrderController extends Controller
         foreach ($managers as $manager) {
             if ($manager->fcm_token) {
                 FCMService::send($manager->fcm_token, $notification);
+            }
+        }
+
+        $employees = User::where('role', 'E')->get();
+        foreach ($employees as $employee) {
+            if ($employee->fcm_token) {
+                FCMService::send($employee->fcm_token, $notification);
             }
         }
 
