@@ -236,7 +236,7 @@ class ReserveController extends Controller
         $reserve->update($request->validated());
 
         // Send notification to user
-        if ($reserve->user->fcm_token) {
+        if ($reserve->user && $reserve->user->fcm_token) {
             $notification = [
                 'title' => __('messages.response_reservation', ['time' => $reserve->time->format('d/m/Y H:i')]),
                 'body' => __('messages.response_reservation', ['time' => $reserve->time->format('d/m/Y H:i')]),
