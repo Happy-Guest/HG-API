@@ -248,12 +248,12 @@ class ComplaintController extends Controller
         $complaint->update($request->validated());
 
         // Send notification to user
-        if ($complaint->user->fcm_token) {
+        if ($complaint->user && $complaint->user->fcm_token) {
             $notification = [
                 'title' => __('messages.response_complaint', ['date' => $complaint->created_at]),
                 'body' => __('messages.response_complaint', ['date' => $complaint->created_at]),
             ];
-            
+
             FCMService::send($complaint->user->fcm_token, $notification);
         }
 

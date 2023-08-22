@@ -317,7 +317,7 @@ class OrderController extends Controller
         }
 
         // Send notification to user
-        if ($order->user->fcm_token) {
+        if ($order->user && $order->user->fcm_token) {
             $notification = [
                 'title' => __('messages.response_order', ['time' => $order->time->format('d/m/Y H:i')]),
                 'body' => __('messages.response_order', ['time' => $order->time->format('d/m/Y H:i')]),
