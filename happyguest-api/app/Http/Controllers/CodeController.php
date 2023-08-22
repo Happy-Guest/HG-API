@@ -13,6 +13,8 @@ use App\Http\Requests\DeleteRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use App\Mail\ShareCodeMail;
+use Illuminate\Support\Facades\Mail;
 
 class CodeController extends Controller
 {
@@ -322,7 +324,10 @@ class CodeController extends Controller
     {
         $code = Code::create($request->validated());
 
-        // TODO: if email is set, send email to the user with the code
+        // Send email with code if email is received
+        if ($request->email) {
+            Mail::to($request->email)->send(new ShareCodeMail($code));
+        }
 
         return response()->json([
             'message' => __('messages.created', ['attribute' => __('messages.attributes.code')]),

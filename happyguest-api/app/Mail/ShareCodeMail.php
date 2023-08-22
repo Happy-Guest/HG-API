@@ -5,23 +5,23 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use App\Models\Review;
+use App\Models\Code;
 
-class ShareReviewMail extends Mailable
+class ShareCodeMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $review;
+    public $code;
 
     /**
      * Create a new message instance.
      *
-     * @param  Review  $review
+     * @param  Code  $code
      * @return void
      */
-    public function __construct(Review $review)
+    public function __construct(Code $code)
     {
-        $this->review = $review;
+        $this->code = $code;
     }
 
     /**
@@ -31,10 +31,10 @@ class ShareReviewMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Partilha de Avaliação - Hotel de Leiria')
-            ->view('emails.share_review')
+        return $this->subject('Envio de Código - Hotel de Leiria')
+            ->view('emails.share_code')
             ->with([
-                'review' => $this->review,
+            'code' => $this->code,
             ]);
     }
 }

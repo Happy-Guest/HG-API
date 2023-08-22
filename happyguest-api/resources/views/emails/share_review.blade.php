@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Partilha de Avaliação do Hotel de Leiria</title>
+    <title>Partilha de Avaliação - Hotel de Leiria</title>
 </head>
 <body>
     <p>Olá,</p>
