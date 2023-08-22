@@ -115,6 +115,7 @@ Route::middleware('auth:api')->group(function () {
         Route::get('/', [ReviewController::class, 'index'])->middleware('role:M')->name('index');
         Route::get('/{id}', [ReviewController::class, 'show'])->name('show');
         Route::post('/', [ReviewController::class, 'store'])->middleware(['valid-code'])->name('store');
+        Route::patch('/{id}/share', [ReviewController::class, 'share'])->middleware('role:E')->name('share');
         Route::delete('/{id}', [ReviewController::class, 'destroy'])->middleware('role:M')->name('destroy');
     });
 

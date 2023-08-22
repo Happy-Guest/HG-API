@@ -11,6 +11,8 @@ use App\Http\Requests\DeleteRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Services\FCMService;
+use App\Mails\ReviewMail;
+use Illuminate\Support\Facades\Mail;
 
 class ReviewController extends Controller
 {
@@ -202,6 +204,27 @@ class ReviewController extends Controller
         ], 201);
     }
 
+    /**
+     * Share the specified review.
+     *
+     * @param  Request  $request
+     * @param  int  $id
+     * @return JsonResponse
+     */
+    public function share(Request $request, int $id)
+    {
+        $review = Review::findOrFail($id);
+
+        // TODO: Send email to user with the review from request email
+        Mail::to($request->email)->send(new ReviewMail($review));
+
+        $review->shared = true;
+        $review->save();
+
+        return response()->json([
+            'message' => __('messages.shared', ['attribute' => __('messages.attributes.review')]),
+        ], 200);
+    }
 
     /**
      * Remove the specified review from storage.

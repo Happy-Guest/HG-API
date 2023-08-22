@@ -322,6 +322,8 @@ class CodeController extends Controller
     {
         $code = Code::create($request->validated());
 
+        // TODO: if email is set, send email to the user with the code
+
         return response()->json([
             'message' => __('messages.created', ['attribute' => __('messages.attributes.code')]),
             'code' => new CodeResource($code),

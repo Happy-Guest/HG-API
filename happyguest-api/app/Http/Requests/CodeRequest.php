@@ -45,6 +45,7 @@ class CodeRequest extends FormRequest
             'rooms.*' => 'required|string|distinct|min:1|max:10',
             'entry_date' => 'required|date_format:Y/m/d',
             'exit_date' => 'required|date_format:Y/m/d|after_or_equal:entry_date',
+            'email' => 'email|max:255',
         ];
     }
 }

@@ -41,6 +41,7 @@ return [
     'response_order' => 'Your order has been updated! (Time: :time)',
     'new_reservation' => 'New reservation received! (ID: :id, Time: :time)',
     'response_reservation' => 'Your reservation has been updated! (Time: :time)',
+    'shared' => ':attribute shared successfully!',
     'attributes' => [
         'user' => 'User',
         'code' => 'Code',

@@ -41,6 +41,7 @@ return [
     'response_order' => 'O seu pedido recebeu uma atualização! (Horário: :time)',
     'new_reservation' => 'Nova reserva recebida! (ID: :id, Horário: :time)',
     'response_reservation' => 'A sua reserva recebeu uma atualização! (Horário: :time)',
+    'shared' => 'A :attribute foi partilhada com sucesso!',
     'attributes' => [
         'user' => 'Utilizador',
         'code' => 'Código',
