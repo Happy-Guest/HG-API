@@ -8,6 +8,7 @@ use App\Http\Resources\ReviewResource;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\DeleteRequest;
+use App\Mail\ShareReviewMail;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Services\FCMService;
@@ -213,10 +214,14 @@ class ReviewController extends Controller
      */
     public function share(Request $request, int $id)
     {
+        $request->validate([
+            'email' => 'required|string|email|max:255',
+        ]);
+
         $review = Review::findOrFail($id);
 
-        // TODO: Send email to user with the review from request email
-        Mail::to($request->email)->send(new ReviewMail($review));
+        // Send email with review
+        Mail::to($request->email)->send(new ShareReviewMail($review));
 
         $review->shared = true;
         $review->save();

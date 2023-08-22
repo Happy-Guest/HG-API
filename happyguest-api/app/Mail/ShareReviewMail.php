@@ -1,13 +1,13 @@
-<?
+<?php
 
-namespace App\Mails;
+namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\Review;
 
-class ReviewMail extends Mailable
+class ShareReviewMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -16,7 +16,7 @@ class ReviewMail extends Mailable
     /**
      * Create a new message instance.
      *
-     * @param Review $review
+     * @param  Review  $review
      * @return void
      */
     public function __construct(Review $review)
@@ -27,11 +27,14 @@ class ReviewMail extends Mailable
     /**
      * Build the message.
      *
-     * @param Review $review
      * @return $this
      */
     public function build()
     {
-        return $this->subject('Partilha de Avaliação')->view('emails.review');
+        return $this->subject('Partilha de Avaliação do Hotel de Leiria')
+            ->view('emails.share_review')
+            ->with([
+                'review' => $this->review,
+            ]);
     }
 }
