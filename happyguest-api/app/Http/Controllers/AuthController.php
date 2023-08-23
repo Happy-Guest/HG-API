@@ -213,6 +213,17 @@ class AuthController extends Controller
     {
         $request->validated();
 
+        // Check if its reset password request
+        if ($request->has('user_id') && $request->user_id != null && Auth::user()->role == 'A') {
+            $user = User::find($request->user_id);
+            $user->password = bcrypt('123456789');
+            $user->save();
+
+            return response()->json([
+                'message' => __('auth.password_changed'),
+            ]);
+        }
+
         $user = $request->user();
 
         // Check if old password is correct
