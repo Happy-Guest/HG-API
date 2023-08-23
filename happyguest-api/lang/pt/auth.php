@@ -11,6 +11,6 @@ return [
     'logged_in' => 'Sessão iniciada com sucesso.',
     'logged_out' => 'Sessão terminada com sucesso.',
     'unauthenticated' => 'Você não está autenticado!',
-    'password_changed' => 'Palavra-passe alterada com sucesso.',
+    'password_changed' => 'Palavra-passe alterada com sucesso!',
     'unauthorized' => 'Não tem permissões para aceder a esta aplicação.',
 ];
