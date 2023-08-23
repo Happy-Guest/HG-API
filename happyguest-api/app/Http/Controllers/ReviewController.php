@@ -181,7 +181,7 @@ class ReviewController extends Controller
 
         // Send notification to admins and managers
         $notification = [
-            'title' => __('messages.new_review', ['id' => $review->id]),
+            'title' => __('messages.leiria_hotel'),
             'body' => __('messages.new_review', ['id' => $review->id]),
         ];
 

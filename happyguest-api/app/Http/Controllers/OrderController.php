@@ -254,7 +254,7 @@ class OrderController extends Controller
 
         // Send notification to admins, managers and employees
         $notification = [
-            'title' => __('messages.new_order', ['id' => $order->id, 'time' => $order->time->format('d/m/Y H:i')]),
+            'title' => __('messages.leiria_hotel'),
             'body' => __('messages.new_order', ['id' => $order->id, 'time' => $order->time->format('d/m/Y H:i')]),
         ];
 
@@ -319,7 +319,7 @@ class OrderController extends Controller
         // Send notification to user
         if ($order->user && $order->user->fcm_token) {
             $notification = [
-                'title' => __('messages.response_order', ['time' => $order->time->format('d/m/Y H:i')]),
+                'title' => __('messages.leiria_hotel'),
                 'body' => __('messages.response_order', ['time' => $order->time->format('d/m/Y H:i')]),
             ];
 

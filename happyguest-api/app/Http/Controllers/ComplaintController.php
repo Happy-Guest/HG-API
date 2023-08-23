@@ -211,7 +211,7 @@ class ComplaintController extends Controller
 
         // Send notification to admins and managers
         $notification = [
-            'title' => __('messages.new_complaint', ['id' => $complaint->id]),
+            'title' => __('messages.leiria_hotel'),
             'body' => __('messages.new_complaint', ['id' => $complaint->id]),
         ];
 
@@ -250,7 +250,7 @@ class ComplaintController extends Controller
         // Send notification to user
         if ($complaint->user && $complaint->user->fcm_token) {
             $notification = [
-                'title' => __('messages.response_complaint', ['date' => $complaint->created_at]),
+                'title' => __('messages.leiria_hotel'),
                 'body' => __('messages.response_complaint', ['date' => $complaint->created_at]),
             ];
 

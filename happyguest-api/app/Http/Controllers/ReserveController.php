@@ -184,7 +184,7 @@ class ReserveController extends Controller
 
         // Send notification to admins, managers and employees
         $notification = [
-            'title' => __('messages.new_reservation', ['id' => $reserve->id, 'time' => $reserve->time->format('d/m/Y H:i')]),
+            'title' => __('messages.leiria_hotel'),
             'body' => __('messages.new_reservation', ['id' => $reserve->id, 'time' => $reserve->time->format('d/m/Y H:i')]),
         ];
 
@@ -238,7 +238,7 @@ class ReserveController extends Controller
         // Send notification to user
         if ($reserve->user && $reserve->user->fcm_token) {
             $notification = [
-                'title' => __('messages.response_reservation', ['time' => $reserve->time->format('d/m/Y H:i')]),
+                'title' => __('messages.leiria_hotel'),
                 'body' => __('messages.response_reservation', ['time' => $reserve->time->format('d/m/Y H:i')]),
             ];
 

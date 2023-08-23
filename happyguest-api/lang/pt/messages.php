@@ -42,6 +42,7 @@ return [
     'new_reservation' => 'Nova reserva recebida! (ID: :id, Horário: :time)',
     'response_reservation' => 'A sua reserva recebeu uma atualização! (Horário: :time)',
     'shared' => 'A :attribute foi partilhada com sucesso!',
+    'leiria_hotel' => 'Hotel de Leiria',
     'attributes' => [
         'user' => 'Utilizador',
         'code' => 'Código',

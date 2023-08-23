@@ -42,6 +42,7 @@ return [
     'new_reservation' => 'New reservation received! (ID: :id, Time: :time)',
     'response_reservation' => 'Your reservation has been updated! (Time: :time)',
     'shared' => ':attribute shared successfully!',
+    'leiria_hotel' => 'Leiria Hotel',
     'attributes' => [
         'user' => 'User',
         'code' => 'Code',
