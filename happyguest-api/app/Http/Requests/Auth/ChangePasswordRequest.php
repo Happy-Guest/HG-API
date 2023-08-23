@@ -23,8 +23,8 @@ class ChangePasswordRequest extends FormRequest
     {
         return [
             'user_id' => 'nullable|numeric|exists:users,id',
-            'old_password' => 'required|string',
-            'new_password' => 'required|string|confirmed|min:5|max:255|different:old_password',
+            'old_password' => 'string',
+            'new_password' => 'string|confirmed|min:5|max:255|different:old_password',
         ];
     }
 }
