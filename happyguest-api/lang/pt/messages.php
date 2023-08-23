@@ -33,7 +33,7 @@ return [
     'item_out_of_stock' => 'O :item está fora de stock!',
     'schedule_format' => 'O formato do horário é inválido!',
     'service_limit_reached' => 'Atingimos o limite de pedidos para a hora selecionada. Por favor, tente novamente em outro horário!',
-    'new_complaint' => 'Nova reclamação recebida! ID::id',
+    'new_complaint' => 'Nova reclamação recebida! (ID: :id)',
     'response_complaint' => 'A sua reclamação recebeu uma atualização! (Data da Reclamação: :date)',
     'new_review' => 'Nova avaliação recebida! (ID: :id)',
     'new_checkout' => 'Novo check-out recebido! (ID: :id)',

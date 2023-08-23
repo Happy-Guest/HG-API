@@ -33,7 +33,7 @@ return [
     'item_out_of_stock' => 'The :item is out of stock!',
     'schedule_format' => 'The schedule format is invalid!',
     'service_limit_reached' => 'We have reached the limit of orders for the selected time. Please try again at another time!',
-    'new_complaint' => 'New complaint received! ID::id',
+    'new_complaint' => 'New complaint received! (ID: :id)',
     'response_complaint' => 'Your complaint has been updated! (Complaint Date: :date)',
     'new_review' => 'New review received! (ID: :id)',
     'new_checkout' => 'New check-out received! (ID: :id)',
