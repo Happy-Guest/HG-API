@@ -84,6 +84,13 @@ class OrderController extends Controller
             }
         }
 
+        // search the orders by name user
+        if ($request->has('search')) {
+            $orders->whereHas('user', function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->search . '%');
+            });
+        }
+
         OrderResource::$format = 'simple';
         return OrderResource::collection($orders->paginate(20));
     }

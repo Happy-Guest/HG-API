@@ -71,6 +71,11 @@ class ItemController extends Controller
             }
         }
 
+        // search the items by name
+        if ($request->has('search')) {
+            $items->where('name', 'LIKE', '%' . $request->search . '%');
+        }
+
         ItemResource::$format = 'simple';
         return ItemResource::collection($items->paginate(20));
     }
@@ -141,6 +146,11 @@ class ItemController extends Controller
                         'message' => __('messages.invalid_order'),
                     ], 400);
             }
+        }
+
+        // search the items by name
+        if ($request->has('search')) {
+            $items->where('name', 'LIKE', '%' . $request->search . '%');
         }
 
         ItemResource::$format = 'detailed';

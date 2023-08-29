@@ -65,6 +65,13 @@ class ReviewController extends Controller
             }
         }
 
+        // search the reviews by name user
+        if ($request->has('search')) {
+            $reviews->whereHas('user', function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->search . '%');
+            });
+        }
+
         ReviewResource::$format = 'simple';
         return ReviewResource::collection($reviews->paginate(20));
     }
@@ -192,7 +199,7 @@ class ReviewController extends Controller
             }
         }
 
-        $managers = User::where('role','M')->get();
+        $managers = User::where('role', 'M')->get();
         foreach ($managers as $manager) {
             if ($manager->fcm_token) {
                 FCMService::send($admin->fcm_token, $notification);

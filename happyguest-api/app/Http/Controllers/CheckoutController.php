@@ -55,6 +55,13 @@ class CheckoutController extends Controller
             }
         }
 
+        // search the checkouts by name user
+        if ($request->has('search')) {
+            $checkouts->whereHas('user', function ($query) use ($request) {
+                $query->where('name', 'LIKE', '%' . $request->search . '%');
+            });
+        }
+
         CheckoutResource::$format = 'simple';
         return CheckoutResource::collection($checkouts->paginate(20));
     }

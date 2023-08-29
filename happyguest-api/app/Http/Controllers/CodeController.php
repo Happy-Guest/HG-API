@@ -84,6 +84,11 @@ class CodeController extends Controller
             }
         }
 
+        // search the code by code
+        if ($request->has('search')) {
+            $codes->where('code', 'LIKE', '%' . $request->search . '%');
+        }
+
         CodeResource::$format = 'simple';
         return CodeResource::collection($codes->paginate(20));
     }
