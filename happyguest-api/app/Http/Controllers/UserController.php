@@ -67,7 +67,7 @@ class UserController extends Controller
 
         // search the users by name
         if ($request->has('search')) {
-            $users->where('name', 'LIKE', '%' . $request->search . '%');
+            $users->where('name', 'LIKE', '%' . $request->search . '%')->orWhere('email', 'LIKE', '%' . $request->search . '%');
         }
 
         UserResource::$format = 'simple';
