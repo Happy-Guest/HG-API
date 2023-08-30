@@ -35,6 +35,7 @@ class UserRequest extends FormRequest
             'address' => 'nullable|string|min:5|max:255',
             'birth_date' => 'nullable|date_format:Y/m/d|before:today|after:1900/01/01',
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'photoBase64' => 'nullable|base64image|max:2048',
         ];
     }
 }
