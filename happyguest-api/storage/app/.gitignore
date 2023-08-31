@@ -1,2 +1,5 @@
 !public/
 !.gitignore
+
+/public/user_photos/*
+/complaint_files/*

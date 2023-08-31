@@ -37,7 +37,6 @@ class RegisterRequest extends FormRequest
             'birth_date' => 'nullable|date_format:Y/m/d|before:today|after:1900/01/01',
             'role' => 'nullable|in:C,E,M,A', // C: Client, E: Employee, M: Manager, A: Admin
             'photo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'photoBase64' => 'nullable|base64image|max:2048',
         ];
     }
 }
