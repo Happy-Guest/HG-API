@@ -15,11 +15,24 @@ class Role
      */
     public function handle(Request $request, Closure $next, string $role): Response
     {
-        // Verify if the user is authorized to access the route except for Admins
-        if (auth()->user()->role !== $role && auth()->user()->role !== 'A') {
-            return response()->json([
-                'message' => __('messages.unauthorized'),
-            ], 403);
+        // If the user is an Admin, allow access
+        if (auth()->user()->role == 'A') {
+            return $next($request);
+        }
+
+        // If the role is Employee, allow access to Managers and Employees
+        if ($role == 'E' && (auth()->user()->role == 'M' || auth()->user()->role == 'E')) {
+            return $next($request);
+        }
+
+        // If the role is Manager, allow access to Managers
+        if ($role == 'M' && auth()->user()->role == 'M') {
+            return $next($request);
+        }
+
+        // If the role is Client, allow access to Clients
+        if ($role == 'C' && auth()->user()->role == 'C') {
+            return $next($request);
         }
 
         return $next($request);
