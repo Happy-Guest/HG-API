@@ -107,6 +107,13 @@ class UserController extends Controller
      */
     public function update(UserRequest $request, int $id)
     {
+
+        return response()->json([
+            'uploadMaxFilesize' => ini_get('upload_max_filesize'),
+            'postMaxSize' => ini_get('post_max_size'),
+        ]);
+
+
         $user = User::findOrFail($id);
 
         // Check if user has uploaded a photo (Base64)
