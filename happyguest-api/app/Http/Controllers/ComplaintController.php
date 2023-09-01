@@ -61,7 +61,7 @@ class ComplaintController extends Controller
             }
         }
 
-        // search the complaints by name user
+        // Search the complaints by name of user
         if ($request->has('search')) {
             $complaints->whereHas('user', function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->search . '%');

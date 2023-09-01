@@ -20,10 +20,10 @@ use App\Http\Controllers\RegionController;
 | API Routes
 |--------------------------------------------------------------------------
 |
-| Roles: Admin > Manager > User
-| Middlewares: auth:api, role, authorize
+| Roles: Admin > Manager > Employee > Client
+| Middlewares: auth:api, role, authorize, valid-code, authenticate
 |  -> Role: If indicated role is Manager, then Admin can access.
-|  -> authorize: If indicated id is not the same as authenticated user, verify if authenticated user is Manager or Admin.
+|  -> Authorize: If indicated id is not the same as authenticated user, verify if authenticated user is Manager or Admin.
 |  -> Valid-Code: Verify if the user has a valid code.
 */
 

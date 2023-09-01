@@ -71,7 +71,7 @@ class ItemController extends Controller
             }
         }
 
-        // search the items by name
+        // Search the items by name
         if ($request->has('search')) {
             $items->where('name', 'LIKE', '%' . $request->search . '%');
         }

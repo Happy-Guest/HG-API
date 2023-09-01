@@ -71,7 +71,7 @@ class ReserveController extends Controller
             }
         }
 
-        //search the reserves by name user
+        //Search the reserves by name of user
         if ($request->has('search')) {
             $reserves->whereHas('user', function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->search . '%');

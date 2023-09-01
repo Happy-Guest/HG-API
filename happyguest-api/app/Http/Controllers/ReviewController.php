@@ -65,7 +65,7 @@ class ReviewController extends Controller
             }
         }
 
-        // search the reviews by name user
+        // Search the reviews by name of user
         if ($request->has('search')) {
             $reviews->whereHas('user', function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->search . '%');

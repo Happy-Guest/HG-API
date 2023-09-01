@@ -84,7 +84,7 @@ class OrderController extends Controller
             }
         }
 
-        // search the orders by name user
+        // Search the orders by name of user
         if ($request->has('search')) {
             $orders->whereHas('user', function ($query) use ($request) {
                 $query->where('name', 'LIKE', '%' . $request->search . '%');

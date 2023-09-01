@@ -84,7 +84,7 @@ class CodeController extends Controller
             }
         }
 
-        // search the code by code
+        // Search the code by code
         if ($request->has('search')) {
             $codes->where('code', 'LIKE', '%' . $request->search . '%');
         }
