@@ -25,6 +25,7 @@ class ComplaintResource extends JsonResource
             case 'simple':
                 return [
                     'id' => $this->id,
+                    'userId' => $this->user_id ?: null,
                     'title' => $this->title,
                     'local' => $this->local,
                     'status' => $this->status,
